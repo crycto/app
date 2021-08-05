@@ -36,7 +36,10 @@ export default class Match {
     return this.stage === stage;
   }
   isTakingBets() {
-    return this.isAtStage(CREATED) && this.deadline - +new Date() / 1000 > 0;
+    return this.isAtStage(CREATED) && !this.isDeadlineCrossed();
+  }
+  isDeadlineCrossed() {
+    return this.deadline - +new Date() / 1000 <= 0;
   }
   isForfeited() {
     return this.stage === FORFEITED;
@@ -85,6 +88,12 @@ export default class Match {
             position.amount
       ).toFixed(2)
     );
+  }
+  getBiggestPayout() {
+    return this.positions?.reduce((max, p) => {
+      const payout = this.getPayout(p.score);
+      return Math.max(max, payout);
+    }, 0);
   }
   isBetPlaced() {
     return !!this.bet;

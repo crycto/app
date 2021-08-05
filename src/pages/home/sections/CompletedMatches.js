@@ -1,14 +1,10 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import React from "react";
-import { Grow, CircularProgress } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 import TinyCard from "../../../components/match/latest/TinyCard";
-import { COMPLETED_MATCHES, LATEST_MATCHES } from "../../../graphql/queries";
+import { COMPLETED_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import { useWallet } from "../../../providers/WalletProvider";
-
-const fiveDaysAgo = parseInt(
-  +new Date().setDate(new Date().getDate() - 1) / 1000
-);
 
 function CompletedMatches() {
   const { account = "" } = useWallet();
@@ -24,11 +20,11 @@ function CompletedMatches() {
   }
   return (
     <>
-      <div class="crycto-app--heading">
-        <h1 class="">Completed Matches</h1>
+      <div className="crycto-app--heading">
+        <h1>Completed Matches</h1>
       </div>
 
-      <div className="crycto-instruction">
+      <div className="crycto-instruction" style={{ overflow: "visible" }}>
         {loading && (
           <div
             style={{ width: "100%", display: "flex", justifyContent: "center" }}
@@ -37,9 +33,7 @@ function CompletedMatches() {
           </div>
         )}
         {data?.matches?.map((m) => (
-          <Grow in={true}>
-            <TinyCard key={m.id} match={new Match(m)} />
-          </Grow>
+          <TinyCard key={m.id} match={new Match(m)} />
         ))}
       </div>
     </>

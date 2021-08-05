@@ -10,6 +10,7 @@ import BetInfo from "./BetInfo";
 import Form from "./bet/Form";
 import SubmitButton from "./bet/SubmitButton";
 import { Fade } from "@material-ui/core";
+import Payout from "./Payout";
 
 const cls = (match) => {
   if (match.isCompleted()) {
@@ -21,6 +22,9 @@ const cls = (match) => {
   }
   if (match.isForfeited()) {
     return "_cancelled";
+  }
+  if (match.isBetPlaced()) {
+    return "_placed";
   }
   return "";
 };
@@ -54,6 +58,8 @@ function Card({ match }) {
               <WinningScore score={match.getWinningScoreRange()} />
             ) : match.isForfeited() ? (
               <Forfeited />
+            ) : match.isDeadlineCrossed() ? (
+              <Payout match={match} />
             ) : (
               <Timer match={match} />
             )}

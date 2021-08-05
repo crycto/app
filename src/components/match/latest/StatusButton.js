@@ -31,7 +31,7 @@ function StatusButton({ match, onClick }) {
     return <label className="crycto-card--cta cta-disabled">Completed</label>;
   }
   if (match.isBetPlaced()) {
-    return <label className="crycto-card--cta cta-disable">Placed</label>;
+    return <label className="crycto-card--cta cta-disabled">Placed</label>;
   }
   if (match.isTakingBets()) {
     return (
@@ -41,7 +41,7 @@ function StatusButton({ match, onClick }) {
     );
   }
 
-  return null;
+  return <label className="crycto-card--cta cta-disabled">Bets Closed</label>;
 }
 
 export default StatusButton;

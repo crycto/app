@@ -3,7 +3,7 @@ import React from "react";
 import { LATEST_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import Card from "../../../components/match/latest/Card";
-import { Slide } from "@material-ui/core";
+
 import CardSkeleton from "../../../components/match/latest/CardSkeleton";
 import AppProgress from "../../../components/utils/AppProgress";
 import { useWallet } from "../../../providers/WalletProvider";
@@ -15,7 +15,7 @@ const fiveDaysAgo = parseInt(
 const skelArr = Array(5).fill(0);
 
 function LatestMatches() {
-  const { account = "" } = useWallet();
+  const { triedEager, account = "" } = useWallet();
   const { data, loading, error, fetchMore } = useQuery(LATEST_MATCHES, {
     variables: {
       deadline: fiveDaysAgo,
@@ -28,7 +28,7 @@ function LatestMatches() {
   //     skip: data.matches.length,
   //   },
   // })
-  if (loading) {
+  if (loading || !triedEager) {
     return (
       <div className="crycto-instruction c-skeleton">
         <AppProgress />

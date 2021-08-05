@@ -67,7 +67,9 @@ function WalletContextProvider({ children }) {
   }, [error]);
 
   return (
-    <WalletContext.Provider value={{ ...context, connect, balance }}>
+    <WalletContext.Provider
+      value={{ ...context, triedEager, connect, balance }}
+    >
       {children}
     </WalletContext.Provider>
   );

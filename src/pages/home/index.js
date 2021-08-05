@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../components/footer";
 import CompletedMatches from "./sections/CompletedMatches";
 import LatestMatches from "./sections/LatestMatches";
 
@@ -10,6 +11,7 @@ function Home() {
       </section>
       <section className="crycto-app--section bgblue">
         <CompletedMatches />
+        <Footer />
       </section>
     </main>
   );

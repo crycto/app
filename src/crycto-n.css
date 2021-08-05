@@ -1,8 +1,8 @@
 :root {
   --c-blue: hsl(224, 57%, 38%);
   --c-blue-border: hsl(224, 57%, 58%);
-
-  --c-gold: hsl(40, 86%, 43%);
+  --c-purple: hsl(267deg 59% 34%);
+  --c-gold: hsl(40deg 83% 40%);
   --c-green: #158867;
   --c-red: hsl(0deg 57% 38%);
   --c-cancelled: #5d5d5d;
@@ -12,7 +12,14 @@
   --c-light-bg: linear-gradient(45deg, #b4c3f9, #f0f0ff);
   --c-dark-bg: linear-gradient(to top, #1b1c29, #06111b);
   --c-secondary: #0a1421;
-  --c-fallback-text-color: white;
+  --c-fallback-text-color: rgba(255, 255, 255, 0.8);
+
+  --c-dark-card-bg-blue: linear-gradient(45deg, #2a4798, #091e58);
+  --c-dark-card-bg-purple: linear-gradient(45deg, #592a98, #330b44);
+  --c-dark-card-bg-cancelled: linear-gradient(45deg, #5d5d5d, #373737);
+  --c-dark-card-bg-gold: linear-gradient(45deg, hsl(40deg 81% 36%), #815b0e);
+  --c-dark-card-bg-green: linear-gradient(45deg, var(--c-green), #0d5440);
+  --c-dark-card-bg-red: linear-gradient(45deg, #6a1d1d, #4c1414);
 }
 
 ._light {
@@ -26,8 +33,8 @@
 }
 .bgblue {
   background: linear-gradient(45deg, #021646, #190e1b);
-  border-top-left-radius: 1%;
-  border-top-right-radius: 1%;
+  /* border-top-left-radius: 1%;
+  border-top-right-radius: 1%; */
   align-items: flex-start;
   box-shadow: inset 0px 0px 13px #0000008c;
 }
@@ -50,9 +57,15 @@
   background: transparent;
   color: transparent;
 }
+._light .crycto-launch--cta {
+  background: transparent;
+}
 ._dark .crycto-launch--cta {
-  background-color: #2b2f48;
-  color: #b6bbff;
+  background: transparent;
+  color: hsl(222deg 98% 62%);
+}
+._dark .crycto-launch--cta:hover {
+  background: hsl(224deg 69% 13%);
 }
 .crycto-launch--cta img {
   transition: all 0.2s;
@@ -66,17 +79,18 @@
 
 /* Section */
 .crycto-app--section {
-  padding: 5rem 0 10rem 0;
-  min-height: 90vh;
+  padding: 5rem 0 5rem 0;
+  /* min-height: 90vh; */
   /* When there is no data/ when loading */
 }
 
 .crycto-logo--text {
-  color: var(--c-blue);
+  color: var(--c-blue) !important;
 }
 
 .crycto-instruction {
-  overflow: visible;
+  padding-bottom: 2rem;
+  padding-right: 2rem;
 }
 
 .crycto-instruction > .crycto-card--blk:nth-of-type(1) {
@@ -87,22 +101,28 @@
 }
 /* Card */
 .crycto-card--blk {
-  background: linear-gradient(
-    to bottom,
-    hsl(224, 57%, var(--card-bg-gradient-lightness), 1),
-    var(--c-secondary)
-  );
-  /* box-shadow: rgb(0 0 0 / 25%) -1px 11px 20px 1px; */
+  background: var(--c-dark-card-bg-blue);
+  box-shadow: rgb(0 0 0 / 25%) -1px 11px 20px 1px;
   /* Uniswap */
-  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px,
-    rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px;
+  /* box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px,
+    rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px; */
   transform: perspective(60rem) rotateX(2deg);
+  border: 2px solid white !important;
+}
+._dark .crycto-card--blk {
+  border: none !important;
+}
+._dark .crycto-card--heading span {
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 .crycto-card--heading span {
   color: var(--c-blue);
 }
 ._cancelled.crycto-card--blk .crycto-card--heading span {
   color: var(--c-cancelled);
+}
+._placed .crycto-card--heading span {
+  color: var(--c-purple);
 }
 ._completed .crycto-card--heading span {
   color: var(--c-gold);
@@ -144,23 +164,36 @@
 
 .crycto-card--blk._lost {
   border-color: var(--c-red);
-  background: linear-gradient(to bottom, var(--c-red), var(--c-secondary));
+  background: var(--c-dark-card-bg-red);
 }
 ._light .crycto-card--blk._lost {
   border-color: var(--c-red);
-  background: linear-gradient(
-    to bottom,
-    hsl(0deg 57% 38% / 10%),
-    var(--c-secondary)
-  );
+  background: white;
+}
+._light .crycto-card--blk._placed {
+  border-color: var(--c-purple);
+  background: white;
+}
+.crycto-card--blk._placed {
+  background: var(--c-dark-card-bg-purple);
+}
+.crycto-card--blk._completed {
+  background: var(--c-dark-card-bg-gold);
 }
 .crycto-card--blk._win {
-  border-color: var(--c-green);
-  background: linear-gradient(to bottom, #1588671c, var(--c-secondary));
+  background: var(--c-dark-card-bg-green);
 }
+._light .crycto-card--blk._win {
+  background: white;
+}
+
 .crycto-card--blk._cancelled {
   border-color: var(--c-cancelled);
   background: linear-gradient(to bottom, #272b2d4d, var(--c-secondary));
+}
+
+._dark .crycto-card--blk._cancelled {
+  background: var(--c-dark-card-bg-cancelled);
 }
 
 .crycto-card--text {
@@ -176,8 +209,20 @@
   padding-bottom: 1rem !important;
 }
 
+._highlight .payout-x {
+  margin: 0.4rem 0 0 0.2rem;
+  font-size: 1.9rem;
+}
+
+.crycto-card--blk--visible > .crycto-card--fold:nth-child(3) {
+  padding-right: 1.5rem;
+}
 .crycto-card--text-rhs {
   color: var(--c-blue);
+}
+
+._placed .crycto-card--text-rhs {
+  color: var(--c-purple);
 }
 
 ._completed .crycto-card--text-rhs {
@@ -191,6 +236,10 @@
   color: var(--c-green);
 }
 
+._dark .crycto-card--text-rhs {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 ._lost .crycto-card--text-rhs {
   color: var(--c-red);
 }
@@ -199,9 +248,26 @@
   font-size: 1rem;
   color: #797caa;
 }
+._dark .crycto-card--text-lhs {
+  color: rgb(232 232 232 / 70%);
+}
+.crycto-card--maincontent {
+  background: transparent;
+}
 
+._light .crycto-card--labels,
+.crycto-card--maincontent {
+  background: hsl(224deg 85% 97%);
+}
+._dark .crycto-card--labels,
+.crycto-card--maincontent {
+  background: rgba(0, 0, 0, 0.2);
+}
 .crycto-card--cta {
   background-color: var(--c-blue);
+}
+.crycto-card--blk._placed .crycto-card--cta {
+  background-color: var(--c-purple);
 }
 .crycto-card--blk._completed .crycto-card--cta {
   background-color: var(--c-gold);
@@ -236,7 +302,7 @@
   bottom: 0;
 }
 ._light .crycto-card--blk-back {
-  background: hsl(223deg 67% 86%);
+  background: hsl(223deg 67% 80%);
 }
 @keyframes slideUp {
   from {
@@ -313,18 +379,18 @@
   border-radius: 5px;
   width: 40%;
   margin: 1rem auto;
-  box-shadow: 0px 18px 20px -15px var(--c-blue);
+  box-shadow: 1px 6px 20px -15px var(--c-blue);
   cursor: pointer;
   outline: none;
   border: none;
   transform: translateY(0px);
-  transition: all 0.2s ease;
+  transition: filter, transform 0.2s ease;
 }
 
 ._light .crycto-card--web3-button {
   background: var(--c-secondary);
   color: var(--c-blue);
-  box-shadow: 0px 18px 20px -15px;
+  box-shadow: 1px 6px 20px -15px;
 }
 
 .crycto-card--web3-button:hover {
@@ -335,12 +401,40 @@
 .crycto-card--web3-button:disabled {
   pointer-events: none;
   opacity: 0.6;
+  box-shadow: none;
 }
 
 /* Tiny Card */
 
+.bgblue .crycto-instruction {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  min-height: 60vh;
+}
+
 ._small {
   color: var(--c-secondary) !important;
+  transform: perspective(50rem);
+  transition: transform 0.3s ease;
+}
+
+._dark {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+._small:hover {
+  transform: perspective(50rem) scale(1.05) rotateX(-4deg);
+}
+
+.bgblue .crycto-instruction > .crycto-card--blk:nth-of-type(1) {
+  margin-left: 1.5rem;
+}
+._small .crycto-instruction {
+  flex-wrap: wrap;
+}
+
+._small .crycto-instruction > .crycto-card--blk:nth-of-type(1) {
+  margin-left: 0;
 }
 
 ._small ._highlight {
@@ -361,10 +455,18 @@
 }
 
 ._small .crycto-card--text-rhs {
-  color: var(--c-secondary) !important;
+  color: var(--c-secondary);
 }
 ._small span {
   color: var(--c-secondary) !important;
+}
+
+.crycto-card--blk._small .crycto-card--text-lhs {
+  font-size: 0.9rem;
+}
+
+._dark ._small .crycto-card--text-lhs {
+  color: var(--c-fallback-text-color) !important;
 }
 
 ._small .crycto-card--maincontent {
@@ -373,9 +475,9 @@
   margin-bottom: 5rem;
 }
 
-._small._lost .crycto-card--maincontent {
+/* ._small._lost .crycto-card--maincontent {
   background: hsl(0deg 57% 25%);
-}
+} */
 
 ._small .crycto-card--maincontent span {
   color: var(--c-gold) !important;
@@ -389,7 +491,47 @@
   font-size: 1rem;
 }
 
+/* Footer */
+
+.crypto-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2rem 2.5rem;
+  width: 100%;
+  /* text-shadow: 0 0 9px #ffffff4a; */
+}
+.crypto-footer span {
+  cursor: pointer;
+}
+.crypto-footer-follow {
+  font-size: 2rem;
+  font-family: "Righteous-Regular";
+}
+.crypto-footer-social {
+  display: flex;
+  width: 17%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.crypto-footer-social span {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 /* Utils */
+
+.w100 {
+  width: 100%;
+}
 .mt1rem {
   margin-top: 1rem;
 }
@@ -397,3 +539,42 @@
 .cp {
   cursor: pointer;
 }
+
+/* Scroll bar */
+/* ::-webkit-scrollbar {
+  outline: none;
+} */
+
+::-webkit-scrollbar:vertical {
+  display: none;
+}
+
+/* width */
+::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+
+/* Handle */
+/* ._light ::-webkit-scrollbar-thumb:horizontal {
+  background: hsl(224, 65%, 64%);
+  opacity: 0.6;
+  border-radius: 10px;
+}
+
+._dark ::-webkit-scrollbar-thumb:horizontal {
+  background: hsl(227, 90%, 4%);
+  opacity: 0.6;
+  border-radius: 10px;
+} */
+
+/* Track */
+/* ._light ::-webkit-scrollbar-track:horizontal {
+  background: hsla(227, 100%, 97%, 0.774);
+  border-radius: 10px;
+  outline: none;
+}
+._dark ::-webkit-scrollbar-track:horizontal {
+  background: hsla(240, 1%, 10%, 0.8);
+  border-radius: 10px;
+  outline: none;
+} */

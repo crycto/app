@@ -2,6 +2,15 @@ import React from "react";
 import Icon from "../../utils/Icon";
 
 function BetInfo({ match }) {
+  if ((!match.isBetPlaced() && match.isCompleted()) || match.isForfeited()) {
+    return (
+      <div class="crycto-card--maincontent">
+        <div class="crycto-card--maincontent-blk">
+          <span class="crycto-card--maincontent-rhs w100">DNP</span>
+        </div>
+      </div>
+    );
+  }
   return (
     <div class="crycto-card--maincontent">
       <div class="crycto-card--maincontent-blk">
