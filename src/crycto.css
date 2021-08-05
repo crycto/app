@@ -1,0 +1,916 @@
+/*Reset CSS starts*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: flex;
+  box-sizing: border-box;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: var(--size-15px);
+  font-family: var(--crycto-font-regular);
+  line-height: var(--size-20px);
+  overflow-y: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: #ffffff;
+  overflow: hidden;
+  background-color: var(--home-bg);
+  scroll-behavior: smooth;
+}
+/*Reset CSS ends*/
+/*Common CSS Starts*/
+:root {
+  font-size: 10px;
+  --size-10px: 1rem;
+  --size-12px: 1.2rem;
+  --size-14px: 1.4rem;
+  --size-15px: 1.5rem;
+  --size-16px: 1.6rem;
+  --size-20px: 2rem;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-purple: #54a2ff;
+  --color-light-blue: #028181;
+  --color-medium-blue: #cb48cb;
+  --color-navyblue: #0f1426;
+  --crycto-font-regular: "Public_Sans_Regular";
+  --crycto-font-bold: "Public_Sans_Bold";
+  --crycto-font-semibold: "Public_Sans_SemiBold";
+  --crycto-font-medium: "Public_Sans_Medium";
+  --crycto-font-righteous: "Righteous-Regular";
+  --crycto-font-montserrat: "Montserrat-Regular";
+}
+body {
+  height: 100vh;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-white);
+  text-align: left;
+  /* background: #1b1c29; */
+  overflow: auto;
+}
+a {
+  text-decoration: none;
+  color: #2374f0;
+}
+.mr140 {
+  margin-right: 14rem;
+}
+.pb40 {
+  padding-bottom: 4rem;
+}
+.mauto {
+  margin: 0 auto;
+}
+.w100 {
+  width: 100%;
+}
+.mr15 {
+  margin-right: 1.5rem;
+}
+.mr10 {
+  margin-right: 1rem;
+}
+.w50 {
+  width: 50%;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.hide {
+  display: none !important;
+}
+.p0 {
+  padding: 0 !important;
+}
+.overflow-hide {
+  overflow: hidden;
+}
+.f20 {
+  font-size: 2rem;
+}
+.mb10 {
+  margin-bottom: 2rem !important;
+}
+.mb20 {
+  margin-bottom: 2rem !important;
+}
+.mb30 {
+  margin-bottom: 3rem !important;
+}
+.f30 {
+  font-size: 3.3rem !important;
+}
+.bgblue {
+  background: #2b2f48;
+}
+/*Common CSS ends*/
+/* header css starts here */
+.crycto-topbar {
+  display: flex;
+  padding: 2rem 5rem;
+  align-items: center;
+}
+.crycto-logo {
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: center;
+}
+.crycto-logo--img {
+  width: 30px;
+}
+.crycto-logo--text {
+  font-family: var(--crycto-font-righteous);
+  font-size: 3rem;
+  text-transform: uppercase;
+  padding-left: 1rem;
+  color: #767de8;
+}
+.crycto-launch--cta {
+  padding: 1rem 1.5rem;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  color: #b6bbff;
+  background: #2b2f48;
+  font-weight: 600;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+  align-items: center;
+  display: inline-flex;
+}
+.crycto-launch--cta img {
+  transition: all 0.35s;
+  width: 1.5rem;
+}
+.crycto-launch--cta:hover img {
+  transform: scale(1.3);
+}
+.crycto-launch--cta:hover {
+  background: #333754;
+}
+._moon .sun-image {
+  display: none;
+}
+._moon._sun .moon-image {
+  display: none;
+}
+._moon._sun .sun-image {
+  display: inline-block;
+}
+/* header css starts here */
+/* main content starts here */
+.crycto-maincontainer {
+  display: flex;
+  overflow: scroll;
+  align-items: center;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+.crycto-maincontent--header {
+  font-size: 5rem;
+  font-family: var(--crycto-font-righteous);
+  width: 100%;
+}
+.crycto-maincontent--header span {
+  display: flex;
+}
+.crycto-bg--white {
+  background: var(--color-white);
+  border-radius: 0.5rem;
+  padding: 8.6rem 3rem !important;
+}
+.crycto-text--orange {
+  color: #fabd09;
+}
+.crycto-section {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8.6rem 0;
+}
+.crycto-maincontent--text {
+  font-family: var(--crycto-font-medium);
+  font-size: 2rem;
+  padding: 3rem 0rem;
+}
+.crycto-poly--logo {
+  width: 1.5rem;
+}
+.crycto-section--lhs {
+  flex-grow: 0;
+  width: 60%;
+}
+.crycto-section--rhs {
+  flex-shrink: 0;
+  width: 30%;
+}
+.crycto-section--rhs img {
+  width: 100%;
+}
+.crycto-playing--list {
+  padding-left: 4rem;
+  padding-top: 2rem;
+}
+.crycto-playing--rules {
+  font-size: 1.8rem;
+  font-family: var(--crycto-font-regular);
+  list-style-type: disc;
+}
+.crycto-instruction {
+  width: 100%;
+  display: flex;
+  margin: auto;
+  overflow: auto;
+}
+.crycto-instruction--blk {
+  display: flex;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  flex-shrink: 0;
+  margin: 0 1rem 0;
+  width: calc((100% / 3.8) - 2rem);
+  position: relative;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.crycto-instruction--blk:last-child {
+  margin-right: 0;
+}
+.crycto-instruction--heading {
+  font-size: 2rem;
+  font-family: "Public_Sans_Bold";
+  padding: 1rem 0;
+}
+.crycto-instruction--text {
+  font-size: 1.3rem;
+  font-family: "Public_Sans_Medium";
+}
+.crycto-instruction--number {
+  position: absolute;
+  background: #282c59;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-family: "Public_Sans_Bold";
+  font-size: 2rem;
+  width: 4rem;
+  height: 4rem;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -2rem;
+}
+.crycto-card--blk {
+  display: flex;
+  color: #a4aec6;
+  background: #23253c; /*padding:3rem 1.5rem 3rem*/
+  border-radius: 50%/ 4% 4% 5% 5%;
+  flex-shrink: 0;
+  margin: 2rem 1.5rem;
+  width: 33rem;
+  min-height: 40rem;
+  position: relative;
+  flex-wrap: wrap;
+  text-align: center;
+  height: 100%;
+  min-height: 42rem;
+  border-top: 5px solid #618ffd;
+  box-shadow: rgb(0 0 0 / 30%) 0px 20px 17px -20px;
+}
+.crycto-card--blk:last-child {
+  margin-right: 0;
+}
+.crycto-card--heading span {
+  font-size: 3rem;
+  font-family: var(--crycto-font-righteous);
+  width: 100%;
+  margin: auto;
+  text-transform: uppercase;
+}
+.crycto-card--heading span.crycto-smallfont {
+  font-size: 2.4rem;
+  padding: 0 1rem;
+}
+.crycto-card--text {
+  font-size: 1.5rem;
+  font-family: "Public_Sans_Bold";
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-top: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: auto;
+  position: relative;
+}
+.crycto-card--fold {
+  padding: 2rem 0rem;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.crycto-card--cta {
+  padding: 1.5rem 3rem;
+  color: #fff;
+  background: #5868d0;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: "Montserrat-Regular";
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0;
+}
+.crycto-card--cta:hover {
+  /*background:#6577ea*/
+  opacity: 0.9;
+}
+.crycto-card--blk--hidden {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  transition: all 0.15s;
+  padding: 3rem 1rem 3rem;
+  font-family: var(--crycto-font-montserrat);
+  top: 0;
+  visibility: hidden;
+  transition-timing-function: ease-out;
+  transform: scaleX(0);
+}
+.crycto-card--blk--show {
+  visibility: visible;
+  transform: scaleX(1);
+  transition: 0.25s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.crycto-card--blk--visible {
+  margin: 2rem auto 0rem;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%/ 4% 4% 5% 5%;
+}
+.crycto-card--labels {
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.3rem;
+  position: relative;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem;
+  overflow: hidden;
+  background: #3b4165;
+  color: #a6abb0;
+  text-transform: uppercase;
+  display: inline-flex;
+  line-height: initial;
+  font-family: "Montserrat-Regular";
+  font-weight: 900;
+}
+.status-icon {
+  position: absolute;
+  top: -25px;
+  right: -15px;
+  width: 5rem;
+  transform: rotate(23deg);
+}
+.live {
+  transform: rotate(-5deg);
+}
+/* .crycto-card--labels:before{content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 3px;background: #a6abb0;} */
+.crycto-matchid {
+  position: absolute;
+  left: 1rem;
+  top: 2.1rem;
+  color: #fff;
+  font-family: "Righteous-Regular";
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.crycto-card--label-icon {
+  width: 9px;
+  margin-right: 5px;
+}
+.crycto-card--label-icon._time {
+  width: 11px;
+}
+.crycto-app--section {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10rem 5rem 10rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+.crycto-app--heading {
+  padding: 0rem 1rem 2rem;
+  width: 100%;
+  font-size: 3rem;
+  font-family: var(--crycto-font-righteous);
+  text-align: center;
+  align-self: center;
+  color: var(--color-white);
+}
+.crycto-card--highlight {
+  position: relative;
+  width: 100%;
+}
+.crycto-card--maincontent {
+  display: flex;
+  padding: 1.5rem;
+  background: #3b4165;
+  background: #323756;
+  border-radius: 1rem;
+  margin: auto;
+  width: 90%;
+  margin-top: 1.5rem;
+}
+.crycto-card--text-lhs {
+  font-size: 1.2em;
+  color: #b6bbff;
+  font-weight: 900;
+  font-family: "Public_Sans_Bold";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+}
+.crycto-card--text-rhs {
+  display: inline-flex;
+  width: 100%;
+  font-family: "Righteous-Regular";
+  color: #ce8d0f;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+.heading-value {
+  background: #f1f4ff;
+  padding: 0.5rem;
+  position: absolute;
+  top: -30px;
+  right: 0;
+  border-radius: 5px;
+  font-family: "Public_Sans_Bold";
+  font-size: 1.1rem;
+}
+.winning-cta--icon {
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+.crycto-match--status {
+  position: absolute;
+  top: -10px;
+  padding: 1.5rem 1rem 1rem;
+  background: #19b083;
+  color: #fff;
+  border-radius: 50% 50%/ 4% 4% 39% 39%;
+  min-width: 9rem;
+  font-size: 1.1rem;
+  font-family: "Public_Sans_Bold";
+  text-transform: uppercase;
+}
+._live {
+  background: #ff083a;
+}
+.crycto-card--maincontent-blk {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+}
+.crycto-card--maincontent-lhs {
+  width: 30%;
+  color: #b6bbff;
+  font-weight: 900;
+  font-family: "Public_Sans_Bold";
+}
+.crycto-card--maincontent-rhs {
+  width: 70%;
+  text-align: center;
+  font-family: "Righteous-Regular";
+  font-size: 1.5rem;
+  color: #a6abb0;
+}
+.crycto-color--purple {
+  color: #3f76fe !important;
+}
+.crycto-color--teal {
+  color: #039898 !important;
+}
+.range-slider-blk {
+  position: relative;
+  width: 80%;
+  margin: 1rem auto 2rem;
+}
+.range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 0px;
+  background: #ce8d0f;
+  outline: none;
+  border-radius: 1rem;
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border: 3px solid #ce8d0f;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.range-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  background: #fff;
+  border: 3px solid #ce8d0f;
+  border-radius: 50%;
+}
+.range-slider-blk span {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  font-size: 1rem;
+  font-family: "Public_Sans_Medium";
+  background: #3f76fe;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  color: #3f76fe;
+}
+.range-slider-blk .range-value-right {
+  left: auto;
+  right: 0;
+}
+[contenteditable] {
+  padding: 0 1rem;
+  background: #323756;
+  border-radius: 0.5rem;
+  outline: 0;
+  border: none;
+}
+.crycto-contest--text {
+  text-align: center;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+}
+.crycto-card--blk-back .crycto-card--text-lhs {
+  position: relative;
+  padding-bottom: 0.5rem;
+  display: inline-flex;
+  top: 0;
+}
+.crycto-card--blk-back .crycto-card--fold {
+  flex-direction: column;
+  padding: 1rem 1rem 0;
+}
+.crycto-card--blk-back .crycto-card--heading {
+  font-size: 2rem;
+}
+.crycto-card--blk-back .crycto-card--heading .crycto-smallfont {
+  font-size: 1.5rem;
+}
+.crycto-score--value {
+  background: #323756;
+  border-radius: 0.5rem;
+}
+.crycto-card--text-rhs .arrow-left,
+.crycto-card--text-rhs .arrow-right {
+  position: absolute;
+  width: 2.5rem;
+  left: 3rem;
+  transform: rotate(90deg);
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.crycto-card--text-rhs .arrow-right {
+  transform: rotate(-90deg);
+  left: auto;
+  right: 3rem;
+}
+.cta-disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.cta-disabled .winning-cta--icon {
+  display: none;
+}
+.heading-positioned {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+  top: 10%;
+}
+.small-icons {
+  width: 1.5rem;
+}
+/* main content ends here */
+/* footer */
+.crycto-footer--container {
+  width: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 2rem 5rem;
+  font-size: 1.5rem;
+}
+.crycto-container--left {
+  flex-grow: 1;
+}
+.crycto-container--right {
+  flex-shrink: 0;
+}
+.crycto-terms {
+  color: #a0d3ea;
+}
+.crycto-social--icons {
+  display: inline-flex;
+  margin-right: 1.5rem;
+}
+
+/* small card */
+.crycto-card--blk._small {
+  min-height: auto;
+  padding: 1.5rem 0 0;
+  overflow: hidden;
+  width: calc((100% / 5) - 3rem);
+}
+.crycto-card--blk._small .crycto-card--heading span {
+  font-size: 2rem;
+}
+.crycto-card--blk._small .crycto-card--heading span.crycto-smallfont {
+  font-size: 1.5rem;
+}
+.crycto-card--blk._small .crycto-card--text-rhs {
+  font-size: 2rem;
+}
+.crycto-card--blk._small .crycto-card--text-lhs {
+  font-size: 1.1em;
+  font-weight: 500;
+  bottom: auto;
+  top: -15px;
+}
+.crycto-card--blk._small .crycto-card--text-rhs._highlightedtext {
+  font-size: 2.5rem;
+}
+.crycto-card--blk._small .crycto-card--cta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  margin: 0;
+  border-radius: 0;
+  padding: 1.2rem 3rem;
+}
+.crycto-card--blk._small .crycto-card--blk--visible {
+  margin: 0 auto;
+}
+/* small card */
+/* footer */
+/* light theme */
+._light {
+  background: #f5f6fa;
+}
+._light .crycto-logo--text {
+  color: #3f76fe;
+}
+._light .crycto-launch--cta {
+  color: #3f76fe;
+  background: #e6eefd;
+}
+._light .crycto-launch--cta:hover {
+  background: #d8e4fd;
+}
+/* ._light .crycto-app--heading{color:#000} */
+._light .crycto-card--blk {
+  color: #5e676f;
+  border-top: 5px solid #618ffd;
+  background: #fff;
+}
+._light .crycto-card--heading {
+  color: #000;
+}
+._light .crycto-card--labels {
+  background: #f1f4ff;
+  color: #000;
+}
+._light .crycto-timeleft {
+  color: #ff083a; /*background: #ffe5e6;*/
+}
+._light .crycto-card--maincontent {
+  background: #f1f4ff;
+}
+._light .crycto-card--text-lhs,
+._light .crycto-card--maincontent-lhs {
+  color: #808488;
+}
+._light .crycto-card--maincontent-rhs {
+  color: #5e676f;
+}
+._light .crycto-matchid {
+  color: #000;
+}
+._light [contenteditable] {
+  background: #fdf3e5;
+}
+._light .crycto-score--value {
+  background: #f1f4ff;
+}
+._light .bgblue {
+  background: #5261c3;
+}
+
+._win.crycto-card--blk {
+  border-color: #14b084;
+}
+._lost.crycto-card--blk {
+  border-color: #ec4c4a;
+}
+._cancelled.crycto-card--blk {
+  border-color: #98a1ab;
+}
+._win.crycto-card--blk .crycto-card--cta {
+  background: #14b084;
+}
+._lost.crycto-card--blk .crycto-card--cta {
+  background: #ec4c4a;
+}
+._cancelled.crycto-card--blk .crycto-card--cta {
+  background: #98a1ab;
+}
+.crycto-card--blk._completed {
+  border-color: #ce8d0f;
+}
+.crycto-card--blk._completed .crycto-card--cta {
+  background: #ce8d0f;
+}
+/* light theme */
+/* media css starts here */
+@media (max-width: 1200px) {
+  .crycto-logo--text {
+    display: none;
+  }
+  .crycto-card--blk._small {
+    width: calc((100% / 4) - 3rem);
+  }
+}
+@media (max-width: 1024px) {
+  .crycto-app--section {
+    padding: 10rem 0rem 10rem;
+  }
+  .crycto-card--blk._small {
+    width: calc((100% / 3) - 3rem);
+  }
+}
+@media (max-width: 724px) {
+  .crycto-card--blk._small {
+    width: calc((100% / 2) - 3rem);
+  }
+}
+/* media css ends here */

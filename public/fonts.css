@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Public_Sans_Bold";
+  src: url("./fonts/PublicSans-Bold.ttf") format("ttf"),
+    url("./fonts/PublicSans-Bold.woff") format("woff"),
+    url("./fonts/PublicSans-Bold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Public_Sans_Regular";
+  src: url("./fonts/PublicSans-Regular.ttf") format("ttf"),
+    url("./fonts/PublicSans-Regular.woff") format("woff"),
+    url("./fonts/PublicSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Public_Sans_SemiBold";
+  src: url("./fonts/PublicSans-SemiBold.ttf") format("ttf"),
+    url("./fonts/PublicSans-SemiBold.woff") format("woff"),
+    url("./fonts/PublicSans-SemiBold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Public_Sans_Medium";
+  src: url("./fonts/PublicSans-Medium.ttf") format("ttf"),
+    url("./fonts/PublicSans-Medium.woff") format("woff"),
+    url("./fonts/PublicSans-Medium.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Righteous-Regular";
+  src: url("../fonts/Righteous.ttf") format("ttf"),
+    url("../fonts/Righteous.woff") format("woff"),
+    url("../fonts/Righteous.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("../fonts/Montserrat-Regular.ttf") format("ttf"),
+    url("../fonts/Montserrat-Regular.woff") format("woff"),
+    url("../fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}

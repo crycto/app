@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import "./crycto.css";
+import "./rangeslider.css";
+import "./crycto-n.css";
+import Header from "./components/header";
+// import { useTournament } from "./providers/TournamentProvider";
+import Home from "./pages/home";
+import { useEffect, useState } from "react";
+import initializeClient from "./apollo";
+import { ApolloProvider } from "@apollo/client";
+import TournamentProvider from "./providers/TournamentProvider";
+import WalletProvider from "./providers/WalletProvider";
+import ThemeProvider from "./providers/ThemeProvider";
+import OnChainProvider from "./providers/OnChainProvider";
 
 function App() {
+  // const tournament = useTournament();
+  const [client, setClient] = useState();
+
+  useEffect(
+    () =>
+      initializeClient()
+        .then((c) => setClient(c))
+        .catch(console.error),
+    []
+  );
+
+  if (!client) {
+    return null;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <OnChainProvider>
+        <WalletProvider>
+          <ApolloProvider client={client}>
+            <TournamentProvider>
+              <Header />
+              <Home />
+            </TournamentProvider>
+          </ApolloProvider>
+        </WalletProvider>
+      </OnChainProvider>
+    </ThemeProvider>
   );
 }
 

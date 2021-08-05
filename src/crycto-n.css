@@ -1,0 +1,399 @@
+:root {
+  --c-blue: hsl(224, 57%, 38%);
+  --c-blue-border: hsl(224, 57%, 58%);
+
+  --c-gold: hsl(40, 86%, 43%);
+  --c-green: #158867;
+  --c-red: hsl(0deg 57% 38%);
+  --c-cancelled: #5d5d5d;
+
+  --card-bg-gradient-lightness: 10%;
+
+  --c-light-bg: linear-gradient(45deg, #b4c3f9, #f0f0ff);
+  --c-dark-bg: linear-gradient(to top, #1b1c29, #06111b);
+  --c-secondary: #0a1421;
+  --c-fallback-text-color: white;
+}
+
+._light {
+  background: var(--c-light-bg);
+  --c-secondary: white;
+  --c-fallback-text-color: #2a4798;
+}
+
+._dark {
+  background: var(--c-dark-bg);
+}
+.bgblue {
+  background: linear-gradient(45deg, #021646, #190e1b);
+  border-top-left-radius: 1%;
+  border-top-right-radius: 1%;
+  align-items: flex-start;
+  box-shadow: inset 0px 0px 13px #0000008c;
+}
+._light .bgblue {
+  background: linear-gradient(45deg, #2a4798, #7850c5);
+}
+.crycto-app--heading {
+  align-self: unset;
+}
+
+.crycto-launch--block {
+  display: flex;
+  justify-content: center;
+}
+.crycto-launch--cta {
+  transition: transform, background-color 0.2s;
+  text-transform: none;
+  font-family: var(--crycto-font-montserrat);
+  height: 4rem;
+  background: transparent;
+  color: transparent;
+}
+._dark .crycto-launch--cta {
+  background-color: #2b2f48;
+  color: #b6bbff;
+}
+.crycto-launch--cta img {
+  transition: all 0.2s;
+}
+.crycto-launch--cta:hover img {
+  transform: scale(1.1);
+}
+.nohover.crycto-launch--cta:hover img {
+  transform: scale(1) !important;
+}
+
+/* Section */
+.crycto-app--section {
+  padding: 5rem 0 10rem 0;
+  min-height: 90vh;
+  /* When there is no data/ when loading */
+}
+
+.crycto-logo--text {
+  color: var(--c-blue);
+}
+
+.crycto-instruction {
+  overflow: visible;
+}
+
+.crycto-instruction > .crycto-card--blk:nth-of-type(1) {
+  margin-left: 2rem;
+}
+.c-skeleton.crycto-instruction > .crycto-card--blk:nth-of-type(2) {
+  margin-left: 2rem;
+}
+/* Card */
+.crycto-card--blk {
+  background: linear-gradient(
+    to bottom,
+    hsl(224, 57%, var(--card-bg-gradient-lightness), 1),
+    var(--c-secondary)
+  );
+  /* box-shadow: rgb(0 0 0 / 25%) -1px 11px 20px 1px; */
+  /* Uniswap */
+  box-shadow: rgb(0 0 0 / 1%) 0px 0px 1px, rgb(0 0 0 / 4%) 0px 4px 8px,
+    rgb(0 0 0 / 4%) 0px 16px 24px, rgb(0 0 0 / 1%) 0px 24px 32px;
+  transform: perspective(60rem) rotateX(2deg);
+}
+.crycto-card--heading span {
+  color: var(--c-blue);
+}
+._cancelled.crycto-card--blk .crycto-card--heading span {
+  color: var(--c-cancelled);
+}
+._completed .crycto-card--heading span {
+  color: var(--c-gold);
+}
+._win .crycto-card--heading span {
+  color: var(--c-green);
+}
+._lost .crycto-card--heading span {
+  color: var(--c-red);
+}
+._light .crycto-card--blk {
+  border-top: 5px solid var(--c-blue);
+}
+.crycto-card--blk {
+  border-top: 4px solid var(--c-blue);
+}
+._light .crycto-card--blk {
+  border-color: var(--c-blue);
+
+  background: linear-gradient(
+    to bottom,
+    hsl(224deg 57% 38% / 21%),
+    var(--c-secondary)
+  );
+  background: white;
+}
+.crycto-card--blk._completed {
+  border-color: var(--c-gold);
+  background: linear-gradient(
+    to bottom,
+    hsl(40deg 86% 43% / 10%),
+    var(--c-secondary)
+  );
+}
+._light .crycto-card--blk._completed {
+  border-color: var(--c-gold);
+  background: white;
+}
+
+.crycto-card--blk._lost {
+  border-color: var(--c-red);
+  background: linear-gradient(to bottom, var(--c-red), var(--c-secondary));
+}
+._light .crycto-card--blk._lost {
+  border-color: var(--c-red);
+  background: linear-gradient(
+    to bottom,
+    hsl(0deg 57% 38% / 10%),
+    var(--c-secondary)
+  );
+}
+.crycto-card--blk._win {
+  border-color: var(--c-green);
+  background: linear-gradient(to bottom, #1588671c, var(--c-secondary));
+}
+.crycto-card--blk._cancelled {
+  border-color: var(--c-cancelled);
+  background: linear-gradient(to bottom, #272b2d4d, var(--c-secondary));
+}
+
+.crycto-card--text {
+  padding-top: 1.5rem;
+}
+
+.crycto-card--maincontent span {
+  color: var(--c-gold) !important;
+}
+
+._highlight {
+  padding-top: 3rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.crycto-card--text-rhs {
+  color: var(--c-blue);
+}
+
+._completed .crycto-card--text-rhs {
+  color: var(--c-gold);
+}
+
+._cancelled .crycto-card--text-rhs {
+  color: var(--c-cancelled);
+}
+._win .crycto-card--text-rhs {
+  color: var(--c-green);
+}
+
+._lost .crycto-card--text-rhs {
+  color: var(--c-red);
+}
+
+.crycto-card--text-lhs {
+  font-size: 1rem;
+  color: #797caa;
+}
+
+.crycto-card--cta {
+  background-color: var(--c-blue);
+}
+.crycto-card--blk._completed .crycto-card--cta {
+  background-color: var(--c-gold);
+}
+.crycto-card--blk._win .crycto-card--cta {
+  background-color: var(--c-green);
+}
+.crycto-card--blk._lost .crycto-card--cta {
+  background-color: var(--c-red);
+}
+._cancelled.crycto-card--blk .crycto-card--cta {
+  background: var(--c-cancelled);
+}
+._cancelled.crycto-card--blk {
+  border-color: var(--c-cancelled);
+  opacity: 0.7;
+}
+
+/* Form */
+
+.crycto-card--blk-back {
+  transform: scale(0);
+  animation: slideUp 0.25s ease forwards;
+  background: hsl(223deg 63% 16%);
+  border-radius: 50%/ 3% 3% 5% 5%;
+  padding-top: 1rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+._light .crycto-card--blk-back {
+  background: hsl(223deg 67% 86%);
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.crycto-card--blk-back .crycto-contest--text {
+  margin-top: 2rem;
+  padding: 0 2rem;
+  color: var(--c-fallback-text-color);
+  font-size: 1rem;
+  font-family: "Montserrat-Regular";
+}
+.crycto-card--blk-back .crycto-card--text-lhs {
+  color: #444444;
+}
+.crycto-card--blk-back .crycto-score--value,
+.crycto-card--text-rhs {
+  color: white;
+}
+._light .crycto-card--blk-back .crycto-score--value,
+.crycto-card--text-rhs {
+  color: var(--c-blue);
+}
+.crycto-score--value {
+  width: 15rem;
+}
+.arrow-left,
+.arrow-right {
+  cursor: pointer;
+}
+.back-button {
+  position: absolute;
+  left: 5%;
+  font-size: 3rem;
+  top: 0;
+  cursor: pointer;
+  color: black;
+}
+.range-value {
+  padding: 0.5rem 1rem;
+  background: #323756;
+  border-radius: 0.5rem;
+  outline: 0;
+  border: none;
+  width: 6rem;
+  height: 3rem;
+  color: white;
+  font-family: "Righteous-Regular";
+
+  font-size: 2rem;
+}
+._light .range-value {
+  background: #f1f4ff;
+  color: var(--c-blue);
+}
+.slider-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.crycto-card--web3-button {
+  background: #264796;
+  color: white;
+  text-transform: uppercase;
+  font-family: var(--crycto-font-montserrat);
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  width: 40%;
+  margin: 1rem auto;
+  box-shadow: 0px 18px 20px -15px var(--c-blue);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transform: translateY(0px);
+  transition: all 0.2s ease;
+}
+
+._light .crycto-card--web3-button {
+  background: var(--c-secondary);
+  color: var(--c-blue);
+  box-shadow: 0px 18px 20px -15px;
+}
+
+.crycto-card--web3-button:hover {
+  filter: brightness(0.97);
+  transform: translateY(-1px);
+}
+
+.crycto-card--web3-button:disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Tiny Card */
+
+._small {
+  color: var(--c-secondary) !important;
+}
+
+._small ._highlight {
+  padding-top: 2rem !important;
+}
+
+._small._completed {
+  background: var(--c-gold) !important;
+}
+._small._win {
+  background: var(--c-green) !important;
+}
+._small._lost {
+  background: var(--c-red) !important;
+}
+._small._cancelled {
+  background: var(--c-cancelled) !important;
+}
+
+._small .crycto-card--text-rhs {
+  color: var(--c-secondary) !important;
+}
+._small span {
+  color: var(--c-secondary) !important;
+}
+
+._small .crycto-card--maincontent {
+  padding: 1rem;
+  margin-top: 0rem;
+  margin-bottom: 5rem;
+}
+
+._small._lost .crycto-card--maincontent {
+  background: hsl(0deg 57% 25%);
+}
+
+._small .crycto-card--maincontent span {
+  color: var(--c-gold) !important;
+}
+
+._small .crycto-card--blk--visible > .crycto-card--fold:nth-child(3) {
+  padding-bottom: 1.5rem;
+}
+
+._small .crycto-card--maincontent-rhs {
+  font-size: 1rem;
+}
+
+/* Utils */
+.mt1rem {
+  margin-top: 1rem;
+}
+
+.cp {
+  cursor: pointer;
+}
