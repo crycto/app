@@ -55,10 +55,10 @@ const cache = new InMemoryCache({
 
 export default async function initializeClient() {
   //TODO: Need to evaluate need
-  await persistCache({
-    cache,
-    storage: new LocalStorageWrapper(window.localStorage),
-  });
+  // await persistCache({
+  //   cache,
+  //   storage: new LocalStorageWrapper(window.localStorage),
+  // });
 
   return new ApolloClient({
     uri: "https://api.thegraph.com/subgraphs/name/shrinivas-s/cryctov1",

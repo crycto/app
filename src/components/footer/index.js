@@ -16,7 +16,11 @@ function Footer() {
           <InstagramIcon fontSize={"medium"} />
           &nbsp;&nbsp; Instagram
         </span>
-        <span>
+        <span
+          onClick={() =>
+            window.open("https://github.com/crycto/", "_blank", "noopener")
+          }
+        >
           <GithubIcon fontSize={"medium"} />
           &nbsp;&nbsp; Github
         </span>

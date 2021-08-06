@@ -38,7 +38,7 @@ function Card({ match, ...props }) {
       <div className="crycto-card--blk--visible">
         <Header {...match.matchDetails} />
         {/* <BreadCrumbs id={matchId} {...match.matchDetails} /> */}
-        <div class="crycto-card--fold _highlight">
+        <div className="crycto-card--fold _highlight">
           {match.isCompleted() ? (
             <WinningScore score={match.getWinningScoreRange()} />
           ) : match.isForfeited() ? (
@@ -47,7 +47,7 @@ function Card({ match, ...props }) {
             <Timer match={match} />
           )}
         </div>
-        <div class="crycto-card--fold">
+        <div className="crycto-card--fold">
           <Stat label="Bets" value={match.totalBets} />
           <Stat label="Pool" value={match.totalAmount} />
           {match.isCompleted() && (

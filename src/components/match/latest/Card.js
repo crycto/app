@@ -49,35 +49,35 @@ function Card({ match }) {
         showForm && "bet-form"
       }`}
     >
-      <Fade in={true}>
-        <div className="crycto-card--blk--visible">
-          <Header {...match.matchDetails} />
-          <BreadCrumbs id={matchId} uri={match.uri} {...match.matchDetails} />
-          <div class="crycto-card--fold _highlight">
-            {match.isCompleted() ? (
-              <WinningScore score={match.getWinningScoreRange()} />
-            ) : match.isForfeited() ? (
-              <Forfeited />
-            ) : match.isDeadlineCrossed() ? (
-              <Payout match={match} />
-            ) : (
-              <Timer match={match} />
-            )}
-          </div>
-          <div class="crycto-card--fold">
-            <Stat label="Bets" value={match.totalBets} />
-            <Stat label="Pool" value={match.totalAmount} />
-            {match.isCompleted() && (
-              <>
-                <Stat label="Winners" value={match.totalWinners} />
-                <Stat label="Rewards" value={match.rewardAmount} />
-              </>
-            )}
-          </div>
-          <BetInfo match={match} />
-          {!showForm && <StatusButton match={match} onClick={submit} />}
+      {/* <Fade in={true}> */}
+      <div className="crycto-card--blk--visible">
+        <Header {...match.matchDetails} />
+        <BreadCrumbs id={matchId} uri={match.uri} {...match.matchDetails} />
+        <div className="crycto-card--fold _highlight">
+          {match.isCompleted() ? (
+            <WinningScore score={match.getWinningScoreRange()} />
+          ) : match.isForfeited() ? (
+            <Forfeited />
+          ) : match.isDeadlineCrossed() ? (
+            <Payout match={match} />
+          ) : (
+            <Timer match={match} />
+          )}
         </div>
-      </Fade>
+        <div className="crycto-card--fold">
+          <Stat label="Bets" value={match.totalBets} />
+          <Stat label="Pool" value={match.totalAmount} />
+          {match.isCompleted() && (
+            <>
+              <Stat label="Winners" value={match.totalWinners} />
+              <Stat label="Rewards" value={match.rewardAmount} />
+            </>
+          )}
+        </div>
+        <BetInfo match={match} />
+        {!showForm && <StatusButton match={match} onClick={submit} />}
+      </div>
+      {/* </Fade> */}
       {showForm && (
         <>
           <Form match={match} onClose={setShowForm.bind(null, false)} />

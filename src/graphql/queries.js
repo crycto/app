@@ -13,13 +13,18 @@ export const TOURNAMENT = gql`
 `;
 
 export const LATEST_MATCHES = gql`
-  query GetLatestMatches($deadline: Int!, $connectedUser: String!, $skip: Int) {
+  query GetLatestMatches(
+    $deadline: Int!
+    $connectedUser: String!
+    $skip: Int
+    $first: Int!
+  ) {
     matches(
       where: { deadline_gte: $deadline }
       orderBy: deadline
       orderDirection: "asc"
       skip: $skip
-      first: 10
+      first: $first
       queryId: 0
     ) {
       id
@@ -55,13 +60,14 @@ export const COMPLETED_MATCHES = gql`
     $deadline: BigInt
     $connectedUser: String
     $skip: Int
+    $first: Int!
   ) {
     matches(
       where: { stage_not: "Created" }
       orderBy: deadline
       orderDirection: "desc"
       skip: $skip
-      first: 25
+      first: $first
       queryId: 1
     ) {
       id

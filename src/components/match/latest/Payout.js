@@ -9,14 +9,14 @@ function Payout({ match }) {
             {match.getPayout(match.bet?.score)}{" "}
             <small className="payout-x">x</small>
           </span>
-          <span class="crycto-card--text-lhs">Your Payout</span>
+          <span className="crycto-card--text-lhs">Your Payout</span>
         </>
       ) : (
         <>
           <span className="crycto-card--text-rhs  f30">
             {match.getBiggestPayout()} <small className="payout-x">x</small>
           </span>
-          <span class="crycto-card--text-lhs">Biggest Payout</span>
+          <span className="crycto-card--text-lhs">Biggest Payout</span>
         </>
       )}
     </div>

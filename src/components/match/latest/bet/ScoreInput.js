@@ -12,11 +12,11 @@ function ScoreInput({ minScore, scoreMultiple, value, onChange }) {
     onChange(value + scoreMultiple);
   }, [scoreMultiple, value, onChange]);
   return (
-    <div class="crycto-card--highlight mb20">
-      <span class="crycto-card--text-lhs">Score</span>
-      <span class="crycto-card--text-rhs mt1rem">
+    <div className="crycto-card--highlight mb20">
+      <span className="crycto-card--text-lhs">Score</span>
+      <span className="crycto-card--text-rhs mt1rem">
         <Icon name="arrow" className="arrow-left" onClick={decrement} />
-        <span class="crycto-score--value">
+        <span className="crycto-score--value">
           {value} - {value + scoreMultiple - 1}
         </span>
         <Icon name="arrow" className="arrow-right" onClick={increment} />

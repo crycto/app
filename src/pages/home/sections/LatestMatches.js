@@ -1,33 +1,80 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { LATEST_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import Card from "../../../components/match/latest/Card";
 
 import CardSkeleton from "../../../components/match/latest/CardSkeleton";
+import InfiniteScroll from "../../../components/utils/InfiniteScroll";
 import AppProgress from "../../../components/utils/AppProgress";
 import { useWallet } from "../../../providers/WalletProvider";
 
-const fiveDaysAgo = parseInt(
-  +new Date().setDate(new Date().getDate() - 5) / 1000
-);
+const deadline = parseInt(+new Date().setDate(new Date().getDate() - 5) / 1000);
 
-const skelArr = Array(5).fill(0);
+const skelArr = Array(4).fill(0);
+
+const LIMIT = 10;
+
+const pollInterval = 60 * 1000;
 
 function LatestMatches() {
   const { triedEager, account = "" } = useWallet();
-  const { data, loading, error, fetchMore } = useQuery(LATEST_MATCHES, {
-    variables: {
-      deadline: fiveDaysAgo,
-      connectedUser: account,
-    },
-    // pollInterval: 50 * 1000,
-  });
-  // fetchMore({
-  //   variables: {
-  //     skip: data.matches.length,
-  //   },
-  // })
+
+  const { data, loading, error, called, refetch, fetchMore } = useQuery(
+    LATEST_MATCHES,
+    {
+      variables: {
+        first: LIMIT,
+        deadline,
+        connectedUser: account,
+      },
+      // pollInterval: 60 * 1000,
+    }
+  );
+  const [loadMore, setLoadMore] = useState(true);
+  useEffect(() => {
+    if (called && !loading) {
+      setLoadMore(data.matches.length === LIMIT);
+    }
+  }, [called, loading]);
+
+  useEffect(() => {
+    const _id = setInterval(() => {
+      if (!data?.matches) {
+        return;
+      }
+      const limit = Math.max(
+        data?.matches.length + (data?.matches.length % LIMIT) + 1,
+        LIMIT
+      );
+      refetch({
+        first: limit,
+      }).then(({ data }) => {
+        setLoadMore(data.matches.length === limit);
+      });
+    }, pollInterval);
+    return () => clearInterval(_id);
+  }, [data, refetch]);
+
+  const [loadingMore, setLoadingMore] = useState(false);
+  const onLoadMore = useCallback(() => {
+    if (!data) {
+      return;
+    }
+    setLoadMore(false);
+    setLoadingMore(true);
+    fetchMore({
+      variables: {
+        skip: data.matches.length,
+      },
+    })
+      .then(({ data }) => {
+        setLoadingMore(false);
+        setLoadMore(data.matches.length === LIMIT);
+      })
+      .catch(console.log);
+  }, [fetchMore, data]);
+
   if (loading || !triedEager) {
     return (
       <div className="crycto-instruction c-skeleton">
@@ -56,11 +103,12 @@ function LatestMatches() {
     );
   }
   return (
-    <div className="crycto-instruction">
+    <InfiniteScroll horizontal loadMore={loadMore} onLoadMore={onLoadMore}>
       {data?.matches?.map((m) => (
         <Card key={m.id} match={new Match(m)} />
       ))}
-    </div>
+      {loadingMore && <CardSkeleton color="inherit" />}
+    </InfiniteScroll>
   );
 }
 

@@ -48,35 +48,42 @@ function Form({ match, onClose }) {
   );
   const setAmount = useCallback(
     ({ percentage, rawInput }) => {
-      if (rawInput !== undefined) {
-        if (isNaN(rawInput) || rawInput.trim().length === 0) {
+      try {
+        if (rawInput !== undefined) {
+          if (isNaN(rawInput) || rawInput.trim().length === 0) {
+            setBet((b) => ({
+              ...b,
+              rawInput,
+            }));
+            return;
+          }
+
+          let amount = Math.min(parseFloat(rawInput), balance);
           setBet((b) => ({
             ...b,
+            percentage:
+              balance > 0 ? parseFloat((amount * 1e2) / balance).toFixed(2) : 0,
+            amount,
+            rawAmount: moralisWeb3.utils.toWei(
+              parseFloat(rawInput).toFixed(18) + ""
+            ),
             rawInput,
           }));
-          return;
         }
-        let amount = Math.min(parseFloat(rawInput), balance);
-        setBet((b) => ({
-          ...b,
-          percentage:
-            balance > 0 ? parseFloat((amount * 1e2) / balance).toFixed(2) : 0,
-          amount,
-          rawAmount: moralisWeb3.utils.toWei(rawInput + ""),
-          rawInput,
-        }));
-      }
 
-      if (percentage !== undefined) {
-        setBet((b) => ({
-          ...b,
-          percentage,
-          amount: parseFloat((balance * percentage) / 1e2).toFixed(2),
-          rawAmount: moralisWeb3.utils.toWei(
-            parseFloat((balance * percentage) / 1e2) + ""
-          ),
-          rawInput: parseFloat((balance * percentage) / 1e2).toFixed(3),
-        }));
+        if (percentage !== undefined) {
+          setBet((b) => ({
+            ...b,
+            percentage,
+            amount: parseFloat((balance * percentage) / 1e2).toFixed(2),
+            rawAmount: moralisWeb3.utils.toWei(
+              parseFloat((balance * percentage) / 1e2).toFixed(18) + ""
+            ),
+            rawInput: parseFloat((balance * percentage) / 1e2).toFixed(3),
+          }));
+        }
+      } catch (e) {
+        console.log(e);
       }
     },
     [setBet, balance]
@@ -135,7 +142,7 @@ function Form({ match, onClose }) {
 
   return (
     <div className="crycto-card--blk-back">
-      <p class="crycto-contest--text mb20">{match.contestDescription}</p>
+      <p className="crycto-contest--text mb20">{match.contestDescription}</p>
       <ScoreInput
         minScore={match.minScore}
         scoreMultiple={match.scoreMultiple}

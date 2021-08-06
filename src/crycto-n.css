@@ -77,10 +77,13 @@
   transform: scale(1) !important;
 }
 
+.crycto-topbar {
+  height: 12vh;
+}
 /* Section */
 .crycto-app--section {
   padding: 5rem 0 5rem 0;
-  /* min-height: 90vh; */
+  min-height: 88vh;
   /* When there is no data/ when loading */
 }
 
@@ -502,7 +505,7 @@
   justify-content: space-between;
   align-items: center;
   color: rgba(255, 255, 255, 0.8);
-  padding: 2rem 2.5rem;
+  padding: 2.2rem 2.5rem;
   width: 100%;
   /* text-shadow: 0 0 9px #ffffff4a; */
 }
@@ -515,7 +518,6 @@
 }
 .crypto-footer-social {
   display: flex;
-  width: 17%;
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
@@ -525,6 +527,65 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin: 0 1rem;
+}
+.crycto-account {
+  overflow: visible;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+._dark .crycto-account {
+  background: hsl(224deg 69% 13%);
+}
+._light .crycto-account {
+  background: #d8e4fd;
+}
+.crycto-disconnect {
+  position: absolute;
+  top: 100%;
+  opacity: 0;
+  animation: fadeIn 0.15s ease forwards;
+  font-size: 1.1rem;
+  font-family: "Montserrat-Regular";
+  box-shadow: 0px 9px 20px #00000024;
+  border-radius: 0 0 4px 5px;
+  cursor: pointer;
+  filter: brightness(1);
+  transition: all 0.3s ease;
+  left: 0;
+  right: 0;
+  transition: all 0.3 ease;
+  height: 35px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  filter: brightness(1);
+  z-index: 9999;
+}
+
+._dark .crycto-disconnect {
+  background-color: hsl(222deg 82% 31%);
+  color: rgb(255 255 255 / 90%);
+}
+
+._light .crycto-disconnect {
+  background-color: white;
+  color: black;
+}
+
+.crycto-disconnect:hover {
+  filter: brightness(0.95);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Utils */

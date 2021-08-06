@@ -23,9 +23,11 @@ function ThemeProvider({ children }) {
 
   useEffect(() => {
     localStorage.set(THEME, theme);
+    navigator.serviceWorker &&
+      navigator.serviceWorker.controller?.postMessage({ theme });
     document.querySelector("body").classList =
       theme === LIGHT ? ["_light"] : ["_dark"];
-  }, [theme]);
+  }, [theme, navigator.serviceWorker]);
 
   return (
     <ThemeContext.Provider
