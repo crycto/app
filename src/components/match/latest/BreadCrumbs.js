@@ -5,7 +5,7 @@ function BreadCrumbs({ id, uri, date, venue }) {
     <div className="crycto-card--text">
       <span
         className="crycto-card--labels cp"
-        onClick={() => window.open(`https:/ipfs.infura.io/ipfs/${uri}`)}
+        onClick={() => window.open(`https://ipfs.infura.io/ipfs/${uri}`)}
       >
         #{parseInt(id)}
       </span>
