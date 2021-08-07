@@ -36,7 +36,7 @@ function Card({ match, ...props }) {
   return (
     <div className={`crycto-card--blk _small ${cls(match)} `} {...props}>
       <div className="crycto-card--blk--visible">
-        <Header {...match.matchDetails} />
+        <Header matchDetails={match.matchDetails} />
         {/* <BreadCrumbs id={matchId} {...match.matchDetails} /> */}
         <div className="crycto-card--fold _highlight">
           {match.isCompleted() ? (

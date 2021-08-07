@@ -117,13 +117,13 @@ export default class Match {
 
 const Entity = { RUNS: 0, WICKETS: 1 };
 const Period = {
-  ENTIRE: 0,
-  DAY1: 1,
-  DAY2: 2,
-  DAY3: 3,
-  DAY4: 4,
-  DAY5: 5,
-  POWERPLAY: 6,
+  0: "Entire",
+  1: "Day 1",
+  2: "Day 2",
+  3: "Day 3",
+  4: "Day 4",
+  5: "Day 5",
+  6: "Powerplay",
 };
 const formatDate = (date) => `Aug ${date.getDate()}, 07:30`; //TODO:
 
@@ -134,7 +134,7 @@ class MatchDetails {
     this.date = formatDate(new Date(match.date));
     this.venue = match.venue;
     this.entity = Entity[match.entity];
-    this.period = Period[match.period];
+    this.period = match.period ?? 0;
   }
   isPredictionForEntireMatch() {
     return this.period === Period.ENTIRE;
@@ -144,6 +144,9 @@ class MatchDetails {
   }
   isWicketsPrediction() {
     return this.entity === Entity.WICKETS;
+  }
+  getPeriodText() {
+    return Period[this.period];
   }
 }
 

@@ -40,7 +40,7 @@ function CryptoInput({ bet, onChange }) {
         <Slider
           value={parseInt(bet.percentage)}
           onChange={onSlide}
-          aria-labelledby="discrete-slider-score"
+          aria-labelledby="input-slider"
           min={0}
           max={100}
           valueLabelDisplay="off"
@@ -51,7 +51,6 @@ function CryptoInput({ bet, onChange }) {
             { value: 75, label: "75%" },
             { value: 100, label: "100%" },
           ]}
-          aria-labelledby="input-slider"
         />
       </div>
     </div>

@@ -9,8 +9,8 @@ function BreadCrumbs({ id, uri, date, venue }) {
       >
         #{parseInt(id)}
       </span>
-      <span className="crycto-card--labels">{date}</span>
-      <span className="crycto-card--labels">{venue}</span>
+      <span className="crycto-card--labels">{date ?? "-"}</span>
+      <span className="crycto-card--labels">{venue ?? "-"}</span>
     </div>
   );
 }

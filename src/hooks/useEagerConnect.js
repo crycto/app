@@ -21,7 +21,7 @@ export function useEagerConnect() {
       .getProvider()
       .then((provider) => {
         if (!provider) {
-          alert("Please install Metamask");
+          console.log("Please install Metamask");
         }
       })
       .catch(console.log);

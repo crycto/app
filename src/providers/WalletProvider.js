@@ -10,6 +10,7 @@ import { useEagerConnect, useInactiveListener } from "../hooks/useEagerConnect";
 import Web3 from "web3";
 import { injected } from "../web3/connectors";
 import { switchNetwork, TournamentContract } from "../web3";
+import AlertMsg from "../components/utils/AlertMsg";
 
 function getLibrary(provider) {
   const library = new Web3(provider);
@@ -21,6 +22,9 @@ const WalletContext = createContext({});
 
 function WalletContextProvider({ children }) {
   const [balance, setBalance] = useState();
+  const [showMetaMaskMissingError, setShowMetaMaskMissingError] =
+    useState(false);
+  const [showNetworkError, setShowNetworkError] = useState(false);
   const context = useWeb3React();
   const { library, account, activate, error } = context;
 
@@ -54,15 +58,27 @@ function WalletContextProvider({ children }) {
     if (!error) {
       return;
     }
-    console.log(error); //For Testing
+    if (error?.code === 4001) {
+      //User rejected action in metamask
+      return;
+    }
+    // console.log(error); For Testing
     if (error.name === "UnsupportedChainIdError") {
-      switchNetwork().catch(console.log);
+      switchNetwork().catch((e) => {
+        if (e?.code === 4001) {
+          //User rejected action in metamask
+          return;
+        }
+
+        setShowNetworkError(true);
+      });
     } else if (error.name === "NoEthereumProviderError") {
-      alert(
+      setShowMetaMaskMissingError(true);
+      console.log(
         "MetaMask is not installed. Please consider installing it: https://metamask.io/download.html"
       );
     } else {
-      alert(JSON.stringify(error)); //For testing - Need to change it to console.log
+      console.log(error);
     }
   }, [error]);
 
@@ -70,6 +86,24 @@ function WalletContextProvider({ children }) {
     <WalletContext.Provider
       value={{ ...context, triedEager, connect, balance }}
     >
+      {showMetaMaskMissingError && (
+        <AlertMsg
+          severity="error"
+          title={"MetaMask is not installed"}
+          link="https://metamask.io/download.html"
+          linkText="Install Metamask"
+          onClose={() => setShowMetaMaskMissingError(false)}
+        />
+      )}
+      {showNetworkError && (
+        <AlertMsg
+          severity="warning"
+          title={"Connect to Polygon network"}
+          link="https://docs.matic.network/docs/develop/metamask/config-polygon-on-metamask/"
+          linkText="Configure Polygon on your wallet"
+          onClose={() => setShowNetworkError(false)}
+        />
+      )}
       {children}
     </WalletContext.Provider>
   );

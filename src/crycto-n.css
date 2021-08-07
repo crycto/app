@@ -33,13 +33,14 @@
 }
 .bgblue {
   background: linear-gradient(45deg, #021646, #190e1b);
-  /* border-top-left-radius: 1%;
-  border-top-right-radius: 1%; */
+  min-height: 100vh !important;
   align-items: flex-start;
   box-shadow: inset 0px 0px 13px #0000008c;
+  overflow: auto;
 }
 ._light .bgblue {
-  background: linear-gradient(45deg, #2a4798, #7850c5);
+  /* background: linear-gradient(45deg, #2a4798, #7850c5); Footer isn't visible*/
+  background: linear-gradient(45deg, #251b73, #7850c5);
 }
 .crycto-app--heading {
   align-self: unset;
@@ -115,13 +116,40 @@
 ._dark .crycto-card--blk {
   border: none !important;
 }
-._dark .crycto-card--heading span {
-  color: rgba(255, 255, 255, 0.8) !important;
+.crycto-card--heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .crycto-card--heading span {
   color: var(--c-blue);
+  margin: 0;
+  width: auto !important;
 }
-._cancelled.crycto-card--blk .crycto-card--heading span {
+.crycto-card--heading label {
+  padding: 0.5rem;
+  color: white;
+  border-radius: 5px;
+  margin-left: 0.7rem;
+  font-size: 0.9rem;
+  font-family: "Montserrat-Regular";
+  text-transform: uppercase;
+  background: var(--c-blue);
+}
+.crycto-card--heading .crycto-smallfont {
+  font-size: 1.2rem !important;
+}
+._dark .crycto-card--heading span {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+._dark .crycto-card--heading label {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+._small .crycto-card--heading label {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+._cancelled .crycto-card--heading span {
   color: var(--c-cancelled);
 }
 ._placed .crycto-card--heading span {
@@ -135,6 +163,21 @@
 }
 ._lost .crycto-card--heading span {
   color: var(--c-red);
+}
+._cancelled .crycto-card--heading label {
+  background: var(--c-cancelled);
+}
+._placed .crycto-card--heading label {
+  background: var(--c-purple);
+}
+._completed .crycto-card--heading label {
+  background: var(--c-gold);
+}
+._win .crycto-card--heading label {
+  background: var(--c-green);
+}
+._lost .crycto-card--heading label {
+  background: var(--c-red);
 }
 ._light .crycto-card--blk {
   border-top: 5px solid var(--c-blue);
@@ -240,7 +283,7 @@
 }
 
 ._dark .crycto-card--text-rhs {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 ._lost .crycto-card--text-rhs {
@@ -252,7 +295,7 @@
   color: #797caa;
 }
 ._dark .crycto-card--text-lhs {
-  color: rgb(232 232 232 / 70%);
+  color: rgb(232 232 232 / 70%) !important;
 }
 .crycto-card--maincontent {
   background: transparent;
@@ -269,6 +312,7 @@
 .crycto-card--cta {
   background-color: var(--c-blue);
 }
+
 .crycto-card--blk._placed .crycto-card--cta {
   background-color: var(--c-purple);
 }
@@ -287,6 +331,10 @@
 ._cancelled.crycto-card--blk {
   border-color: var(--c-cancelled);
   opacity: 0.7;
+}
+
+._dark .crycto-card--blk .cta-disabled {
+  background: transparent;
 }
 
 /* Form */
@@ -419,6 +467,7 @@
   color: var(--c-secondary) !important;
   transform: perspective(50rem);
   transition: transform 0.3s ease;
+  width: 255px !important;
 }
 
 ._dark {
@@ -505,7 +554,7 @@
   justify-content: space-between;
   align-items: center;
   color: rgba(255, 255, 255, 0.8);
-  padding: 2.2rem 2.5rem;
+  padding: 2.2rem 2.5rem 2.2rem 2rem;
   width: 100%;
   /* text-shadow: 0 0 9px #ffffff4a; */
 }
@@ -522,13 +571,28 @@
   align-items: center;
   font-size: 1rem;
 }
-
 .crypto-footer-social span {
   display: flex;
   align-items: center;
   cursor: pointer;
   margin: 0 1rem;
 }
+.crypto-footer .footer-polygon-img {
+  width: 10px;
+  height: 10px;
+  margin: 0 2px 0 5px;
+}
+
+.crypto-footer .footer-purple {
+  align-items: center;
+  display: flex;
+  color: hsl(262deg 64% 55%);
+}
+
+._light .crypto-footer .footer-polygon-brand {
+  /* text-shadow: 0 0 30px black; */
+}
+
 .crycto-account {
   overflow: visible;
   border-bottom-left-radius: 0;
@@ -563,16 +627,17 @@
   cursor: pointer;
   filter: brightness(1);
   z-index: 9999;
+  text-transform: uppercase;
 }
 
 ._dark .crycto-disconnect {
   background-color: hsl(222deg 82% 31%);
-  color: rgb(255 255 255 / 90%);
+  color: rgb(223 169 86);
 }
 
 ._light .crycto-disconnect {
   background-color: white;
-  color: black;
+  color: #6b4b0f;
 }
 
 .crycto-disconnect:hover {

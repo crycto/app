@@ -896,21 +896,21 @@ a {
   .crycto-logo--text {
     display: none;
   }
-  .crycto-card--blk._small {
+  /* .crycto-card--blk._small {
     width: calc((100% / 4) - 3rem);
-  }
+  } */
 }
 @media (max-width: 1024px) {
   .crycto-app--section {
     padding: 10rem 0rem 10rem;
   }
-  .crycto-card--blk._small {
+  /* .crycto-card--blk._small {
     width: calc((100% / 3) - 3rem);
-  }
+  } */
 }
 @media (max-width: 724px) {
-  .crycto-card--blk._small {
+  /* .crycto-card--blk._small {
     width: calc((100% / 2) - 3rem);
-  }
+  } */
 }
 /* media css ends here */

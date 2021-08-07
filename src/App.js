@@ -13,6 +13,7 @@ import ThemeProvider from "./providers/ThemeProvider";
 import OnChainProvider from "./providers/OnChainProvider";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import Footer from "./components/footer";
+import Consent from "./components/utils/Consent";
 
 function App() {
   // const tournament = useTournament();
@@ -38,6 +39,7 @@ function App() {
             <TournamentProvider>
               <Header />
               <Home />
+              <Consent />
               {/* <Footer /> */}
             </TournamentProvider>
           </ApolloProvider>

@@ -51,7 +51,7 @@ function Card({ match }) {
     >
       {/* <Fade in={true}> */}
       <div className="crycto-card--blk--visible">
-        <Header {...match.matchDetails} />
+        <Header matchDetails={match.matchDetails} />
         <BreadCrumbs id={matchId} uri={match.uri} {...match.matchDetails} />
         <div className="crycto-card--fold _highlight">
           {match.isCompleted() ? (

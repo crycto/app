@@ -1,6 +1,7 @@
 import { gql, useApolloClient } from "@apollo/client";
 import { Backdrop, CircularProgress } from "@material-ui/core";
 import React, { useCallback, useEffect, useState } from "react";
+import { useOnChainContext } from "../../../../providers/OnChainProvider";
 import { useTournament } from "../../../../providers/TournamentProvider";
 import {
   useTournamentContract,
@@ -28,6 +29,7 @@ const fragment = gql`
 
 function Form({ match, onClose }) {
   const { connect, account, balance = 0 } = useWallet();
+  const { notifyNewTransaction, notifyTransactionStatus } = useOnChainContext();
   const { minBetAmount = 0 } = useTournament();
   const web3Tournament = useTournamentContract();
   const apolloClient = useApolloClient();
@@ -58,7 +60,8 @@ function Form({ match, onClose }) {
             return;
           }
 
-          let amount = Math.min(parseFloat(rawInput), balance);
+          let amount = parseFloat(rawInput);
+
           setBet((b) => ({
             ...b,
             percentage:
@@ -92,7 +95,8 @@ function Form({ match, onClose }) {
     setValidBet(
       bet.score >= match.minScore &&
         bet.score % match.scoreMultiple === 0 &&
-        bet.amount >= minBetAmount
+        bet.amount >= minBetAmount &&
+        bet.amount <= balance
     );
   }, [bet, match, minBetAmount]);
 
@@ -129,16 +133,42 @@ function Form({ match, onClose }) {
   const placeBet = useCallback(async () => {
     try {
       setSubmitting(true);
-      await web3Tournament.methods
+      const ethSend = web3Tournament.methods
         .betScore(match.id, bet.score)
         .send({ from: account, value: bet.rawAmount });
+      ethSend.on("transactionHash", (hash) =>
+        notifyNewTransaction(
+          `Transaction submitted for #${parseInt(match.id)}`,
+          hash
+        )
+      );
+      const tx = await ethSend;
       updateOptimisticResponse(match, bet, account);
       onClose();
+      notifyTransactionStatus(
+        `Placed bet  for #${parseInt(match.id)}`,
+        "success",
+        tx.hash
+      );
     } catch (e) {
-      console.log(e);
+      notifyTransactionStatus(
+        `Failed to place bet for #${parseInt(match.id)}`,
+        "error",
+        e?.hash
+      );
+      console.error(e);
     }
     setSubmitting(false);
-  }, [web3Tournament, account, bet, match, updateOptimisticResponse, onClose]);
+  }, [
+    web3Tournament,
+    account,
+    bet,
+    match,
+    notifyNewTransaction,
+    notifyTransactionStatus,
+    updateOptimisticResponse,
+    onClose,
+  ]);
 
   return (
     <div className="crycto-card--blk-back">
@@ -154,6 +184,7 @@ function Form({ match, onClose }) {
         account={account}
         connect={connect}
         valid={validBet}
+        insufficientBalance={bet.amount > balance}
         onSubmit={placeBet}
       />
       {submitting && (
