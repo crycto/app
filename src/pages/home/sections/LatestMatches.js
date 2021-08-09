@@ -33,7 +33,7 @@ function LatestMatches() {
   const [loadMore, setLoadMore] = useState(true);
   useEffect(() => {
     if (called && !loading) {
-      setLoadMore(data.matches.length === LIMIT);
+      setLoadMore(data?.matches?.length === LIMIT);
     }
   }, [called, loading]);
 
@@ -43,13 +43,13 @@ function LatestMatches() {
         return;
       }
       const limit = Math.max(
-        data?.matches.length + (data?.matches.length % LIMIT) + 1,
+        data?.matches?.length + (data?.matches?.length % LIMIT) + 1,
         LIMIT
       );
       refetch({
         first: limit,
       }).then(({ data }) => {
-        setLoadMore(data.matches.length === limit);
+        setLoadMore(data?.matches?.length === limit);
       });
     }, pollInterval);
     return () => clearInterval(_id);
@@ -64,12 +64,12 @@ function LatestMatches() {
     setLoadingMore(true);
     fetchMore({
       variables: {
-        skip: data.matches.length,
+        skip: data?.matches?.length ?? 0,
       },
     })
       .then(({ data }) => {
         setLoadingMore(false);
-        setLoadMore(data.matches.length === LIMIT);
+        setLoadMore(data?.matches?.length === LIMIT);
       })
       .catch(console.log);
   }, [fetchMore, data]);

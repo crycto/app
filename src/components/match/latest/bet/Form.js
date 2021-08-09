@@ -44,7 +44,7 @@ function Form({ match, onClose }) {
 
   const [validBet, setValidBet] = useState(false);
   const [bet, setBet] = useState({
-    score: match.placeHolderScore,
+    score: match.matchDetails.placeHolderScore,
     amount: 0,
     rawAmount: 0,
     rawInput: "0.00",
@@ -158,7 +158,7 @@ function Form({ match, onClose }) {
     try {
       setSubmitting(true);
       await web3Tournament.methods
-        .betScore(1, bet.score)
+        .betScore(match.id, bet.score)
         .estimateGas({ from: account, value: bet.rawAmount });
       const ethSend = web3Tournament.methods
         .betScore(match.id, bet.score)
@@ -211,7 +211,9 @@ function Form({ match, onClose }) {
 
   return (
     <div className="crycto-card--blk-back">
-      <p className="crycto-contest--text mb20">{match.contestDescription}</p>
+      <p className="crycto-contest--text mb20">
+        {match.matchDetails.matchDescription}
+      </p>
       <ScoreInput
         minScore={match.minScore}
         scoreMultiple={match.scoreMultiple}

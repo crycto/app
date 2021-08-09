@@ -48,7 +48,7 @@ function Footer() {
           Contract &nbsp;
           <span className="footer-purple">
             {TournamentContract[chains[NETWORK].id][1].substr(0, 8)}...
-            <OpenInNewIcon fontSize="small" />
+            <OpenInNewIcon fontSize="inherit" />
           </span>
         </div>
         <div onClick={goTo.bind(null, "polygon")}>

@@ -408,9 +408,9 @@ a {
   border-top: 5px solid #618ffd;
   box-shadow: rgb(0 0 0 / 30%) 0px 20px 17px -20px;
 }
-.crycto-card--blk:last-child {
+/* .crycto-card--blk:last-child {
   margin-right: 0;
-}
+} */
 .crycto-card--heading span {
   font-size: 3rem;
   font-family: var(--crycto-font-righteous);
@@ -902,11 +902,14 @@ a {
 }
 @media (max-width: 1024px) {
   .crycto-app--section {
-    padding: 10rem 0rem 10rem;
+    /* padding: 10rem 0rem 10rem; */
     flex-direction: row;
   }
   .crycto-topbar {
     padding: 2rem;
+  }
+  .crycto-launch--cta.getmatic {
+    display: none;
   }
   /* .crycto-launch--cta.balance {
     display: none;
@@ -920,7 +923,6 @@ a {
   .crypto-footer {
     flex-direction: column-reverse !important;
     flex-wrap: wrap;
-
     justify-content: center !important;
   }
   .crypto-footer div {
@@ -928,8 +930,11 @@ a {
   }
   .crycto-footer-right {
     flex-direction: row;
-
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+  }
+  .crypto-footer .footer-polygon-img {
+    width: 8px !important;
+    height: 8px !important;
   }
   .bgblue .crycto-instruction {
     margin-bottom: 12rem !important;

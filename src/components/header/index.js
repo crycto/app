@@ -5,9 +5,11 @@ import logo from "../../assets/logo.png";
 import ThemeSwitch from "./ThemeSwitch";
 import Icon from "../utils/Icon";
 import { ClickAwayListener } from "@material-ui/core";
+import { NETWORK } from "../../web3";
 
 function Header() {
   const { connect, account, active, deactivate, balance } = useWallet();
+
   return (
     <header className="crycto-topbar">
       <a className="crycto-logo" href="/" title="logo">
@@ -17,6 +19,20 @@ function Header() {
       </a>
 
       <div className="crycto-launch--block">
+        {NETWORK === "MUMBAI" && (
+          <label
+            className="crycto-launch--cta getmatic mr15"
+            onClick={() =>
+              window.open(
+                "https://faucet.matic.network/",
+                "_blank",
+                "noopener noreferrer"
+              )
+            }
+          >
+            Get Test MATIC !
+          </label>
+        )}
         {active ? (
           <AccountInfo
             account={account}

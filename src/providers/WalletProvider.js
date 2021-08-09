@@ -13,7 +13,12 @@ import React, {
 import { useEagerConnect, useInactiveListener } from "../hooks/useEagerConnect";
 import Web3 from "web3";
 import { injected } from "../web3/connectors";
-import { moralisWeb3, switchNetwork, TournamentContract } from "../web3";
+import {
+  moralisWeb3,
+  NETWORK,
+  switchNetwork,
+  TournamentContract,
+} from "../web3";
 import AlertMsg from "../components/utils/AlertMsg";
 
 function getLibrary(provider) {
@@ -105,9 +110,13 @@ function WalletContextProvider({ children }) {
       {showNetworkError && (
         <AlertMsg
           severity="warning"
-          title={"Connect to Polygon network"}
+          title={`Connect to ${
+            NETWORK === "MUMBAI" ? "Mumbai Testnet" : "Polygon network"
+          }`}
           link="https://docs.matic.network/docs/develop/metamask/config-polygon-on-metamask/"
-          linkText="Configure Polygon on your wallet"
+          linkText={`Configure ${
+            NETWORK === "MUMBAI" ? "Mumbai Testnet" : "Polygon network"
+          } on your wallet`}
           onClose={() => setShowNetworkError(false)}
         />
       )}

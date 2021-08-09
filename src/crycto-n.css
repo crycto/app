@@ -20,12 +20,19 @@
   --c-dark-card-bg-gold: linear-gradient(45deg, hsl(40deg 81% 36%), #815b0e);
   --c-dark-card-bg-green: linear-gradient(45deg, var(--c-green), #0d5440);
   --c-dark-card-bg-red: linear-gradient(45deg, #6a1d1d, #4c1414);
+
+  --c-timer-progress-bar: #0b131d;
+  --c-timer-progress-primary: white;
 }
 
 ._light {
   background: var(--c-light-bg);
   --c-secondary: white;
   --c-fallback-text-color: #2a4798;
+  --c-gold: hsl(40deg 79% 45%);
+  --c-timer-progress-bar: lightgray;
+  --c-timer-progress-primary: hsl(224, 57%, 38%);
+  /* --c-purple: hsl(214deg 72% 37%); */
 }
 
 ._dark {
@@ -68,6 +75,12 @@
 ._dark .crycto-launch--cta:hover {
   background: hsl(224deg 69% 13%);
 }
+.crycto-launch--cta.getmatic {
+  color: var(--c-gold) !important;
+}
+.crycto-launch--cta.getmatic:hover {
+  background: rgb(255 172 8 / 12%);
+}
 .crycto-launch--cta img {
   transition: all 0.2s;
 }
@@ -83,7 +96,7 @@
 }
 /* Section */
 .crycto-app--section {
-  padding: 5rem 0 5rem 0;
+  padding: 3.5rem 0 5rem 0;
   min-height: 88vh;
   /* When there is no data/ when loading */
 }
@@ -98,7 +111,7 @@
 
 .crycto-logo label {
   padding: 0.5rem 1rem;
-  background: linear-gradient(45deg, hsl(40deg 96% 30%), hsl(40deg 83% 40%));
+  background: var(--c-gold);
   color: white;
   text-transform: uppercase;
   border-radius: 5px;
@@ -142,14 +155,17 @@
   width: auto !important;
 }
 .crycto-card--heading label {
-  padding: 0.5rem;
+  padding: 0.4rem 0.6rem;
   color: white;
   border-radius: 5px;
   margin-left: 0.7rem;
-  font-size: 0.9rem;
-  font-family: "Montserrat-Regular";
+  /* font-size: 0.9rem; */
+  font-family: "Righteous-Regular";
   text-transform: uppercase;
-  background: var(--c-blue);
+  background: var(--c-gold);
+}
+._light .latest .crycto-card--heading label {
+  background: var(--c-gold);
 }
 .crycto-card--heading .crycto-smallfont {
   font-size: 1.2rem !important;
@@ -185,9 +201,9 @@
 ._cancelled .crycto-card--heading label {
   background: var(--c-cancelled);
 }
-._placed .crycto-card--heading label {
+/* ._placed .crycto-card--heading label {
   background: var(--c-purple);
-}
+} */
 ._completed .crycto-card--heading label {
   background: var(--c-gold);
 }
@@ -251,9 +267,13 @@
   background: white;
 }
 
+.c-gold {
+  color: var(--c-gold) !important;
+}
+
 .crycto-card--blk._cancelled {
   border-color: var(--c-cancelled);
-  background: linear-gradient(to bottom, #272b2d4d, var(--c-secondary));
+  background: linear-gradient(to bottom, #f7f7f74d, var(--c-secondary));
 }
 
 ._dark .crycto-card--blk._cancelled {
@@ -271,6 +291,10 @@
 ._highlight {
   padding-top: 3rem !important;
   padding-bottom: 1rem !important;
+}
+
+.timer {
+  padding-top: 2.5rem !important;
 }
 
 ._highlight .payout-x {
@@ -322,10 +346,14 @@
 .crycto-card--maincontent {
   background: transparent;
 }
-
-._light .crycto-card--labels,
-.crycto-card--maincontent {
-  background: hsl(224deg 85% 97%);
+._light .crycto-card--maincontent {
+  background: hsl(40deg 84% 40% / 8%);
+}
+._light ._small .crycto-card--maincontent {
+  background: #ffffff3d;
+}
+._light .crycto-card--labels {
+  background: hsl(224deg 87% 75% / 10%);
 }
 ._dark .crycto-card--labels,
 .crycto-card--maincontent {
@@ -351,12 +379,11 @@
   background: var(--c-cancelled);
 }
 ._cancelled._refund.crycto-card--blk .crycto-card--cta {
-  background: #a76971;
+  background: #ce5e6d;
 }
 
 ._cancelled.crycto-card--blk {
   border-color: var(--c-cancelled);
-  opacity: 0.7;
 }
 
 ._dark .crycto-card--blk .cta-disabled {
@@ -390,7 +417,7 @@
   }
 }
 .crycto-card--blk-back .crycto-contest--text {
-  margin-top: 2rem;
+  margin: 2rem 2.2rem;
   padding: 0 2rem;
   color: var(--c-fallback-text-color);
   font-size: 1rem;

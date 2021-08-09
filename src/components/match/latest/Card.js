@@ -32,6 +32,7 @@ const cls = (match) => {
 function Card({ match }) {
   const matchId = match.id;
   const [showForm, setShowForm] = useState(false);
+  const [reRender, setRerender] = useState(0);
 
   const handlePredict = useCallback(() => {
     if (match.isTakingBets() && !match.isBetPlaced()) {
@@ -47,17 +48,16 @@ function Card({ match }) {
       <div className="crycto-card--blk--visible">
         <Header matchDetails={match.matchDetails} />
         <BreadCrumbs id={matchId} uri={match.uri} {...match.matchDetails} />
-        <div className="crycto-card--fold _highlight">
-          {match.isCompleted() ? (
-            <WinningScore score={match.getWinningScoreRange()} />
-          ) : match.isForfeited() ? (
-            <Forfeited />
-          ) : match.isDeadlineCrossed() ? (
-            <Payout match={match} />
-          ) : (
-            <Timer match={match} />
-          )}
-        </div>
+        {match.isCompleted() ? (
+          <WinningScore score={match.getWinningScoreRange()} />
+        ) : match.isForfeited() ? (
+          <Forfeited />
+        ) : match.isDeadlineCrossed() ? (
+          <Payout match={match} />
+        ) : (
+          <Timer match={match} onDone={setRerender} />
+        )}
+
         <div className="crycto-card--fold _stats">
           <Stat label="Bets" value={formatNumber(match.totalBets)} />
           <Stat label="Pool" value={formatNumber(match.totalAmount)} />
@@ -86,6 +86,8 @@ function Card({ match }) {
             {match.matchDetails.team1}{" "}
             <small style={{ fontSize: ".6rem" }}>vs</small>{" "}
             {match.matchDetails.team2}
+            {match.matchDetails.period > 0 &&
+              ` - ${match.matchDetails.getPeriodText()}`}
           </label>
         </>
       )}

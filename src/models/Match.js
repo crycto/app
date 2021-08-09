@@ -1,19 +1,21 @@
 import moment from "moment";
+moment.relativeTimeThreshold("ss", 60);
+moment.updateLocale("en", {
+  relativeTime: {
+    s: function (number, withoutSuffix, key, isFuture) {
+      return number + " seconds";
+    },
+  },
+});
 const CREATED = "Created",
   COMPLETED = "Completed",
   FORFEITED = "Forfeited";
-
-const contestDescriptionV1 = `Predict the number of runs that would be scored totally by both teams at
-        the end of this match`;
-const placeHolderScoreV1 = 300;
 
 export default class Match {
   constructor(match) {
     this.id = match.id;
     this.uri = match.uri;
     this.matchDetails = new MatchDetails(match.matchDetails);
-    this.contestDescription = contestDescriptionV1;
-    this.placeHolderScore = placeHolderScoreV1;
     this.minScore = +match.minScore;
     this.scoreMultiple = +match.scoreMultiple;
     this.deadline = match.deadline;
@@ -50,14 +52,18 @@ export default class Match {
   setTimeLeft() {
     this.timeLeft = this._timeLeft();
   }
+  secondsLeft() {
+    const now = parseInt(+new Date() / 1000);
+    return this.deadline > now ? this.deadline - now : 0;
+  }
   _timeLeft() {
     const now = +new Date() / 1000;
     const secondsLeft = this.deadline - now;
     const duration = moment.duration(secondsLeft, "seconds");
     return `${duration.humanize({ h: 50, s: 120 })}`;
-    // return `${parseInt(duration.asHours())} : ${parseInt(
-    //   duration.minutes()
-    // )} : ${duration.seconds().toString().padStart(2, "0")}`;
+    // return `${parseInt(duration.asHours())} : ${parseInt(duration.minutes())
+    //   .toString()
+    //   .padStart(2, "0")} : ${duration.seconds().toString().padStart(2, "0")}`;
   }
   getPlacedBetScoreRange() {
     if (!this.bet) {
@@ -78,16 +84,15 @@ export default class Match {
   }
   getPayout(score) {
     const position = this.positions?.find((p) => p.score == score);
-    return (
-      position &&
-      parseFloat(
-        1 +
-          (this.isAtStage(COMPLETED)
-            ? this.rewardAmount
-            : this.totalAmount - position.amount) /
-            position.amount
-      ).toFixed(2)
-    );
+    return position
+      ? parseFloat(
+          1 +
+            (this.isAtStage(COMPLETED)
+              ? this.rewardAmount
+              : this.totalAmount - position.amount) /
+              position.amount
+        ).toFixed(2)
+      : 0;
   }
   getBiggestPayout() {
     return this.positions?.reduce((max, p) => {
@@ -128,7 +133,15 @@ const Period = {
   5: "Day 5",
   6: "Powerplay",
 };
-const formatDate = (date) => `Aug ${date.getDate()}, 07:30`; //TODO:
+
+const getDesc = (period) =>
+  period == 0
+    ? `Predict the number of runs that would be scored totally by both teams at
+        the end of  this match`
+    : period >= 1 && period <= 5
+    ? `Predict the number of runs that would be scored on Day ${period}`
+    : `Predict the number of runs that would be scored totally by both teams in their powerplays`;
+const formatDate = (date) => moment(date).format("DD MMM, hh:mm"); //TODO:
 
 class MatchDetails {
   constructor(match) {
@@ -138,6 +151,8 @@ class MatchDetails {
     this.venue = match.venue;
     this.entity = Entity[match.entity];
     this.period = match.period ?? 0;
+    this.placeHolderScore = this.period == 6 ? 30 : 300;
+    this.matchDescription = getDesc(this.period);
   }
   isPredictionForEntireMatch() {
     return this.period === Period.ENTIRE;
