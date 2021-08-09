@@ -29,10 +29,12 @@ export const chains = {
   },
 };
 
-export const NETWORK =
-  window.location.host?.indexOf("localhost") !== -1 ? "MUMBAI" : "MATIC";
+// export const NETWORK =
+//   window.location.host?.indexOf("localhost") !== -1 ? "MUMBAI" : "MATIC";
 
+export const NETWORK = "MUMBAI";
 console.log(NETWORK);
+
 export const TournamentContract = {
   [chains.MUMBAI.id]: [
     TournamentV1.abi,
@@ -71,6 +73,23 @@ export const switchNetwork = async () => {
     console.log(
       "MetaMask is not installed. Please consider installing it: https://metamask.io/download.html"
     );
+  }
+};
+
+export const parseErrorMessage = (e) => {
+  try {
+    return JSON.parse(e.message.substring(e.message.indexOf("{")).trim())
+      .message;
+  } catch (e) {
+    return "";
+  }
+};
+
+export const isRejectedByUser = (e) => {
+  try {
+    return typeof e == "object" && e?.code === 4001;
+  } catch (e) {
+    return false;
   }
 };
 

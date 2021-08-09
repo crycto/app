@@ -1,14 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import Header from "./Header";
-import BreadCrumbs from "./BreadCrumbs";
 import Timer from "./Timer";
 import Forfeited from "./Forfeited";
 import WinningScore from "./WinningScore";
-import StatusButton from "./StatusButton";
-
+import Status from "./StatusButton";
 import BetInfo from "./BetInfo";
-import Form from "./bet/Form";
-import SubmitButton from "./bet/SubmitButton";
+import formatNumber from "../../../utils/formatNumber";
 
 const cls = (match) => {
   if (match.isCompleted()) {
@@ -19,20 +16,14 @@ const cls = (match) => {
       : "_completed";
   }
   if (match.isForfeited()) {
-    return "_cancelled";
+    return `_cancelled ${
+      match.isBetPlaced() && !match.isRefunded() && "_refund"
+    }`;
   }
   return "";
 };
 
 function Card({ match, ...props }) {
-  const submit = useCallback(() => {
-    if (match.isBetPlaced()) {
-      if (match.isForfeited() && !match.isRefunded()) {
-      }
-      if (match.isCompleted() && match.isYetToClaim()) {
-      }
-    }
-  }, [match]);
   return (
     <div className={`crycto-card--blk _small ${cls(match)} `} {...props}>
       <div className="crycto-card--blk--visible">
@@ -47,18 +38,18 @@ function Card({ match, ...props }) {
             <Timer match={match} />
           )}
         </div>
-        <div className="crycto-card--fold">
-          <Stat label="Bets" value={match.totalBets} />
-          <Stat label="Pool" value={match.totalAmount} />
+        <div className="crycto-card--fold _stats">
+          <Stat label="Bets" value={formatNumber(match.totalBets)} />
+          <Stat label="Pool" value={formatNumber(match.totalAmount)} />
           {match.isCompleted() && (
             <>
-              <Stat label="Winners" value={match.totalWinners} />
-              <Stat label="Rewards" value={match.rewardAmount} />
+              <Stat label="Winners" value={formatNumber(match.totalWinners)} />
+              <Stat label="Payout" value={`${+match.getWinningPayout()}x`} />
             </>
           )}
         </div>
         <BetInfo match={match} />
-        <StatusButton match={match} onClick={submit} />
+        <Status match={match} />
       </div>
     </div>
   );

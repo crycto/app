@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { LATEST_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import Card from "../../../components/match/latest/Card";
@@ -9,7 +9,7 @@ import InfiniteScroll from "../../../components/utils/InfiniteScroll";
 import AppProgress from "../../../components/utils/AppProgress";
 import { useWallet } from "../../../providers/WalletProvider";
 
-const deadline = parseInt(+new Date().setDate(new Date().getDate() - 5) / 1000);
+const deadline = parseInt(+new Date().setDate(new Date().getDate() - 2) / 1000);
 
 const skelArr = Array(4).fill(0);
 
@@ -28,7 +28,6 @@ function LatestMatches() {
         deadline,
         connectedUser: account,
       },
-      // pollInterval: 60 * 1000,
     }
   );
   const [loadMore, setLoadMore] = useState(true);
@@ -77,7 +76,7 @@ function LatestMatches() {
 
   if (loading || !triedEager) {
     return (
-      <div className="crycto-instruction c-skeleton">
+      <div className="crycto-instruction latest c-skeleton">
         <AppProgress />
         {skelArr.map((_, i) => (
           <CardSkeleton key={i + ""} />
@@ -95,6 +94,7 @@ function LatestMatches() {
           width: "100%",
           fontSize: "1.5rem",
           fontFamily: "'Montserrat-Regular'",
+          color: "var(--c-gold)",
         }}
       >
         We're having trouble loading the latest matches. Take deep breaths while
@@ -103,7 +103,12 @@ function LatestMatches() {
     );
   }
   return (
-    <InfiniteScroll horizontal loadMore={loadMore} onLoadMore={onLoadMore}>
+    <InfiniteScroll
+      className="latest"
+      horizontal
+      loadMore={loadMore}
+      onLoadMore={onLoadMore}
+    >
       {data?.matches?.map((m) => (
         <Card key={m.id} match={new Match(m)} />
       ))}

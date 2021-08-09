@@ -1,15 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import GithubIcon from "@material-ui/icons/GitHub";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import { chains, NETWORK, TournamentContract } from "../../web3";
 import Icon from "../utils/Icon";
-import { useCallback } from "react";
 
 const URLS = {
   twitter: "https://www.twitter.com/",
   instagram: "https://www.instagram.com/",
+  linkedin: "https://www.linkedin.com/",
   github: "https://github.com/crycto/",
   polygon: "https://polygon.technology/",
   contract: `https://polygonscan.com/address/${
@@ -20,32 +21,43 @@ function Footer() {
   const goTo = useCallback((name) => {
     window.open(URLS[name], "_blank", "noopener");
   }, []);
+
   return (
     <div className="crypto-footer">
-      {/* <span className="crypto-footer-follow">FOLLOW US</span> */}
+      <div className="crycto-footer-copyright">
+        Copyright &#169; 2021 Crycto. All Rights Reserved.
+      </div>
+
       <div className="crypto-footer-social">
         <span onClick={goTo.bind(null, "twitter")}>
-          <TwitterIcon />
+          <TwitterIcon fontSize="inherit" />
         </span>
         <span onClick={goTo.bind(null, "instagram")}>
-          <InstagramIcon />
+          <InstagramIcon fontSize="inherit" />
+        </span>
+        <span onClick={goTo.bind(null, "linkedin")}>
+          <LinkedInIcon fontSize="inherit" />
         </span>
         <span onClick={goTo.bind(null, "github")}>
-          <GithubIcon />
-        </span>
-        <span onClick={goTo.bind(null, "polygon")}>
-          Powered by <Icon name="polygon" className="footer-polygon-img" />
-          <pre className="footer-purple">Polygon</pre>
-        </span>
-        <span onClick={goTo.bind(null, "contract")}>
-          Tournament Contract &nbsp;
-          <pre className="footer-purple">
-            {TournamentContract[chains[NETWORK].id][1].substr(0, 8)}...
-            <OpenInNewIcon fontSize="small" />
-          </pre>
+          <GithubIcon fontSize="inherit" />
         </span>
       </div>
-      <span>Terms and Service</span>
+
+      <div className="crycto-footer-right">
+        <div onClick={goTo.bind(null, "contract")}>
+          Contract &nbsp;
+          <span className="footer-purple">
+            {TournamentContract[chains[NETWORK].id][1].substr(0, 8)}...
+            <OpenInNewIcon fontSize="small" />
+          </span>
+        </div>
+        <div onClick={goTo.bind(null, "polygon")}>
+          Powered by <Icon name="polygon" className="footer-polygon-img" />
+          <span className="footer-purple">Polygon</span>
+        </div>
+
+        <span style={{ marginLeft: "1rem" }}>Terms of service</span>
+      </div>
     </div>
   );
 }

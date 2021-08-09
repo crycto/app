@@ -1,5 +1,4 @@
 import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
-import { LocalStorageWrapper, persistCache } from "apollo3-cache-persist";
 import localStorage from "../localstorage";
 
 const pagination = (keyArgs) => ({

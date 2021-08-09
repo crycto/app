@@ -6,12 +6,15 @@ import { COMPLETED_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import { useWallet } from "../../../providers/WalletProvider";
 import InfiniteScroll from "../../../components/utils/InfiniteScroll";
+import TinyCardSkeleton from "../../../components/match/latest/TinyCardSkeleton";
 
-const LIMIT = 25;
+const LIMIT = 15;
 const pollInterval = 120 * 1000;
 function CompletedMatches() {
   const { account = "" } = useWallet();
-  const { data, loading, error, called, refetch, fetchMore } = useQuery(
+  const [loadMore, setLoadMore] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const { data, loading, called, refetch, fetchMore } = useQuery(
     COMPLETED_MATCHES,
     {
       variables: {
@@ -45,9 +48,7 @@ function CompletedMatches() {
     }, pollInterval);
     return () => clearInterval(_id);
   }, [data, refetch]);
-  const [loadMore, setLoadMore] = useState(true);
 
-  const [loadingMore, setLoadingMore] = useState(false);
   const onLoadMore = useCallback(() => {
     if (!data) {
       return;
@@ -66,9 +67,9 @@ function CompletedMatches() {
       .catch(console.log);
   }, [fetchMore, data]);
 
-  if (error) {
-    return null;
-  }
+  // if (error) {
+  //   return null;
+  // }
   return (
     <>
       <div className="crycto-app--heading">
@@ -79,6 +80,12 @@ function CompletedMatches() {
         {data?.matches?.map((m) => (
           <TinyCard key={m.id} match={new Match(m)} />
         ))}
+        {called &&
+          !loading &&
+          (!data || data?.matches?.length === 0) &&
+          Array(7)
+            .fill(0)
+            .map(() => <TinyCardSkeleton />)}
         {(loading || loadingMore) && <Spinner />}
       </InfiniteScroll>
     </>

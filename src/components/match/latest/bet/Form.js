@@ -7,7 +7,11 @@ import {
   useTournamentContract,
   useWallet,
 } from "../../../../providers/WalletProvider";
-import { moralisWeb3 } from "../../../../web3";
+import {
+  isRejectedByUser,
+  moralisWeb3,
+  parseErrorMessage,
+} from "../../../../web3";
 
 import CryptoInput from "./CryptoInput";
 import ScoreInput from "./ScoreInput";
@@ -28,7 +32,11 @@ const fragment = gql`
 `;
 
 function Form({ match, onClose }) {
-  const { connect, account, balance = 0 } = useWallet();
+  const {
+    connect,
+    account,
+    weiBalance = new moralisWeb3.utils.BN("0"),
+  } = useWallet();
   const { notifyNewTransaction, notifyTransactionStatus } = useOnChainContext();
   const { minBetAmount = 0 } = useTournament();
   const web3Tournament = useTournamentContract();
@@ -65,11 +73,17 @@ function Form({ match, onClose }) {
           setBet((b) => ({
             ...b,
             percentage:
-              balance > 0 ? parseFloat((amount * 1e2) / balance).toFixed(2) : 0,
+              weiBalance > 0
+                ? parseFloat(
+                    moralisWeb3.utils
+                      .toBN(moralisWeb3.utils.toWei(amount + ""))
+                      .mul(moralisWeb3.utils.toBN("100"))
+                      .div(weiBalance)
+                      .toString()
+                  ).toFixed(2)
+                : 0,
             amount,
-            rawAmount: moralisWeb3.utils.toWei(
-              parseFloat(rawInput).toFixed(18) + ""
-            ),
+            rawAmount: moralisWeb3.utils.toWei(rawInput + ""),
             rawInput,
           }));
         }
@@ -78,27 +92,37 @@ function Form({ match, onClose }) {
           setBet((b) => ({
             ...b,
             percentage,
-            amount: parseFloat((balance * percentage) / 1e2).toFixed(2),
-            rawAmount: moralisWeb3.utils.toWei(
-              parseFloat((balance * percentage) / 1e2).toFixed(18) + ""
-            ),
-            rawInput: parseFloat((balance * percentage) / 1e2).toFixed(3),
+            amount: parseFloat(
+              weiBalance
+                .mul(moralisWeb3.utils.toBN(percentage))
+                .div(moralisWeb3.utils.toBN("100"))
+                .toString() / 1e18
+            ).toFixed(2),
+            rawAmount: weiBalance
+              .mul(moralisWeb3.utils.toBN(percentage))
+              .div(moralisWeb3.utils.toBN("100")),
+            rawInput: parseFloat(
+              weiBalance
+                .mul(moralisWeb3.utils.toBN(percentage))
+                .div(moralisWeb3.utils.toBN("100"))
+                .toString() / 1e18
+            ).toFixed(3),
           }));
         }
       } catch (e) {
         console.log(e);
       }
     },
-    [setBet, balance]
+    [setBet, weiBalance]
   );
   useEffect(() => {
     setValidBet(
       bet.score >= match.minScore &&
         bet.score % match.scoreMultiple === 0 &&
         bet.amount >= minBetAmount &&
-        bet.amount <= balance
+        moralisWeb3.utils.toBN(bet.rawAmount ?? "0").lte(weiBalance)
     );
-  }, [bet, match, minBetAmount]);
+  }, [bet, match, minBetAmount, weiBalance]);
 
   const updateOptimisticResponse = useCallback(
     (match, bet, account) => {
@@ -133,30 +157,45 @@ function Form({ match, onClose }) {
   const placeBet = useCallback(async () => {
     try {
       setSubmitting(true);
+      await web3Tournament.methods
+        .betScore(1, bet.score)
+        .estimateGas({ from: account, value: bet.rawAmount });
       const ethSend = web3Tournament.methods
         .betScore(match.id, bet.score)
         .send({ from: account, value: bet.rawAmount });
       ethSend.on("transactionHash", (hash) =>
         notifyNewTransaction(
-          `Transaction submitted for #${parseInt(match.id)}`,
+          `Transaction submitted for Match #${parseInt(match.id)}`,
           hash
         )
       );
       const tx = await ethSend;
       updateOptimisticResponse(match, bet, account);
       onClose();
-      notifyTransactionStatus(
-        `Placed bet  for #${parseInt(match.id)}`,
-        "success",
-        tx.hash
-      );
+      if (tx.status === false) {
+        notifyTransactionStatus(
+          `Failed to place bet for Match #${parseInt(match.id)}`,
+          "error",
+          tx.transactionHash
+        );
+      } else {
+        notifyTransactionStatus(
+          `Placed bet for Match #${parseInt(match.id)}`,
+          "success",
+          tx.transactionHash
+        );
+      }
     } catch (e) {
-      notifyTransactionStatus(
-        `Failed to place bet for #${parseInt(match.id)}`,
-        "error",
-        e?.hash
-      );
+      !isRejectedByUser(e) &&
+        notifyTransactionStatus(
+          parseErrorMessage(e)?.indexOf("DEADLINE_PASSED") !== -1
+            ? `Aw snap! Bets closed for Match #${parseInt(match.id)}`
+            : `Failed to place bet for Match #${parseInt(match.id)}`,
+          "error",
+          e?.hash
+        );
       console.error(e);
+      console.log("Yes ", parseErrorMessage(e));
     }
     setSubmitting(false);
   }, [
@@ -184,7 +223,9 @@ function Form({ match, onClose }) {
         account={account}
         connect={connect}
         valid={validBet}
-        insufficientBalance={bet.amount > balance}
+        insufficientBalance={moralisWeb3.utils
+          .toBN(bet.rawAmount ?? "0")
+          .gt(weiBalance)}
         onSubmit={placeBet}
       />
       {submitting && (

@@ -27,7 +27,7 @@ function ThemeProvider({ children }) {
       navigator.serviceWorker.controller?.postMessage({ theme });
     document.querySelector("body").classList =
       theme === LIGHT ? ["_light"] : ["_dark"];
-  }, [theme, navigator.serviceWorker]);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider

@@ -1,16 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Header from "./Header";
 import BreadCrumbs from "./BreadCrumbs";
 import Timer from "./Timer";
 import Forfeited from "./Forfeited";
 import WinningScore from "./WinningScore";
 import StatusButton from "./StatusButton";
-
 import BetInfo from "./BetInfo";
 import Form from "./bet/Form";
-import SubmitButton from "./bet/SubmitButton";
-import { Fade } from "@material-ui/core";
 import Payout from "./Payout";
+import formatNumber from "../../../utils/formatNumber";
 
 const cls = (match) => {
   if (match.isCompleted()) {
@@ -21,7 +19,9 @@ const cls = (match) => {
       : "_completed";
   }
   if (match.isForfeited()) {
-    return "_cancelled";
+    return `_cancelled ${
+      match.isBetPlaced() && !match.isRefunded() && "_refund"
+    }`;
   }
   if (match.isBetPlaced()) {
     return "_placed";
@@ -32,15 +32,10 @@ const cls = (match) => {
 function Card({ match }) {
   const matchId = match.id;
   const [showForm, setShowForm] = useState(false);
-  const submit = useCallback(() => {
-    if (match.isTakingBets() && ~match.isBetPlaced()) {
+
+  const handlePredict = useCallback(() => {
+    if (match.isTakingBets() && !match.isBetPlaced()) {
       setShowForm(true);
-    }
-    if (match.isBetPlaced()) {
-      if (match.isForfeited() && !match.isRefunded()) {
-      }
-      if (match.isCompleted() && match.isYetToClaim()) {
-      }
     }
   }, [match, setShowForm]);
   return (
@@ -49,7 +44,6 @@ function Card({ match }) {
         showForm && "bet-form"
       }`}
     >
-      {/* <Fade in={true}> */}
       <div className="crycto-card--blk--visible">
         <Header matchDetails={match.matchDetails} />
         <BreadCrumbs id={matchId} uri={match.uri} {...match.matchDetails} />
@@ -64,20 +58,22 @@ function Card({ match }) {
             <Timer match={match} />
           )}
         </div>
-        <div className="crycto-card--fold">
-          <Stat label="Bets" value={match.totalBets} />
-          <Stat label="Pool" value={match.totalAmount} />
+        <div className="crycto-card--fold _stats">
+          <Stat label="Bets" value={formatNumber(match.totalBets)} />
+          <Stat label="Pool" value={formatNumber(match.totalAmount)} />
           {match.isCompleted() && (
             <>
-              <Stat label="Winners" value={match.totalWinners} />
-              <Stat label="Rewards" value={match.rewardAmount} />
+              <Stat label="Winners" value={formatNumber(match.totalWinners)} />
+              <Stat label="Payout" value={`${match.getWinningPayout()}x`} />
             </>
           )}
         </div>
         <BetInfo match={match} />
-        {!showForm && <StatusButton match={match} onClick={submit} />}
+        {!showForm && (
+          <StatusButton match={match} onClickPredict={handlePredict} />
+        )}
       </div>
-      {/* </Fade> */}
+
       {showForm && (
         <>
           <Form match={match} onClose={setShowForm.bind(null, false)} />
@@ -101,7 +97,7 @@ const Stat = ({ label, value }) => {
   return (
     <div className="crycto-card--highlight">
       <span className="crycto-card--text-rhs">
-        {value == 0 ? "-" : String(value).padStart(2, "0")}
+        {value == 0 ? "0" : String(value).padStart(2, "0")}
       </span>
       {label && <span className="crycto-card--text-lhs">{label}</span>}
     </div>

@@ -15,7 +15,6 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import useMaticPrice from "../hooks/useMaticPrice";
-import InfoIcon from "@material-ui/icons/Info";
 import { Alert } from "@material-ui/lab";
 import { useTheme } from "./ThemeProvider";
 
@@ -39,6 +38,12 @@ function OnChainProvider({ children }) {
     },
     [setSnackPack]
   );
+  const notify = useCallback(
+    (message, status) => {
+      setSnackPack((pack) => [...pack, { message, status }]);
+    },
+    [setSnackPack]
+  );
   useEffect(() => {
     if (snackPack.length && !messageInfo) {
       setMessageInfo({ ...snackPack[0] });
@@ -52,7 +57,7 @@ function OnChainProvider({ children }) {
 
   return (
     <OnChainContext.Provider
-      value={{ price, notifyNewTransaction, notifyTransactionStatus }}
+      value={{ price, notify, notifyNewTransaction, notifyTransactionStatus }}
     >
       {children}
 
@@ -142,18 +147,20 @@ const TransactionSnackBar = ({ snack, open, onClose }) => {
           {snack?.message}
 
           <br />
-          <Link
-            href="#"
-            onClick={() =>
-              window.open(
-                `https://polygonscan.com/tx/${snack?.hash}`,
-                "_blank",
-                "noopener"
-              )
-            }
-          >
-            Click here to view in block explorer
-          </Link>
+          {snack?.hash && (
+            <Link
+              href="#"
+              onClick={() =>
+                window.open(
+                  `https://polygonscan.com/tx/${snack?.hash}`,
+                  "_blank",
+                  "noopener"
+                )
+              }
+            >
+              Click here to view in block explorer
+            </Link>
+          )}
         </Typography>
       </Alert>
     </Snackbar>

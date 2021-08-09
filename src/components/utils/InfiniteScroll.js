@@ -1,7 +1,13 @@
-import React, { useEffect, useCallback, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const isThresholdReached = (x, y, z) => x * 1.75 + y >= z;
-function InfiniteScroll({ children, loadMore, onLoadMore, horizontal }) {
+function InfiniteScroll({
+  children,
+  loadMore,
+  onLoadMore,
+  horizontal,
+  className,
+}) {
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -30,7 +36,7 @@ function InfiniteScroll({ children, loadMore, onLoadMore, horizontal }) {
     return () => ele.removeEventListener("scroll", onScroll);
   }, [scrollRef, horizontal, loadMore, onLoadMore]);
   return (
-    <div ref={scrollRef} className="crycto-instruction">
+    <div ref={scrollRef} className={`crycto-instruction ${className}`}>
       {children}
     </div>
   );

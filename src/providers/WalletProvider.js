@@ -1,4 +1,8 @@
-import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
+import {
+  useWeb3React,
+  Web3ReactProvider,
+  UnsupportedChainIdError,
+} from "@web3-react/core";
 import React, {
   createContext,
   useCallback,
@@ -9,7 +13,7 @@ import React, {
 import { useEagerConnect, useInactiveListener } from "../hooks/useEagerConnect";
 import Web3 from "web3";
 import { injected } from "../web3/connectors";
-import { switchNetwork, TournamentContract } from "../web3";
+import { moralisWeb3, switchNetwork, TournamentContract } from "../web3";
 import AlertMsg from "../components/utils/AlertMsg";
 
 function getLibrary(provider) {
@@ -21,6 +25,7 @@ function getLibrary(provider) {
 const WalletContext = createContext({});
 
 function WalletContextProvider({ children }) {
+  const [weiBalance, setWeiBalance] = useState(new moralisWeb3.utils.BN(0));
   const [balance, setBalance] = useState();
   const [showMetaMaskMissingError, setShowMetaMaskMissingError] =
     useState(false);
@@ -39,9 +44,10 @@ function WalletContextProvider({ children }) {
       return;
     }
 
-    library.eth
-      .getBalance(account)
-      .then((b) => setBalance(parseFloat(b.toString() / 1e18).toFixed(2)));
+    library.eth.getBalance(account).then((b) => {
+      setWeiBalance(moralisWeb3.utils.toBN(b));
+      setBalance(parseFloat(b.toString() / 1e18).toFixed(3));
+    });
   }, [library, account]);
   useEffect(() => {
     fetchBalance();
@@ -62,8 +68,9 @@ function WalletContextProvider({ children }) {
       //User rejected action in metamask
       return;
     }
-    // console.log(error); For Testing
-    if (error.name === "UnsupportedChainIdError") {
+    console.log(Object.keys(error)); //For Testing
+    console.log(typeof error);
+    if (error instanceof UnsupportedChainIdError) {
       switchNetwork().catch((e) => {
         if (e?.code === 4001) {
           //User rejected action in metamask
@@ -72,7 +79,7 @@ function WalletContextProvider({ children }) {
 
         setShowNetworkError(true);
       });
-    } else if (error.name === "NoEthereumProviderError") {
+    } else if (!window.ethereum) {
       setShowMetaMaskMissingError(true);
       console.log(
         "MetaMask is not installed. Please consider installing it: https://metamask.io/download.html"
@@ -84,14 +91,14 @@ function WalletContextProvider({ children }) {
 
   return (
     <WalletContext.Provider
-      value={{ ...context, triedEager, connect, balance }}
+      value={{ ...context, triedEager, connect, weiBalance, balance }}
     >
       {showMetaMaskMissingError && (
         <AlertMsg
           severity="error"
           title={"MetaMask is not installed"}
           link="https://metamask.io/download.html"
-          linkText="Install Metamask"
+          linkText="Install MetaMask"
           onClose={() => setShowMetaMaskMissingError(false)}
         />
       )}

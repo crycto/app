@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useCallback, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import localstorage from "../../localstorage";
+import localStorage from "../../localstorage";
 
 const useStyles = makeStyles({
   root: {
@@ -108,11 +108,11 @@ function Consent() {
   const [acceptedTerm2, setAcceptedTerm2] = useState(false);
 
   useEffect(() => {
-    setOpen(localStorage.getItem("crycto_v1_accepted_risk") !== "true");
+    setOpen(localStorage.get("crycto_v1_accepted_risk") !== "true");
   }, []);
   const onContinue = useCallback(() => {
     if (acceptedTerm1 && acceptedTerm2) {
-      localStorage.setItem("crycto_v1_accepted_risk", true);
+      localStorage.set("crycto_v1_accepted_risk", true);
       setOpen(false);
     }
   }, [acceptedTerm1, acceptedTerm2]);
@@ -124,6 +124,7 @@ function Consent() {
       open={true}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
+      BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.8)" } }}
     >
       <div
         style={{
@@ -147,9 +148,9 @@ function Consent() {
       >
         <div
           style={{
-            background: "linear-gradient(45deg, #d2e6ff, #d6d9fc)",
+            background: "var(--c-blue)",
             width: "100%",
-            color: "var(--c-blue)",
+            color: "white",
             fontWeight: "bolder",
             padding: "1rem 2rem",
             fontSize: "2.5rem",
@@ -159,7 +160,7 @@ function Consent() {
         </div>
         <div style={{ padding: "2.5rem 2rem", background: "white" }}>
           <h1 style={{ color: "hsl(224deg 66% 23%)", fontWeight: "bolder" }}>
-            This Product is in beta.
+            Crycto is in beta.
           </h1>
           <h3
             style={{
@@ -191,7 +192,7 @@ function Consent() {
                   color: "#223c85",
                 }}
               >
-                I understand that I am using this product at my own risk. Any
+                I understand that I am using this website at my own risk. Any
                 losses incurred due to my actions are my own responsibility
               </Typography>
             }
@@ -214,7 +215,7 @@ function Consent() {
                   color: "#223c85",
                 }}
               >
-                I understand that this product is still in beta. I am
+                Using Smart Contracts, Tokens, and Crypto is always a risk. I am
                 participating at my own risk
               </Typography>
             }

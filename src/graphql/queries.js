@@ -20,7 +20,8 @@ export const LATEST_MATCHES = gql`
     $first: Int!
   ) {
     matches(
-      where: { deadline_gte: $deadline }
+      #Need to review stage criteria
+      where: { deadline_gte: $deadline, stage_not: "Forfeited" }
       orderBy: deadline
       orderDirection: "asc"
       skip: $skip

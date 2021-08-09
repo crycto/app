@@ -20,10 +20,10 @@ export default class Match {
     this.winningScore = +match.winningScore;
     this.totalBets = match.totalBets;
     this.totalAmount =
-      match.totalAmount && parseFloat(match.totalAmount).toFixed(2);
+      match.totalAmount && +parseFloat(match.totalAmount).toFixed(2);
     this.rewardRate = match.rewardRate;
     this.rewardAmount =
-      match.rewardAmount && parseFloat(match.rewardAmount).toFixed(2);
+      match.rewardAmount && +parseFloat(match.rewardAmount).toFixed(2);
 
     this.bet = match.bets?.length === 1 ? new Bet(match.bets[0]) : undefined;
     this.positions = match.positions?.map((p) => new Position(p));
@@ -77,7 +77,7 @@ export default class Match {
     }`;
   }
   getPayout(score) {
-    const position = this.positions?.find((p) => p.score === score);
+    const position = this.positions?.find((p) => p.score == score);
     return (
       position &&
       parseFloat(
@@ -94,6 +94,9 @@ export default class Match {
       const payout = this.getPayout(p.score);
       return Math.max(max, payout);
     }, 0);
+  }
+  getWinningPayout() {
+    return this.getPayout(this.winningScore);
   }
   isBetPlaced() {
     return !!this.bet;

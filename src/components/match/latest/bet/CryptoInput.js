@@ -1,13 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import Slider from "../../../utils/Slider";
-import { useTournament } from "../../../../providers/TournamentProvider";
-import { useWallet } from "../../../../providers/WalletProvider";
-import { Input } from "@material-ui/core";
 
-var numberRegex = /^-?\d*\.?\d*$/;
+const numberRegex = /^-?\d*\.?\d*$/;
 
 function CryptoInput({ bet, onChange }) {
-  const [value, setValue] = useState();
   const onInput = useCallback(
     (e) => {
       numberRegex.test(e.target.value) &&

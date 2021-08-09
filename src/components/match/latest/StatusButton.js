@@ -1,26 +1,19 @@
 import React from "react";
+import ClaimRefundButton from "./ClaimRefundButton";
 
-function StatusButton({ match, onClick }) {
+function StatusButton({ match, onClickPredict }) {
   if (match.isForfeited()) {
     if (match.isRefunded()) {
       return <label className="crycto-card--cta cta-disabled">Refunded</label>;
     } else if (match.isBetPlaced()) {
-      return (
-        <label className="crycto-card--cta" onClick={onClick}>
-          Refund
-        </label>
-      );
+      return <ClaimRefundButton match={match} refund={true} />;
     }
     return <label className="crycto-card--cta cta-disabled">Forfeited</label>;
   }
   if (match.isCompleted()) {
     if (match.isBetWon()) {
       if (match.isYetToClaim()) {
-        return (
-          <label className="crycto-card--cta" onClick={onClick}>
-            Claim
-          </label>
-        );
+        return <ClaimRefundButton match={match} />;
       }
       if (match.isClaimed()) {
         return <label className="crycto-card--cta cta-disabled">Claimed</label>;
@@ -35,7 +28,7 @@ function StatusButton({ match, onClick }) {
   }
   if (match.isTakingBets()) {
     return (
-      <label className="crycto-card--cta" onClick={onClick}>
+      <label className="crycto-card--cta" onClick={onClickPredict}>
         Predict
       </label>
     );

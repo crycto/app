@@ -11,8 +11,6 @@ import TournamentProvider from "./providers/TournamentProvider";
 import WalletProvider from "./providers/WalletProvider";
 import ThemeProvider from "./providers/ThemeProvider";
 import OnChainProvider from "./providers/OnChainProvider";
-import { Alert, AlertTitle } from "@material-ui/lab";
-import Footer from "./components/footer";
 import Consent from "./components/utils/Consent";
 
 function App() {
