@@ -57,13 +57,17 @@ export default class Match {
     return this.deadline > now ? this.deadline - now : 0;
   }
   _timeLeft() {
-    const now = +new Date() / 1000;
-    const secondsLeft = this.deadline - now;
+    const secondsLeft = this.secondsLeft();
     const duration = moment.duration(secondsLeft, "seconds");
-    return `${duration.humanize({ h: 50, s: 120 })}`;
-    // return `${parseInt(duration.asHours())} : ${parseInt(duration.minutes())
-    //   .toString()
-    //   .padStart(2, "0")} : ${duration.seconds().toString().padStart(2, "0")}`;
+    if (secondsLeft > 60 * 60 * 24 * 2) {
+      return `${parseInt(duration.asDays())}d ${parseInt(duration.hours())
+        .toString()
+        .padStart(2, "0")}h ${duration.minutes().toString().padStart(2, "0")}m`;
+    }
+    // return `${duration.humanize({ h: 50, s: 120 })}`;
+    return `${parseInt(duration.asHours())}h ${parseInt(duration.minutes())
+      .toString()
+      .padStart(2, "0")}m ${duration.seconds().toString().padStart(2, "0")}s`;
   }
   getPlacedBetScoreRange() {
     if (!this.bet) {
@@ -136,12 +140,11 @@ const Period = {
 
 const getDesc = (period) =>
   period == 0
-    ? `Predict the number of runs that would be scored totally by both teams at
-        the end of  this match`
+    ? `Predict the number of runs that would be scored totally by both teams`
     : period >= 1 && period <= 5
     ? `Predict the number of runs that would be scored on Day ${period}`
     : `Predict the number of runs that would be scored totally by both teams in their powerplays`;
-const formatDate = (date) => moment(date).format("DD MMM, hh:mm"); //TODO:
+const formatDate = (date) => moment(date).format("DD MMM, hh:mm a"); //TODO:
 
 class MatchDetails {
   constructor(match) {

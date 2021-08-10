@@ -12,11 +12,13 @@ function Header() {
 
   return (
     <header className="crycto-topbar">
-      <a className="crycto-logo" href="/" title="logo">
-        <img src={logo} className="crycto-logo--img" alt="logo" />
-        <span className="crycto-logo--text">Crycto</span>
-        <label>Beta</label>
-      </a>
+      <div className="crycto-logo">
+        <a href="/">
+          <img src={logo} className="crycto-logo--img" alt="logo" />
+          <span className="crycto-logo--text">Crycto</span>
+          <label>Beta</label>
+        </a>
+      </div>
 
       <div className="crycto-launch--block">
         {NETWORK === "MUMBAI" && (

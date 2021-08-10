@@ -28,7 +28,10 @@ function StatusButton({ match, onClickPredict }) {
   }
   if (match.isTakingBets()) {
     return (
-      <label className="crycto-card--cta" onClick={onClickPredict}>
+      <label
+        className="crycto-card--cta f-drop-shadow"
+        onClick={onClickPredict}
+      >
         Predict
       </label>
     );

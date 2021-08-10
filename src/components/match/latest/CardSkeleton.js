@@ -45,7 +45,7 @@ function CardSkeleton() {
           >
             <Skeleton
               animation="wave"
-              width={30}
+              width={35}
               height={30}
               style={{ backgroundColor }}
             />
@@ -56,7 +56,7 @@ function CardSkeleton() {
           >
             <Skeleton
               animation="wave"
-              width={70}
+              width={90}
               height={30}
               style={{ backgroundColor }}
             />

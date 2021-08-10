@@ -123,7 +123,7 @@ function ClaimRefundButton({ match, refund }) {
 
   return (
     <label
-      className="crycto-card--cta"
+      className="crycto-card--cta f-drop-shadow"
       onClick={refund ? handleRefund : handleClaim}
     >
       {loading ? <Spinner /> : refund ? "Refund " : "Claim"}

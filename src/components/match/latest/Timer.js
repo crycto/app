@@ -7,6 +7,7 @@ const BorderLinearProgress = withStyles((theme) => ({
   root: {
     height: 5,
     borderRadius: 5,
+    width: "60%",
   },
   colorPrimary: {
     backgroundColor: "var(--c-timer-progress-primary)",
@@ -23,6 +24,7 @@ function Timer({ match, onDone }) {
   const [done, setDone] = useState(false);
   useEffect(() => {
     if (done) {
+      alert("what");
       return;
     }
     let _id;
@@ -38,7 +40,7 @@ function Timer({ match, onDone }) {
           }
           setProgress(parseInt(match.secondsLeft() * 100) / initial);
         },
-        match.secondsLeft() > 60 * 60 * 24 ? 120 * 1000 : 1000
+        initial > 60 * 60 * 24 * 2 ? 60 * 1000 : 1000
       );
     }
     return () => _id && clearInterval(_id);
@@ -49,13 +51,13 @@ function Timer({ match, onDone }) {
         <span className="crycto-card--text-rhs c-gold f30">
           {done ? "Locked" : timeLeft}
         </span>
-        <BorderLinearProgress
-          variant="determinate"
-          value={done ? 100 : Math.abs(100 - progress)}
-        />
 
         <span className="crycto-card--text-lhs">Ends In</span>
       </div>
+      <BorderLinearProgress
+        variant="determinate"
+        value={done ? 100 : Math.abs(100 - progress)}
+      />
     </div>
   );
 }

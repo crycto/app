@@ -1,11 +1,18 @@
 import React from "react";
+import logo from "../../assets/logo.png";
 import polygon from "../../assets/polygon.svg";
 import bat from "../../assets/bat.svg";
 import moneybag from "../../assets/moneybag.svg";
 import arrow from "../../assets/arrow.svg";
+import trophy from "../../assets/trophy.svg";
+import stars from "../../assets/stars.svg";
 
 function Icon({ name, className, onClick }) {
   switch (name) {
+    case "logo":
+      return (
+        <img src={logo} className={className} alt="logo" onClick={onClick} />
+      );
     case "polygon":
       return (
         <img
@@ -26,6 +33,19 @@ function Icon({ name, className, onClick }) {
     case "arrow":
       return (
         <img src={arrow} className={className} alt="arrow" onClick={onClick} />
+      );
+    case "trophy":
+      return (
+        <img
+          src={trophy}
+          className={className}
+          alt="trophy"
+          onClick={onClick}
+        />
+      );
+    case "stars":
+      return (
+        <img src={stars} className={className} alt="stars" onClick={onClick} />
       );
     default:
       return null;

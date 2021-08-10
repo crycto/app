@@ -6,9 +6,6 @@ function Header({ matchDetails }) {
       <span>{matchDetails?.team1 ?? "-"}</span>
       <span className="crycto-smallfont">vs</span>
       <span>{matchDetails?.team2 ?? "-"}</span>
-      {!isNaN(matchDetails?.period) && matchDetails?.period > 0 && (
-        <label>{matchDetails.getPeriodText()}</label>
-      )}
     </label>
   );
 }

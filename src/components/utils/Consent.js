@@ -8,6 +8,8 @@ import {
 import React, { useCallback, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import localStorage from "../../localstorage";
+import Icon from "./Icon";
+import { Fade } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -47,7 +49,7 @@ const useStyles = makeStyles({
       boxShadow: "none",
       background: "rgba(206,217,224,.5)",
     },
-    backgroundColor: "var(--c-green)",
+    backgroundColor: "var(--c-blue)",
     backgroundImage:
       "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
     "&:before": {
@@ -124,29 +126,30 @@ function Consent() {
       open={true}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
-      BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.8)" } }}
+      BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.9)" } }}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          margin: "auto",
-          width: "25%",
-          minWidth: 300,
-          height: "fit-content",
-          outline: "none",
-          color: "black",
-          fontSize: "1.8rem",
-          overflow: "hidden",
-          borderRadius: 20,
-          fontFamily: "Montserrat-Regular",
-          filter: "drop-shadow(2px 4px 20px rgba(0,0,0,0.3))",
-        }}
-      >
+      <Fade in={true} style={{ transitionDelay: "500ms" }}>
         <div
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            margin: "auto",
+            width: "25%",
+            minWidth: 300,
+            height: "fit-content",
+            outline: "none",
+            color: "black",
+            fontSize: "1.8rem",
+            overflow: "hidden",
+            borderRadius: 10,
+            fontFamily: "Montserrat-Regular",
+            filter: "drop-shadow(2px 4px 20px rgba(0,0,0,0.3))",
+          }}
+        >
+          {/* <div
           style={{
             background: "var(--c-blue)",
             width: "100%",
@@ -157,89 +160,100 @@ function Consent() {
           }}
         >
           Welcome 🏏
-        </div>
-        <div style={{ padding: "2.5rem 2rem", background: "white" }}>
-          <h1 style={{ color: "hsl(224deg 66% 23%)", fontWeight: "bolder" }}>
-            Crycto is in beta.
-          </h1>
-          <h3
+        </div> */}
+          <div style={{ padding: "2.5rem 2rem", background: "white" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <Icon name="logo" className="w30" />
+              <h1
+                style={{
+                  color: "black",
+                  fontWeight: "bolder",
+                  fontSize: "2.5rem",
+                  marginLeft: "1rem",
+                }}
+              >
+                Crycto is in beta.
+              </h1>
+            </div>
+            <h3
+              style={{
+                marginTop: "5%",
+                fontSize: "1.5rem",
+                opacity: 0.7,
+                color: "hsl(0deg 0% 34%)",
+                fontWeight: "bold",
+              }}
+            >
+              {" "}
+              Once you enter a position, you cannot cancel or adjust it.
+            </h3>
+            <FormControlLabel
+              control={
+                <StyledCheckbox
+                  checked={acceptedTerm1}
+                  onChange={() => setAcceptedTerm1((val) => !val)}
+                  name="checkedA"
+                  color="primary"
+                />
+              }
+              style={{ marginTop: "3rem" }}
+              label={
+                <Typography
+                  style={{
+                    fontSize: "1.35rem",
+                    fontFamily: "Montserrat-Regular",
+                    color: "black",
+                  }}
+                >
+                  I understand that I am using this website at my own risk. Any
+                  losses incurred due to my actions are my own responsibility
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              control={
+                <StyledCheckbox
+                  checked={acceptedTerm2}
+                  onChange={() => setAcceptedTerm2((val) => !val)}
+                  name="checkedB"
+                  color="primary"
+                />
+              }
+              style={{ marginTop: "3rem", marginBottom: "1rem" }}
+              label={
+                <Typography
+                  style={{
+                    fontSize: "1.35rem",
+                    fontFamily: "Montserrat-Regular",
+                    color: "black",
+                  }}
+                >
+                  Using Smart Contracts, Tokens, and Crypto is always a risk. I
+                  am participating at my own risk
+                </Typography>
+              }
+            />
+          </div>
+          <StylizedButton
             style={{
-              marginTop: "5%",
-              fontSize: "1.5rem",
-              opacity: 0.7,
-              color: "var(--c-blue)",
-              fontWeight: "bold",
+              margin: "auto",
+              width: "100%",
+              padding: "1.5rem",
+              background: "var(--c-blue)",
+              color: "white",
+              borderRadius: 0,
             }}
+            onClick={onContinue}
+            disabled={!acceptedTerm1 || !acceptedTerm2}
           >
-            {" "}
-            Once you enter a position, you cannot cancel or adjust it.
-          </h3>
-          <FormControlLabel
-            control={
-              <StyledCheckbox
-                checked={acceptedTerm1}
-                onChange={() => setAcceptedTerm1((val) => !val)}
-                name="checkedA"
-                color="primary"
-              />
-            }
-            style={{ marginTop: "3rem" }}
-            label={
-              <Typography
-                style={{
-                  fontSize: "1.35rem",
-                  fontFamily: "Montserrat-Regular",
-                  color: "#223c85",
-                }}
-              >
-                I understand that I am using this website at my own risk. Any
-                losses incurred due to my actions are my own responsibility
-              </Typography>
-            }
-          />
-          <FormControlLabel
-            control={
-              <StyledCheckbox
-                checked={acceptedTerm2}
-                onChange={() => setAcceptedTerm2((val) => !val)}
-                name="checkedB"
-                color="primary"
-              />
-            }
-            style={{ marginTop: "3rem" }}
-            label={
-              <Typography
-                style={{
-                  fontSize: "1.35rem",
-                  fontFamily: "Montserrat-Regular",
-                  color: "#223c85",
-                }}
-              >
-                Using Smart Contracts, Tokens, and Crypto is always a risk. I am
-                participating at my own risk
-              </Typography>
-            }
-          />
+            <Typography
+              style={{ fontFamily: "Montserrat-Regular", fontSize: "1.5rem" }}
+            >
+              Continue
+            </Typography>
+          </StylizedButton>
         </div>
-        <StylizedButton
-          style={{
-            margin: "auto",
-            width: "100%",
-            padding: "1.5rem",
-            background: "var(--c-blue)",
-            color: "white",
-            borderRadius: 0,
-          }}
-          onClick={onContinue}
-          disabled={!acceptedTerm1 || !acceptedTerm2}
-        >
-          <Typography
-            style={{ fontFamily: "Righteous-Regular", fontSize: "1.5rem" }}
-          >
-            Continue
-          </Typography>
-        </StylizedButton>
-      </div>
+      </Fade>
     </Modal>
   );
 }

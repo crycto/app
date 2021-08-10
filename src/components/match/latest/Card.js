@@ -47,7 +47,11 @@ function Card({ match }) {
     >
       <div className="crycto-card--blk--visible">
         <Header matchDetails={match.matchDetails} />
-        <BreadCrumbs id={matchId} uri={match.uri} {...match.matchDetails} />
+        <BreadCrumbs
+          id={matchId}
+          uri={match.uri}
+          matchDetails={match.matchDetails}
+        />
         {match.isCompleted() ? (
           <WinningScore score={match.getWinningScoreRange()} />
         ) : match.isForfeited() ? (

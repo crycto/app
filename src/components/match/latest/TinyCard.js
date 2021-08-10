@@ -6,6 +6,7 @@ import WinningScore from "./WinningScore";
 import Status from "./StatusButton";
 import BetInfo from "./BetInfo";
 import formatNumber from "../../../utils/formatNumber";
+import BreadCrumbs from "./BreadCrumbs";
 
 const cls = (match) => {
   if (match.isCompleted()) {
@@ -28,7 +29,11 @@ function Card({ match, ...props }) {
     <div className={`crycto-card--blk _small ${cls(match)} `} {...props}>
       <div className="crycto-card--blk--visible">
         <Header matchDetails={match.matchDetails} />
-        {/* <BreadCrumbs id={matchId} {...match.matchDetails} /> */}
+        <BreadCrumbs
+          id={match.id}
+          uri={match.uri}
+          matchDetails={match.matchDetails}
+        />
 
         {match.isCompleted() ? (
           <WinningScore score={match.getWinningScoreRange()} />

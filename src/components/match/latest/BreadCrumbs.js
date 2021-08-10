@@ -1,6 +1,6 @@
 import React from "react";
 
-function BreadCrumbs({ id, uri, date, venue }) {
+function BreadCrumbs({ id, uri, matchDetails }) {
   return (
     <div className="crycto-card--text">
       <span
@@ -9,8 +9,13 @@ function BreadCrumbs({ id, uri, date, venue }) {
       >
         #{parseInt(id)}
       </span>
-      <span className="crycto-card--labels">{date ?? "-"}</span>
-      <span className="crycto-card--labels">{venue ?? "-"}</span>
+      <span className="crycto-card--labels">{matchDetails.date ?? "-"}</span>
+      <span className="crycto-card--labels">
+        {matchDetails.getPeriodText() ?? "-"}
+      </span>
+      {/* {!isNaN(matchDetails?.period) && matchDetails?.period > 0 && (
+        <label>{matchDetails.getPeriodText()}</label>
+      )} */}
     </div>
   );
 }

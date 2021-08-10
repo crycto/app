@@ -3,7 +3,7 @@ import React from "react";
 
 const useStyles = makeStyles({
   button: {
-    background: "hsl(222deg 60% 38%)",
+    background: "var(--c-blue)",
     color: "white",
     fontFamily: "var(--crycto-font-montserrat)",
     fontSize: "1.2rem",
@@ -12,7 +12,8 @@ const useStyles = makeStyles({
     margin: "1rem auto",
     boxShadow: "1px 6px 20px -15px var(--c-blue)",
     "&:hover": {
-      backgroundColor: "hsl(222deg 60% 40%)",
+      backgroundColor: "var(--c-blue)",
+      opacity: 0.95,
     },
     "&:disabled": {
       pointerEvents: "none",

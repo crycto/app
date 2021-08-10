@@ -2,7 +2,7 @@ import { Slider, withStyles } from "@material-ui/core";
 
 export default withStyles({
   root: {
-    color: "#ce8d0f",
+    color: "var(--c-gold)",
     height: 3,
     width: "75%",
   },
@@ -10,7 +10,7 @@ export default withStyles({
     height: 20,
     width: 20,
     backgroundColor: "white",
-    border: "4px solid #ce8d0f",
+    border: "4px solid var(--c-gold)",
     marginTop: -9,
     marginLeft: -12,
     "&:focus, &:hover, &$active": {

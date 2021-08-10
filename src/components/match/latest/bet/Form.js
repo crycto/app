@@ -12,7 +12,7 @@ import {
   moralisWeb3,
   parseErrorMessage,
 } from "../../../../web3";
-
+import localStorage from "../../../../localstorage";
 import CryptoInput from "./CryptoInput";
 import ScoreInput from "./ScoreInput";
 import SubmitButton from "./SubmitButton";
@@ -172,6 +172,7 @@ function Form({ match, onClose }) {
       const tx = await ethSend;
       updateOptimisticResponse(match, bet, account);
       onClose();
+
       if (tx.status === false) {
         notifyTransactionStatus(
           `Failed to place bet for Match #${parseInt(match.id)}`,
@@ -185,6 +186,7 @@ function Form({ match, onClose }) {
           tx.transactionHash
         );
       }
+      localStorage.set("crycto-hide-new-user-banner", true);
     } catch (e) {
       !isRejectedByUser(e) &&
         notifyTransactionStatus(
@@ -195,7 +197,6 @@ function Form({ match, onClose }) {
           e?.hash
         );
       console.error(e);
-      console.log("Yes ", parseErrorMessage(e));
     }
     setSubmitting(false);
   }, [
