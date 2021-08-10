@@ -4,6 +4,7 @@ import Icon from "./Icon";
 import CloseIcon from "@material-ui/icons/Close";
 import { useWallet } from "../../providers/WalletProvider";
 import { Fade } from "@material-ui/core";
+import { chains, NETWORK, TournamentContract } from "../../web3";
 
 function Banner() {
   const [showBanner, setShowBanner] = useState(
@@ -18,29 +19,31 @@ function Banner() {
     <Fade in={true} style={{ transitionDelay: "100ms" }}>
       <section className="crycto-new-user-section">
         <div className="crycto-new-user-section-app">
-          <label>Open, Permissionless, Trustless</label>
-          <span>Fantasy Cricket On The BlockChain</span>
+          <label>Fantasy Cricket On The Blockchain</label>
+          <span>Where Cricket meets Crypto</span>
           <div class="crycto-new-user-section-contetnt-bottom">
             <a
-              href="https://metamask.io/index.html"
+              href="https://github.com/crycto/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Source Code
+              Open Source
             </a>
             <a
-              href="https://metamask.io/index.html"
+              href={`https://polygonscan.com/address/${
+                TournamentContract[chains[NETWORK].id][1]
+              }`}
               target="_blank"
               rel="noopener noreferrer"
             >
               Smart Contract
             </a>
             <a
-              href="https://polygonscan.com/"
+              href="https://polygon.technology/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Check in block explorer
+              Polygon Network
             </a>
           </div>
         </div>
@@ -49,14 +52,14 @@ function Banner() {
           <Icon name="trophy" className="crycto-new-user-section-image" />
         </div>
         <div class="crycto-new-user-section-content">
-          <label>Are you secretly the best pitch expert in the world ?</label>
+          <label>Are you ready to take on the whole world ?</label>
           <span>
             Put you're cricketing cap on and get the chance to win crazy rewards
           </span>
           <div className="crycto-new-user-section-contetnt-bottom">
             <div
               className="crycto-new-user-section-button"
-              onClick={!active ? connect : null}
+              onClick={!active ? connect : () => document.body.scrollTo(0, 200)}
             >
               Play now
             </div>

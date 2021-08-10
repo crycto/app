@@ -6,6 +6,7 @@ import moneybag from "../../assets/moneybag.svg";
 import arrow from "../../assets/arrow.svg";
 import trophy from "../../assets/trophy.svg";
 import stars from "../../assets/stars.svg";
+import metamask from "../../assets/metamask.svg";
 
 function Icon({ name, className, onClick }) {
   switch (name) {
@@ -46,6 +47,15 @@ function Icon({ name, className, onClick }) {
     case "stars":
       return (
         <img src={stars} className={className} alt="stars" onClick={onClick} />
+      );
+    case "metamask":
+      return (
+        <img
+          src={metamask}
+          className={className}
+          alt="metamask"
+          onClick={onClick}
+        />
       );
     default:
       return null;

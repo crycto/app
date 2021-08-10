@@ -43,12 +43,12 @@
   background: linear-gradient(45deg, #021646, #190e1b);
   min-height: 100vh !important;
   align-items: flex-start;
-  box-shadow: inset 0px 0px 13px #0000008c;
+  /* box-shadow: inset 0px 0px 13px #0000008c; */
   overflow: auto;
 }
 ._light .bgblue {
   /* background: linear-gradient(45deg, #2a4798, #7850c5); Footer isn't visible*/
-  background: linear-gradient(45deg, #251b73, #7850c5);
+  background: #2b2f48;
 }
 .crycto-app--heading {
   align-self: unset;
@@ -121,10 +121,10 @@
 
 .crycto-logo label {
   padding: 0.5rem 1rem;
-  background: var(--c-gold);
+  background: var(--c-blue);
   color: white;
   text-transform: uppercase;
-  border-radius: 5px;
+  border-radius: 2px;
   margin-left: 1rem;
   font-family: "Righteous-Regular";
   font-size: 0.9rem;
@@ -151,6 +151,11 @@
   transform: perspective(60rem) rotateX(2deg);
   border: none !important;
 }
+
+._light .latest .crycto-card--blk {
+  border: 1px solid #35333396 !important;
+}
+
 ._dark .crycto-card--blk {
   border: none !important;
 }
@@ -729,10 +734,6 @@
   color: hsl(262deg 64% 55%);
 }
 
-._light .footer-purple {
-  color: hsl(40deg 84% 40%);
-}
-
 .crycto-account {
   overflow: visible;
   border-bottom-left-radius: 0;
@@ -785,7 +786,7 @@
 }
 
 .crycto-new-user-section {
-  width: 80%;
+  width: 85%;
   background: linear-gradient(45deg, #521232, #4e2f94, #200869);
   height: 150px;
   display: flex;
@@ -835,13 +836,13 @@
 
 .crycto-new-user-section-content label {
   font-family: var(--crycto-font-montserrat);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: rgb(255 255 255 / 94%);
   padding-left: 0.5rem;
 }
 
 .crycto-new-user-section-content span {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   padding-left: 0.5rem;
 }
 
@@ -888,13 +889,186 @@
 
 .crycto-new-user-section-stars {
   position: absolute;
-  width: 65px;
-  right: 195px;
-  top: 40px;
+  width: 85px;
+  right: 205px;
+  top: 50px;
 }
 .crycto-new-user-section-image {
   width: 160px;
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+@media (max-width: 1110px) {
+  .crycto-new-user-section {
+    width: 95%;
+  }
+  .crycto-new-user-section-app span {
+    font-size: 1.8rem;
+  }
+  .crycto-new-user-section-content label {
+    font-size: 1rem;
+  }
+  .crycto-new-user-section-app label {
+    font-size: 1rem;
+  }
+
+  .crycto-new-user-section-content span {
+    font-size: 1.2rem;
+  }
+
+  .crycto-new-user-section-contetnt-bottom a {
+    font-size: 0.8rem;
+  }
+
+  .crycto-new-user-section-button {
+    font-size: 0.8rem;
+  }
+
+  .crycto-new-user-section-image-container {
+    background: unset;
+    padding: 2rem;
+    transform: rotateX(-10deg);
+  }
+
+  ._dark .crycto-new-user-section-image-container {
+    background: unset;
+  }
+
+  .crycto-new-user-section-image {
+    width: 110px !important;
+  }
+  .crycto-new-user-section-stars {
+    width: 35px;
+    right: unset;
+    top: 30px;
+    left: -20px;
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .crycto-new-user-section-image {
+    width: 50px !important;
+  }
+  .crycto-new-user-section-stars {
+    width: 35px;
+    right: unset;
+    top: -30px;
+    left: 15px;
+    display: block;
+  }
+  .crycto-new-user-section-image-container {
+    background: unset;
+    padding: 0.5rem;
+  }
+  .crycto-new-user-section-app {
+    display: none;
+  }
+  .crycto-new-user-section-content {
+    width: unset;
+    padding-left: 0;
+    padding-right: 0.5rem;
+  }
+  .crycto-new-user-section-content label {
+    font-size: 1rem;
+  }
+
+  .crycto-new-user-section-content span {
+    font-size: 1.2rem;
+  }
+
+  .crycto-new-user-section-contetnt-bottom a {
+    font-size: 0.7rem;
+  }
+
+  .crycto-new-user-section-button {
+    font-size: 0.5rem;
+    padding: 0.5rem;
+  }
+}
+
+.crycto-how-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(45deg, #523613, #311779);
+  color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  font-size: 10px;
+}
+
+._dark .crycto-how-section {
+  background: linear-gradient(45deg, #4c300c, #1d0a42);
+}
+
+.crycto-how-section .c-metamask {
+  width: 50px;
+  margin-left: 10px;
+}
+
+.c-how-bullet {
+  width: 15px;
+  margin-right: 5px;
+}
+
+.crycto-how-left {
+  justify-content: space-evenly;
+  display: flex;
+  padding-left: 3%;
+  flex-direction: column;
+  flex: 1;
+}
+
+.crycto-how-left label {
+  font-family: var(--crycto-font-montserrat);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.crycto-how-left span {
+  font-size: 2rem;
+  font-family: var(--crycto-font-montserrat);
+  margin: 0.5rem 0;
+  font-weight: bolder;
+}
+
+.crycto-how-right {
+  flex: 1;
+  font-size: 4.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.crycto-how-right span {
+  padding: 3rem 5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+}
+
+@media (max-width: 1100px) {
+  .crycto-how-section {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+  .crycto-how-left {
+    align-items: center;
+  }
+  .crycto-how-left span {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .crycto-how-right {
+    display: flex;
+    font-size: 2rem;
+  }
+  .crycto-how-section .c-metamask {
+    width: 30px;
+  }
 }
 
 @keyframes fadeIn {
