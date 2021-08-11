@@ -73,8 +73,7 @@ function WalletContextProvider({ children }) {
       //User rejected action in metamask
       return;
     }
-    console.log(Object.keys(error)); //For Testing
-    console.log(typeof error);
+
     if (error instanceof UnsupportedChainIdError) {
       switchNetwork().catch((e) => {
         if (e?.code === 4001) {

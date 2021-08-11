@@ -38,7 +38,7 @@ function Timer({ match, onDone }) {
             onDone((i) => ++i);
             return;
           }
-          setProgress(parseInt(match.secondsLeft() * 100) / initial);
+          // setProgress(parseInt(match.secondsLeft() * 100) / initial);
         },
         initial > 60 * 60 * 24 * 2 ? 60 * 1000 : 1000
       );
@@ -54,10 +54,10 @@ function Timer({ match, onDone }) {
 
         <span className="crycto-card--text-lhs">Ends In</span>
       </div>
-      <BorderLinearProgress
+      {/* <BorderLinearProgress
         variant="determinate"
         value={done ? 100 : Math.abs(100 - progress)}
-      />
+      /> */}
     </div>
   );
 }

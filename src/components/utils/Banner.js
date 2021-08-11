@@ -16,10 +16,10 @@ function Banner() {
     localStorage.set("crycto-hide-new-user-banner", true);
   };
   return !showBanner ? null : (
-    <Fade in={true} style={{ transitionDelay: "100ms" }}>
+    <Fade in={true} style={{ transitionDelay: "150ms" }}>
       <section className="crycto-new-user-section">
         <div className="crycto-new-user-section-app">
-          <label>Fantasy Cricket On The Blockchain</label>
+          <label>Global Fantasy Cricket On The Blockchain</label>
           <span>Where Cricket meets Crypto</span>
           <div class="crycto-new-user-section-contetnt-bottom">
             <a
@@ -52,7 +52,7 @@ function Banner() {
           <Icon name="trophy" className="crycto-new-user-section-image" />
         </div>
         <div class="crycto-new-user-section-content">
-          <label>Are you ready to take on the whole world ?</label>
+          <label>Are you ready to take on the world ?</label>
           <span>
             Put you're cricketing cap on and get the chance to win crazy rewards
           </span>

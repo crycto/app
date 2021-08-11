@@ -73,7 +73,7 @@ function CompletedMatches() {
   return (
     <>
       <div className="crycto-app--heading">
-        <h1>Completed Matches</h1>
+        <h1>Completed Rounds</h1>
       </div>
 
       <InfiniteScroll loadMore={loadMore} onLoadMore={onLoadMore}>

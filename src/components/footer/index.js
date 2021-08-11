@@ -52,7 +52,7 @@ function Footer() {
           </span>
         </div>
         <div onClick={goTo.bind(null, "polygon")}>
-          Powered by <Icon name="polygon" className="footer-polygon-img" />
+          Built on <Icon name="polygon" className="footer-polygon-img" />
           <span className="footer-purple">Polygon</span>
         </div>
 

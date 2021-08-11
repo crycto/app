@@ -108,6 +108,7 @@ function Consent() {
   const [open, setOpen] = useState(false);
   const [acceptedTerm1, setAcceptedTerm1] = useState(false);
   const [acceptedTerm2, setAcceptedTerm2] = useState(false);
+  const [acceptedTerm3, setAcceptedTerm3] = useState(false);
 
   useEffect(() => {
     setOpen(localStorage.get("crycto_v1_accepted_risk") !== "true");
@@ -205,8 +206,8 @@ function Consent() {
                     color: "black",
                   }}
                 >
-                  I understand that I am using this website at my own risk. Any
-                  losses incurred due to my actions are my own responsibility
+                  I understand that this game involves an element of financial
+                  risk and can be addictive.
                 </Typography>
               }
             />
@@ -216,6 +217,29 @@ function Consent() {
                   checked={acceptedTerm2}
                   onChange={() => setAcceptedTerm2((val) => !val)}
                   name="checkedB"
+                  color="primary"
+                />
+              }
+              style={{ marginTop: "3rem" }}
+              label={
+                <Typography
+                  style={{
+                    fontSize: "1.35rem",
+                    fontFamily: "Montserrat-Regular",
+                    color: "black",
+                  }}
+                >
+                  I understand that I am using this website at my own risk. Any
+                  losses incurred due to my actions are my own responsibility
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              control={
+                <StyledCheckbox
+                  checked={acceptedTerm3}
+                  onChange={() => setAcceptedTerm3((val) => !val)}
+                  name="checkedC"
                   color="primary"
                 />
               }

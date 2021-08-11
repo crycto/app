@@ -7,6 +7,7 @@ export const TOURNAMENT = gql`
       minBetAmount
       totalBets
       totalAmount
+      rewardAmount
       paused
     }
   }

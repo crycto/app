@@ -6,22 +6,23 @@ import ThemeSwitch from "./ThemeSwitch";
 import Icon from "../utils/Icon";
 import { ClickAwayListener } from "@material-ui/core";
 import { NETWORK } from "../../web3";
+import Transak from "../utils/Transak";
 
 function Header() {
   const { connect, account, active, deactivate, balance } = useWallet();
-
+  const [showTransak, setShowTransak] = useState(false);
   return (
     <header className="crycto-topbar">
       <div className="crycto-logo">
         <a href="/">
           <img src={logo} className="crycto-logo--img" alt="logo" />
           <span className="crycto-logo--text">Crycto</span>
-          <label>Beta</label>
+          <label>{NETWORK === "MUMBAI" ? "Testnet" : "Beta"}</label>
         </a>
       </div>
 
       <div className="crycto-launch--block">
-        {NETWORK === "MUMBAI" && (
+        {NETWORK === "MUMBAI" ? (
           <label
             className="crycto-launch--cta getmatic mr15"
             onClick={() =>
@@ -32,7 +33,14 @@ function Header() {
               )
             }
           >
-            Get Test MATIC !
+            Get Free Test MATIC !
+          </label>
+        ) : (
+          <label
+            className="crycto-launch--cta getmatic mr15"
+            onClick={() => setShowTransak(true)}
+          >
+            Add MATIC to your wallet
           </label>
         )}
         {active ? (
@@ -46,6 +54,7 @@ function Header() {
         )}
         <ThemeSwitch />
       </div>
+      {showTransak && <Transak onClose={() => setShowTransak(false)} />}
     </header>
   );
 }

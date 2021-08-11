@@ -542,7 +542,7 @@ a {
   position: relative;
 }
 .crycto-app--heading {
-  padding: 0rem 1rem 2rem;
+  padding: 1rem 1rem 2.5rem;
   width: 100%;
   font-size: 3rem;
   font-family: var(--crycto-font-righteous);
@@ -720,7 +720,7 @@ a {
 .crycto-card--text-rhs .arrow-left,
 .crycto-card--text-rhs .arrow-right {
   position: absolute;
-  width: 2.5rem;
+  width: 4rem;
   left: 3rem;
   transform: rotate(90deg);
   top: 0;
