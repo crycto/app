@@ -10,6 +10,7 @@ function HowToPlay() {
       <div class="crycto-how-left">
         <label>HOW DO I PLAY ? </label>
         <span>
+          &nbsp;
           <Icon name="metamask" className="c-how-bullet" /> You'd need MetaMask
           to be able to interact with the app
           <OpenInNewIcon
@@ -24,6 +25,7 @@ function HowToPlay() {
           />
         </span>
         <span>
+          &nbsp;
           <Icon name="polygon" className="c-how-bullet" /> Once you've got that,
           connect your wallet to Polygon Network{" "}
           <OpenInNewIcon
@@ -37,7 +39,22 @@ function HowToPlay() {
             className="cp"
           />
         </span>
-        <span>🏏 Well, that's it. Happy cricketing ! </span>
+        <span>
+          💰 &nbsp;Add funds to your wallet using &nbsp;
+          <a
+            href="https://global.transak.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Transak
+          </a>
+          &nbsp; or exchanges like &nbsp;
+          <a href="https://wazirx.com/" target="_blank" rel="noreferrer">
+            WazirX
+          </a>
+          &nbsp;
+        </span>
+        <span>🏏&nbsp; Well, that's it. Happy cricketing ! </span>
       </div>
       <div class="crycto-how-right">
         {window.ethereum ? (

@@ -1,8 +1,10 @@
 import React from "react";
 import Footer from "../../components/footer";
 import Banner from "../../components/utils/Banner";
+import EarlySupport from "../../components/utils/EarlySupport";
 import HowToPlay from "../../components/utils/HowToPlay";
 import TournamentStats from "../../components/utils/TournamentStats";
+import { NETWORK } from "../../web3";
 import CompletedMatches from "./sections/CompletedMatches";
 import LatestMatches from "./sections/LatestMatches";
 
@@ -15,6 +17,7 @@ function Home() {
       </section>
       <HowToPlay />
       <TournamentStats />
+      {NETWORK === "MUMBAI" && <EarlySupport />}
       <section className="crycto-app--section bgblue">
         <CompletedMatches />
         <Footer />

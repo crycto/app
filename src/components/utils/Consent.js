@@ -67,6 +67,7 @@ const useStyles = makeStyles({
     // },
   },
   button: {
+    transition: "none",
     "&:hover": {
       filter: "brightness(.95)",
     },
@@ -128,11 +129,12 @@ function Consent() {
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
       BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.9)" } }}
+      style={{ display: "flex" }}
     >
-      <Fade in={true} style={{ transitionDelay: "500ms" }}>
+      <Fade in={true} style={{ transitionDelay: "100ms" }}>
         <div
           style={{
-            position: "absolute",
+            // position: "absolute",
             top: 0,
             bottom: 0,
             left: 0,
@@ -268,7 +270,7 @@ function Consent() {
               borderRadius: 0,
             }}
             onClick={onContinue}
-            disabled={!acceptedTerm1 || !acceptedTerm2}
+            disabled={!acceptedTerm1 || !acceptedTerm2 || !acceptedTerm3}
           >
             <Typography
               style={{ fontFamily: "Montserrat-Regular", fontSize: "1.5rem" }}

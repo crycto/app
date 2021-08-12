@@ -54,7 +54,8 @@ function Banner() {
         <div class="crycto-new-user-section-content">
           <label>Are you ready to take on the world ?</label>
           <span>
-            Put you're cricketing cap on and get the chance to win crazy rewards
+            Put your cricketing cap on and get the chance to win crazy rewards.
+            You can start with as low as ₹1
           </span>
           <div className="crycto-new-user-section-contetnt-bottom">
             <div

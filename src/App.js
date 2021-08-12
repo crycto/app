@@ -12,6 +12,8 @@ import WalletProvider from "./providers/WalletProvider";
 import ThemeProvider from "./providers/ThemeProvider";
 import OnChainProvider from "./providers/OnChainProvider";
 import Consent from "./components/utils/Consent";
+import TopBanner from "./components/utils/TopBanner";
+import { NETWORK } from "./web3";
 
 function App() {
   // const tournament = useTournament();
@@ -35,6 +37,7 @@ function App() {
         <WalletProvider>
           <ApolloProvider client={client}>
             <TournamentProvider>
+              {NETWORK === "MUMBAI" && <TopBanner />}
               <Header />
               <Home />
               <Consent />
