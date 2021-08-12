@@ -719,18 +719,12 @@ a {
 }
 .crycto-card--text-rhs .arrow-left,
 .crycto-card--text-rhs .arrow-right {
-  position: absolute;
   width: 4rem;
-  left: 3rem;
+
   transform: rotate(90deg);
-  top: 0;
-  bottom: 0;
-  margin: auto;
 }
 .crycto-card--text-rhs .arrow-right {
   transform: rotate(-90deg);
-  left: auto;
-  right: 3rem;
 }
 .cta-disabled {
   opacity: 0.95;

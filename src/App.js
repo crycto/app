@@ -1,6 +1,7 @@
 import "./crycto.css";
 import "./rangeslider.css";
 import "./crycto-n.css";
+import "./crycto-labs.scss";
 import Header from "./components/header";
 // import { useTournament } from "./providers/TournamentProvider";
 import Home from "./pages/home";

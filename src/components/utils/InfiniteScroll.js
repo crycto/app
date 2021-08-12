@@ -35,7 +35,11 @@ function InfiniteScroll({
     ele.addEventListener("scroll", onScroll);
     return () => ele.removeEventListener("scroll", onScroll);
   }, [scrollRef, horizontal, loadMore, onLoadMore]);
-  return (
+  return horizontal ? (
+    <ul ref={scrollRef} className={`crycto-instruction ${className}`}>
+      {children}
+    </ul>
+  ) : (
     <div ref={scrollRef} className={`crycto-instruction ${className}`}>
       {children}
     </div>

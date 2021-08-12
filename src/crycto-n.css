@@ -167,13 +167,13 @@
 
 .crycto-instruction {
   padding-bottom: 2rem;
-  padding-right: 2rem;
+  /* padding-right: 2rem; */
   scroll-behavior: smooth;
 }
 
-.crycto-instruction > .crycto-card--blk:nth-of-type(1) {
+/* .crycto-instruction > .crycto-card--blk:nth-of-type(1) {
   margin-left: 2rem;
-}
+} */
 .c-skeleton.crycto-instruction > .crycto-card--blk:nth-of-type(2) {
   margin-left: 2rem;
 }
@@ -462,26 +462,38 @@
 
 .crycto-card--blk-back {
   transform: scale(0);
-  animation: slideUp 0.25s ease forwards;
+  animation: zoomUpDown 0.25s ease forwards;
   background: hsl(223deg 63% 16%);
   border-radius: 50%/ 3% 3% 5% 5%;
   padding-top: 1rem;
   height: 100%;
-  position: absolute;
+  width: 100%;
+  /* position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
 }
 ._light .crycto-card--blk-back {
   background: white;
 }
-@keyframes slideUp {
+@keyframes zoomUpDown {
   from {
-    transform: translateY(100%);
+    transform: scale(1.2);
   }
   to {
-    transform: translateY(0);
+    transform: scale(1);
+  }
+}
+.front-screen {
+  /* animation: zoomDownUp 0.15s linear forwards; */
+}
+@keyframes zoomDownUp {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
   }
 }
 .crycto-card--blk-back .crycto-contest--text {
@@ -535,8 +547,8 @@
   font-size: 2rem;
 }
 ._light .range-value {
-  background: #f1f4ff;
-  color: var(--c-blue);
+  background: #cd911724;
+  color: var(--c-gold);
 }
 .slider-container {
   width: 100%;

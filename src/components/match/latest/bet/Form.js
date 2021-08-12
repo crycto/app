@@ -17,6 +17,11 @@ import CryptoInput from "./CryptoInput";
 import ScoreInput from "./ScoreInput";
 import SubmitButton from "./SubmitButton";
 
+import ActionButton from "../labs/ActionButton";
+
+// import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBack";
+
 const fragment = gql`
   fragment matchBets on Match {
     totalBets
@@ -211,26 +216,42 @@ function Form({ match, onClose }) {
   ]);
 
   return (
-    <div className="crycto-card--blk-back">
-      <p className="crycto-contest--text mb20">
-        {match.matchDetails.matchDescription}
-      </p>
+    <div className="crycto-card--blk-back bet-screen">
+      <ArrowBackIosIcon className="back-icon" onClick={onClose} />
+      <div className="crycto-card-top-container">
+        <div>
+          <span>#{parseInt(match.id)}</span>
+        </div>
+        <div>
+          <span>
+            #{`${match.matchDetails.team1}vs${match.matchDetails.team2}`}
+          </span>
+        </div>
+        <div>
+          <span>#{match.matchDetails.venue}</span>
+        </div>
+      </div>
+
       <ScoreInput
+        matchDescription={match.matchDetails.matchDescription}
         minScore={match.minScore}
         scoreMultiple={match.scoreMultiple}
         value={bet.score}
         onChange={setScore}
       />
-      <CryptoInput bet={bet} onChange={setAmount} />
-      <SubmitButton
-        account={account}
-        connect={connect}
-        valid={validBet}
-        insufficientBalance={moralisWeb3.utils
-          .toBN(bet.rawAmount ?? "0")
-          .gt(weiBalance)}
-        onSubmit={placeBet}
-      />
+      <div className="crycto-card--maincontent bottom-container">
+        <CryptoInput bet={bet} onChange={setAmount} />
+
+        <SubmitButton
+          account={account}
+          connect={connect}
+          valid={validBet}
+          insufficientBalance={moralisWeb3.utils
+            .toBN(bet.rawAmount ?? "0")
+            .gt(weiBalance)}
+          onSubmit={placeBet}
+        />
+      </div>
       {submitting && (
         <Backdrop open appear style={{ zIndex: 9999999, color: "#fff" }}>
           <CircularProgress color="inherit" />

@@ -9,6 +9,7 @@ import BetInfo from "./BetInfo";
 import Form from "./bet/Form";
 import Payout from "./Payout";
 import formatNumber from "../../../utils/formatNumber";
+import Footer from "./labs/Footer";
 
 const cls = (match) => {
   if (match.isCompleted()) {
@@ -26,7 +27,10 @@ const cls = (match) => {
   if (match.isBetPlaced()) {
     return "_placed";
   }
-  return "";
+  if (match.isTakingBets()) {
+    return "_predict";
+  }
+  return "_closed";
 };
 
 function Card({ match }) {
@@ -41,59 +45,52 @@ function Card({ match }) {
   }, [match, setShowForm]);
   return (
     <div
-      className={`crycto-card--blk overflow-hide ${cls(match)} ${
+      className={`crycto-card--blk overflow-hide  ${cls(match)} ${
         showForm && "bet-form"
       }`}
     >
-      <div className="crycto-card--blk--visible">
-        <Header matchDetails={match.matchDetails} />
-        <BreadCrumbs
-          id={matchId}
-          uri={match.uri}
-          matchDetails={match.matchDetails}
-        />
-        {match.isCompleted() ? (
-          <WinningScore score={match.getWinningScoreRange()} />
-        ) : match.isForfeited() ? (
-          <Forfeited />
-        ) : match.isDeadlineCrossed() ? (
-          <Payout match={match} />
-        ) : (
-          <Timer match={match} onDone={setRerender} />
-        )}
+      {!showForm ? (
+        <div className="w100 front-screen">
+          <BreadCrumbs
+            id={matchId}
+            uri={match.uri}
+            matchDetails={match.matchDetails}
+          />
+          <div className="crycto-card--blk--visible body-container">
+            <Header matchDetails={match.matchDetails} />
 
-        <div className="crycto-card--fold _stats">
-          <Stat label="Bets" value={formatNumber(match.totalBets)} />
-          <Stat label="Pool" value={formatNumber(match.totalAmount)} />
-          {match.isCompleted() && (
-            <>
-              <Stat label="Winners" value={formatNumber(match.totalWinners)} />
-              <Stat label="Payout" value={`${match.getWinningPayout()}x`} />
-            </>
-          )}
-        </div>
-        <BetInfo match={match} />
-        {!showForm && (
+            {match.isCompleted() ? (
+              <WinningScore score={match.getWinningScoreRange()} />
+            ) : match.isForfeited() ? (
+              <Forfeited />
+            ) : match.isDeadlineCrossed() ? (
+              <Payout match={match} />
+            ) : (
+              <Timer match={match} onDone={setRerender} />
+            )}
+
+            <div className="_stats right">
+              <Stat label="Bets" value={formatNumber(match.totalBets)} />
+              <Stat label="Pool" value={formatNumber(match.totalAmount)} />
+              {match.isCompleted() && (
+                <>
+                  <Stat
+                    label="Winners"
+                    value={formatNumber(match.totalWinners)}
+                  />
+                  <Stat label="Payout" value={`${match.getWinningPayout()}x`} />
+                </>
+              )}
+            </div>
+
+            {/* {!showForm && (
           <StatusButton match={match} onClickPredict={handlePredict} />
-        )}
-      </div>
-
-      {showForm && (
-        <>
-          <Form match={match} onClose={setShowForm.bind(null, false)} />
-
-          <label
-            className="crycto-card--cta"
-            onClick={setShowForm.bind(null, false)}
-            style={{ zIndex: 99999 }}
-          >
-            {match.matchDetails.team1}{" "}
-            <small style={{ fontSize: ".6rem" }}>vs</small>{" "}
-            {match.matchDetails.team2}
-            {match.matchDetails.period > 0 &&
-              ` - ${match.matchDetails.getPeriodText()}`}
-          </label>
-        </>
+        )} */}
+          </div>
+          <Footer match={match} onClickPredict={handlePredict} />
+        </div>
+      ) : (
+        <Form match={match} onClose={setShowForm.bind(null, false)} />
       )}
     </div>
   );
@@ -105,7 +102,7 @@ const Stat = ({ label, value }) => {
       <span className="crycto-card--text-rhs">
         {value == 0 ? "0" : String(value).padStart(2, "0")}
       </span>
-      {label && <span className="crycto-card--text-lhs">{label}</span>}
+      {label && <span className="subtitle">{label}</span>}
     </div>
   );
 };

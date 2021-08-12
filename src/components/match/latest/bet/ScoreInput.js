@@ -1,7 +1,13 @@
 import React, { useCallback } from "react";
 import Icon from "../../../utils/Icon";
 
-function ScoreInput({ minScore, scoreMultiple, value, onChange }) {
+function ScoreInput({
+  matchDescription,
+  minScore,
+  scoreMultiple,
+  value,
+  onChange,
+}) {
   const decrement = useCallback(() => {
     if (value - scoreMultiple < minScore) {
       return;
@@ -12,9 +18,9 @@ function ScoreInput({ minScore, scoreMultiple, value, onChange }) {
     onChange(value + scoreMultiple);
   }, [scoreMultiple, value, onChange]);
   return (
-    <div className="crycto-card--highlight mb20">
-      <span className="crycto-card--text-lhs">Score</span>
-      <span className="crycto-card--text-rhs mt1rem">
+    <div className="crycto-card--highlight body-container">
+      <p className="crycto-contest--text mb20">{matchDescription}</p>
+      <span className="crycto-card--text-rhs ">
         <Icon name="arrow" className="arrow-left" onClick={decrement} />
         <span className="crycto-score--value">
           {value} - {value + scoreMultiple - 1}

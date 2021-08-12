@@ -18,9 +18,25 @@ function CryptoInput({ bet, onChange }) {
     [onChange]
   );
   return (
-    <div className="crycto-card--highlight">
-      <span className="crycto-card--text-lhs">Commit</span>
-      <span className="crycto-card--text-rhs mt1rem">
+    <div className="crycto-card--highlight crypto-slider">
+      <div className="slider-container crypto-input">
+        <Slider
+          value={parseInt(bet.percentage)}
+          onChange={onSlide}
+          aria-labelledby="input-slider"
+          min={0}
+          max={100}
+          valueLabelDisplay="off"
+          marks={[
+            { value: 0 },
+            { value: 25 },
+            { value: 50 },
+            { value: 75 },
+            { value: 100 },
+          ]}
+        />
+      </div>
+      <span className="crycto-card--text-rhs">
         <input
           step={10}
           min={0}
@@ -32,23 +48,6 @@ function CryptoInput({ bet, onChange }) {
         />
         <span className="f20">Matic</span>
       </span>
-      <div className="slider-container mt1rem">
-        <Slider
-          value={parseInt(bet.percentage)}
-          onChange={onSlide}
-          aria-labelledby="input-slider"
-          min={0}
-          max={100}
-          valueLabelDisplay="off"
-          marks={[
-            { value: 0, label: "0%" },
-            { value: 25, label: "25%" },
-            { value: 50, label: "50%" },
-            { value: 75, label: "75%" },
-            { value: 100, label: "100%" },
-          ]}
-        />
-      </div>
     </div>
   );
 }

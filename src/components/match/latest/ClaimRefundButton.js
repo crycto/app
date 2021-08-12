@@ -122,12 +122,12 @@ function ClaimRefundButton({ match, refund }) {
   ]);
 
   return (
-    <label
-      className="crycto-card--cta f-drop-shadow"
+    <div
+      className="action-button"
       onClick={refund ? handleRefund : handleClaim}
     >
-      {loading ? <Spinner /> : refund ? "Refund " : "Claim"}
-    </label>
+      <span>{loading ? <Spinner /> : refund ? "Refund " : "Claim"}</span>
+    </div>
   );
 }
 
