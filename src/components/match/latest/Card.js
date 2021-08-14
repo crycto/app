@@ -4,8 +4,6 @@ import BreadCrumbs from "./BreadCrumbs";
 import Timer from "./Timer";
 import Forfeited from "./Forfeited";
 import WinningScore from "./WinningScore";
-import StatusButton from "./StatusButton";
-import BetInfo from "./BetInfo";
 import Form from "./bet/Form";
 import Payout from "./Payout";
 import formatNumber from "../../../utils/formatNumber";
@@ -72,20 +70,7 @@ function Card({ match }) {
             <div className="_stats right">
               <Stat label="Bets" value={formatNumber(match.totalBets)} />
               <Stat label="Pool" value={formatNumber(match.totalAmount)} />
-              {match.isCompleted() && (
-                <>
-                  <Stat
-                    label="Winners"
-                    value={formatNumber(match.totalWinners)}
-                  />
-                  <Stat label="Payout" value={`${match.getWinningPayout()}x`} />
-                </>
-              )}
             </div>
-
-            {/* {!showForm && (
-          <StatusButton match={match} onClickPredict={handlePredict} />
-        )} */}
           </div>
           <Footer match={match} onClickPredict={handlePredict} />
         </div>

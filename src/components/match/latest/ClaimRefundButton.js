@@ -123,7 +123,7 @@ function ClaimRefundButton({ match, refund }) {
 
   return (
     <div
-      className="action-button"
+      className={`action-button ${refund ? "_refund" : "_claim"}`}
       onClick={refund ? handleRefund : handleClaim}
     >
       <span>{loading ? <Spinner /> : refund ? "Refund " : "Claim"}</span>

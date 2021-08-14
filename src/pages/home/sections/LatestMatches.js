@@ -3,13 +3,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import { LATEST_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import Card from "../../../components/match/latest/Card";
-
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import CardSkeleton from "../../../components/match/latest/CardSkeleton";
-import InfiniteScroll from "../../../components/utils/InfiniteScroll";
+
 import AppProgress from "../../../components/utils/AppProgress";
 import { useWallet } from "../../../providers/WalletProvider";
-
-const deadline = parseInt(+new Date().setDate(new Date().getDate() - 2) / 1000);
+import MonthNavigator from "../../../components/utils/MonthNavigator";
+import moment from "moment";
+import Icon from "../../../components/utils/Icon";
+import { Checkbox, FormControlLabel, withStyles } from "@material-ui/core";
 
 const skelArr = Array(4).fill(0);
 
@@ -17,104 +20,85 @@ const LIMIT = 10;
 
 const pollInterval = 60 * 1000;
 
+const curMoment = moment();
+
+const scrollToCompletedRounds = () =>
+  document.getElementsByClassName("completed")[0].scrollIntoView();
+
 function LatestMatches() {
   const { triedEager, account = "" } = useWallet();
+  const [month, setMonth] = useState(curMoment);
+  const [activeOnly, setActiveOnly] = useState(false);
+  const { data, loading, error } = useQuery(LATEST_MATCHES, {
+    variables: {
+      first: LIMIT,
+      deadline_gte: parseInt(month.startOf("month").valueOf() / 1000),
+      deadline_lte: parseInt(month.endOf("month").valueOf() / 1000),
+      connectedUser: account,
+    },
+    pollInterval,
+  });
 
-  const { data, loading, error, called, refetch, fetchMore } = useQuery(
-    LATEST_MATCHES,
-    {
-      variables: {
-        first: LIMIT,
-        deadline,
-        connectedUser: account,
-      },
-    }
-  );
-  const [loadMore, setLoadMore] = useState(true);
-  useEffect(() => {
-    if (called && !loading) {
-      setLoadMore(data?.matches?.length === LIMIT);
-    }
-  }, [called, loading]);
-
-  useEffect(() => {
-    const _id = setInterval(() => {
-      if (!data?.matches) {
-        return;
-      }
-      const limit = Math.max(
-        data?.matches?.length + (data?.matches?.length % LIMIT) + 1,
-        LIMIT
-      );
-      refetch({
-        first: limit,
-      }).then(({ data }) => {
-        setLoadMore(data?.matches?.length === limit);
-      });
-    }, pollInterval);
-    return () => clearInterval(_id);
-  }, [data, refetch]);
-
-  const [loadingMore, setLoadingMore] = useState(false);
-  const onLoadMore = useCallback(() => {
-    if (!data) {
-      return;
-    }
-    setLoadMore(false);
-    setLoadingMore(true);
-    fetchMore({
-      variables: {
-        skip: data?.matches?.length ?? 0,
-      },
-    })
-      .then(({ data }) => {
-        setLoadingMore(false);
-        setLoadMore(data?.matches?.length === LIMIT);
-      })
-      .catch(console.log);
-  }, [fetchMore, data]);
-
-  if (loading || !triedEager) {
-    return (
-      <div className="crycto-instruction latest c-skeleton">
-        <AppProgress />
-        {skelArr.map((_, i) => (
-          <CardSkeleton key={i + ""} />
-        ))}
-      </div>
-    );
-  }
-  if (error) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          fontSize: "1.5rem",
-          fontFamily: "'Montserrat-Regular'",
-          color: "var(--c-gold)",
-        }}
-      >
-        We're having trouble loading the latest matches. Take deep breaths while
-        we fix this thing :)
-      </div>
-    );
-  }
   return (
-    <InfiniteScroll
-      className="latest"
-      horizontal
-      loadMore={loadMore}
-      onLoadMore={onLoadMore}
-    >
-      {data?.matches?.map((m) => (
-        <Card key={m.id} match={new Match(m)} />
-      ))}
-      {loadingMore && <CardSkeleton color="inherit" />}
-    </InfiniteScroll>
+    <>
+      <MonthNavigator value={month} setMonth={setMonth} />
+      {/* <div className="active-only-filter">
+        <CheckBox
+          checked={activeOnly}
+          onChange={(e) => setActiveOnly(e.target.checked)}
+          name="checkedG"
+        />
+        <span onClick={() => setActiveOnly((a) => !a)}>
+          Show active matches only
+        </span>
+      </div> */}
+      <div className="latest">
+        {(!triedEager || loading) && (
+          <>
+            <AppProgress />
+            {skelArr.map((_, i) => (
+              <CardSkeleton key={i + ""} />
+            ))}
+          </>
+        )}
+        {data?.matches?.map((m) => (
+          <Card key={m.id} match={new Match(m)} />
+        ))}
+        {!loading && data?.matches?.length == 0 && (
+          <div className="placeholder-screen">
+            {/* <Icon name="logo" /> */}
+            We do not have any rounds for this month !
+            <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
+          </div>
+        )}
+        {error && (
+          <div className="placeholder-screen">
+            We're having trouble loading rounds in {month.format("MMM")}. Take
+            deep breaths while we fix this thing :)
+            <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
+
+const CheckBox = withStyles({
+  root: {
+    color: "var(--color-chips)",
+    "&$checked": {
+      color: "var(--c-gold)",
+    },
+    fontSize: "2rem",
+  },
+  checked: {},
+})((props) => (
+  <Checkbox
+    color="default"
+    icon={<CheckBoxOutlineBlankIcon fontSize="inherit" />}
+    checkedIcon={<CheckBoxIcon fontSize="inherit" />}
+    {...props}
+  />
+));
 
 export default LatestMatches;

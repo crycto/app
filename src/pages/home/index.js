@@ -18,7 +18,7 @@ function Home() {
       <HowToPlay />
       <TournamentStats />
       {NETWORK === "MUMBAI" && <EarlySupport />}
-      <section className="crycto-app--section bgblue">
+      <section className="crycto-app--section bgblue completed">
         <CompletedMatches />
         <Footer />
       </section>

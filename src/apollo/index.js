@@ -6,15 +6,20 @@ const pagination = (keyArgs) => ({
   merge(existing, incoming, { args }) {
     const merged = existing ? existing.slice(0) : [];
     if (args) {
-      const { skip = 0 } = args;
+      const { queryId, skip = 0 } = args;
       for (let i = 0; i < incoming.length; ++i) {
         merged[skip + i] = incoming[i];
       }
     } else {
       throw new Error("Missing args");
     }
-
     return merged;
+  },
+  read(existing, { args: { queryId, skip, first } }) {
+    if (queryId == 1) {
+      return existing && existing.slice(skip, skip + first);
+    }
+    return existing;
   },
 });
 
@@ -22,7 +27,7 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        matches: pagination(["queryId", "connectedUser"]),
+        // matches: pagination(["queryId", "connectedUser"]),
       },
     },
     Match: {

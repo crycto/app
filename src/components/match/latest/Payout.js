@@ -4,12 +4,12 @@ function Payout({ match }) {
   return (
     <div className="center">
       {match.isBetPlaced() ? (
-        <span className="crycto-card--text-rhs   f30">
+        <span className="crycto-card--text-rhs f30 nouppercase">
           {formatNumber(+match.getPayout(match.bet?.score))}{" "}
           <small className="payout-x">x</small>
         </span>
       ) : (
-        <span className="crycto-card--text-rhs   f30">
+        <span className="crycto-card--text-rhs f30 nouppercase">
           {match.getBiggestPayout()} <small className="payout-x">x</small>
         </span>
       )}

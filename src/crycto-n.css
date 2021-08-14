@@ -1,5 +1,5 @@
 :root {
-  --c-blue: hsl(224, 57%, 38%);
+  --c-blue: hsl(210deg 86% 30%);
   --c-blue-border: hsl(224, 57%, 58%);
   --c-purple: hsl(267deg 59% 34%);
   --c-gold: hsl(40deg 83% 40%);
@@ -10,7 +10,11 @@
   --card-bg-gradient-lightness: 10%;
 
   --c-light-bg: linear-gradient(white, white, hsl(257deg 82% 59% / 12%) 100%);
-  --c-dark-bg: linear-gradient(to top, #1b1c29, #06111b);
+  --c-dark-bg: linear-gradient(
+    to top,
+    hsl(213deg 56% 10%),
+    hsl(213deg 56% 12%)
+  );
   --c-secondary: #0a1421;
   --c-fallback-text-color: rgba(255, 255, 255, 0.8);
 
@@ -48,7 +52,7 @@
 }
 ._light .bgblue {
   /* background: linear-gradient(45deg, #2a4798, #7850c5); Footer isn't visible*/
-  background: #2b2f48;
+  background: #1c1e2b;
 }
 
 .crycto-top-banner {
@@ -128,8 +132,9 @@
   overflow-x: hidden;
 }
 .crycto-app--section {
-  padding: 3.5rem 0 5rem 0;
+  padding: 0rem 0 2.5rem 0;
   min-height: 88vh;
+  position: relative;
   /* When there is no data/ when loading */
 }
 
@@ -461,8 +466,8 @@
 /* Form */
 
 .crycto-card--blk-back {
-  transform: scale(0);
-  animation: zoomUpDown 0.25s ease forwards;
+  /* transform: scale(0);
+  animation: zoomUpDown 0.25s ease forwards; */
   background: hsl(223deg 63% 16%);
   border-radius: 50%/ 3% 3% 5% 5%;
   padding-top: 1rem;
@@ -479,7 +484,7 @@
 }
 @keyframes zoomUpDown {
   from {
-    transform: scale(1.2);
+    transform: scale(1.05);
   }
   to {
     transform: scale(1);
@@ -845,6 +850,7 @@
   font-size: 1.5rem;
   font-family: "Righteous-Regular";
   padding: 0.2rem 3rem;
+  margin-bottom: 2rem;
 
   /* box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 20%); */
   margin-top: 1%;
@@ -1232,7 +1238,7 @@
   border: none;
   background: #ffffff;
   color: #926f16;
-  font-family: "Righteous-Regular";
+  font-family: "Montserrat-Regular";
   outline: none;
 }
 @media (max-width: 1024px) {

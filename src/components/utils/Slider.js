@@ -34,6 +34,8 @@ export default withStyles({
   },
   mark: {
     color: "transparent",
+    height: 3,
+    width: 1,
   },
   track: {
     height: 3,

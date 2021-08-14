@@ -12,7 +12,10 @@ function SubmitButton({
       <span>Connect</span>
     </div>
   ) : (
-    <div className="action-button" disabled={!valid} onClick={onSubmit}>
+    <div
+      className={`action-button ${!valid && "_disabled"}`}
+      onClick={onSubmit}
+    >
       <span>{insufficientBalance ? "Insufficient Balance" : "Confirm"}</span>
     </div>
   );

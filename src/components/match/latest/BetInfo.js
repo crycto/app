@@ -14,26 +14,27 @@ function BetInfo({ match }) {
     );
   }
   return (
-    <>
-      <div className="crycto-card--maincontent-blk">
+    <div className="bet-info">
+      {/* className="crycto-card--maincontent-blk" */}
+      <div>
         <Icon name="bat" className="small-icons" />
 
         <span className="user-value">
           {match.getPlacedBetScoreRange() ?? "-"}
         </span>
       </div>
-      <div className="crycto-card--maincontent-blk">
+      <div>
         <Icon name="moneybag" className="small-icons" />
 
         <span className="user-value">
           {formatNumber(match.getPlacedBetAmount())} MATIC
         </span>
       </div>
-      <div className="crycto-card--maincontent-blk">
+      <div>
         <Icon name="trophy" className="small-icons" />
         <span className="user-value">{match.getPayout(match.bet?.score)}x</span>
       </div>
-    </>
+    </div>
   );
 }
 

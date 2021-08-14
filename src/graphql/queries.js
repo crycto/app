@@ -15,14 +15,19 @@ export const TOURNAMENT = gql`
 
 export const LATEST_MATCHES = gql`
   query GetLatestMatches(
-    $deadline: Int!
+    $deadline_gte: Int!
+    $deadline_lte: Int!
     $connectedUser: String!
     $skip: Int
     $first: Int!
   ) {
     matches(
       #Need to review stage criteria
-      where: { deadline_gte: $deadline, stage_not: "Forfeited" }
+      where: {
+        deadline_gte: $deadline_gte
+        deadline_lte: $deadline_lte
+        stage: "Created"
+      }
       #where: { deadline_gte: $deadline }
       orderBy: deadline
       orderDirection: "asc"

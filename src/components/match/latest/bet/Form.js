@@ -228,7 +228,7 @@ function Form({ match, onClose }) {
           </span>
         </div>
         <div>
-          <span>#{match.matchDetails.venue}</span>
+          <span>#{match.matchDetails.getPeriodText()}</span>
         </div>
       </div>
 
@@ -253,7 +253,15 @@ function Form({ match, onClose }) {
         />
       </div>
       {submitting && (
-        <Backdrop open appear style={{ zIndex: 9999999, color: "#fff" }}>
+        <Backdrop
+          open
+          appear
+          style={{
+            zIndex: 9999999,
+            color: "var(--c-gold)",
+            background: "rgba(255,255,255,0.3)",
+          }}
+        >
           <CircularProgress color="inherit" />
         </Backdrop>
       )}

@@ -1,5 +1,7 @@
 import React from "react";
 import ClaimRefundButton from "../ClaimRefundButton";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import LockIcon from "@material-ui/icons/Lock";
 
 function ActionButton({ match, onClickPredict }) {
   if (match.isForfeited()) {
@@ -26,21 +28,26 @@ function ActionButton({ match, onClickPredict }) {
   if (match.isBetPlaced()) {
     return (
       <div className="action-button">
-        <span>✔️ Placed</span>
+        <span>
+          <ThumbUpIcon /> Placed
+        </span>
       </div>
     );
   }
   if (match.isTakingBets()) {
     return (
-      <div className="action-button" onClick={onClickPredict}>
-        <span>Predict</span>
+      <div className="action-button">
+        <span onClick={onClickPredict}>Predict</span>
       </div>
     );
   }
 
   return (
     <div className="action-button">
-      <span>Bets Closed</span>
+      <span>
+        <LockIcon />
+        Bets Closed
+      </span>
     </div>
   );
 }
