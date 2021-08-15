@@ -170,7 +170,7 @@ function Form({ match, onClose }) {
         .send({ from: account, value: bet.rawAmount });
       ethSend.on("transactionHash", (hash) =>
         notifyNewTransaction(
-          `Transaction submitted for Match #${parseInt(match.id)}`,
+          `Transaction submitted for Round #${parseInt(match.id)}`,
           hash
         )
       );
@@ -180,13 +180,13 @@ function Form({ match, onClose }) {
 
       if (tx.status === false) {
         notifyTransactionStatus(
-          `Failed to place bet for Match #${parseInt(match.id)}`,
+          `Failed to place bet for Round #${parseInt(match.id)}`,
           "error",
           tx.transactionHash
         );
       } else {
         notifyTransactionStatus(
-          `Placed bet for Match #${parseInt(match.id)}`,
+          `Placed bet for Round #${parseInt(match.id)}`,
           "success",
           tx.transactionHash
         );
@@ -196,8 +196,8 @@ function Form({ match, onClose }) {
       !isRejectedByUser(e) &&
         notifyTransactionStatus(
           parseErrorMessage(e)?.indexOf("DEADLINE_PASSED") !== -1
-            ? `Aw snap! Bets closed for Match #${parseInt(match.id)}`
-            : `Failed to place bet for Match #${parseInt(match.id)}`,
+            ? `Aw snap! Bets closed for Round #${parseInt(match.id)}`
+            : `Failed to place bet for Round #${parseInt(match.id)}`,
           "error",
           e?.hash
         );
@@ -224,12 +224,22 @@ function Form({ match, onClose }) {
         </div>
         <div>
           <span>
-            #{`${match.matchDetails.team1}vs${match.matchDetails.team2}`}
+            {`${match.matchDetails.team1} vs ${match.matchDetails.team2}`}
           </span>
         </div>
         <div>
-          <span>#{match.matchDetails.getPeriodText()}</span>
+          <span>{match.matchDetails.getPeriodText()}</span>
         </div>
+        {match.matchDetails.series && (
+          <div title={match.matchDetails.series}>
+            <span>{match.matchDetails.series}</span>
+          </div>
+        )}
+        {match.matchDetails.subtitle && (
+          <div title={match.matchDetails.subtitle}>
+            <span>{match.matchDetails.subtitle}</span>
+          </div>
+        )}
       </div>
 
       <ScoreInput
@@ -241,7 +251,6 @@ function Form({ match, onClose }) {
       />
       <div className="crycto-card--maincontent bottom-container">
         <CryptoInput bet={bet} onChange={setAmount} />
-
         <SubmitButton
           account={account}
           connect={connect}

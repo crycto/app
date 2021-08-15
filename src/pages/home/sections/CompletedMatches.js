@@ -19,22 +19,26 @@ import ClaimRefundButton from "../../../components/match/latest/ClaimRefundButto
 import { COMPLETED_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import { useWallet } from "../../../providers/WalletProvider";
-
+import isMobileBrowser from "../../../utils/isMobileBrowser";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+
+const isMobile = isMobileBrowser();
 
 const useStyles = makeStyles({
   tableContainer: {
     margin: "3rem auto",
     display: "flex",
     width: "95%",
-    borderRadius: 5,
+    borderRadius: 15,
     background: "transparent",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+    boxShadow:
+      "10px 10px 15px rgb(5 5 5 / 30%), -5px -5px 10px rgb(92 91 91 / 5%)",
+    fontSize: "var(--font-size)",
   },
   table: {
-    minWidth: 650,
-    background: "linear-gradient(45deg, #2d158c, #865f0a)",
+    minWidth: isMobile ? 300 : 650,
+    // background: "linear-gradient(45deg, #2d158c, #865f0a)",
     minHeight: 600,
     overflow: "scroll",
   },
@@ -42,24 +46,25 @@ const useStyles = makeStyles({
 
 const TableCell = withStyles((theme) => ({
   head: {
-    color: "white",
-    fontSize: "1.3rem",
+    color: "#776363",
+    fontSize: "1.3em",
     borderBottom: "1px solid rgb(249 249 249 / 6%)",
-    fontFamily: "var(--crycto-font-montserrat)",
-    padding: "2rem 2rem",
+    fontFamily: "Righteous-Regular",
+    padding: "2em 2em",
+    textTransform: "uppercase",
+    // background: "rgba(255,255,255,0.1)",
   },
   body: {
-    fontSize: "1.35rem",
+    fontSize: "1.35em",
     fontFamily: "var(--crycto-font-montserrat)",
-    padding: "1.5rem 2rem",
-    borderBottom: "none",
-
+    padding: isMobile ? 0 : "1.5em 2em",
+    borderBottom: "1px solid rgba(255,255,255,0.1)",
     color: "white",
-    height: "7rem",
+    height: "7em",
   },
   footer: {
     color: "white",
-    fontSize: "1.5rem",
+    fontSize: "1.5em",
     borderBottom: "none",
     fontFamily: "var(--crycto-font-montserrat)",
     padding: 0,
@@ -102,11 +107,18 @@ function CompletedMatches() {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableHeader}>ID</TableCell>
-              <TableCell align="center">Match</TableCell>
+              {!isMobile && (
+                <TableCell className={classes.tableHeader}>ID</TableCell>
+              )}
+              <TableCell align="center">Round</TableCell>
               <TableCell align="center">Final Score</TableCell>
-              <TableCell align="center">Bets</TableCell>
-              <TableCell align="center">Pool</TableCell>
+
+              {!isMobile && (
+                <>
+                  <TableCell align="center">Bets</TableCell>
+                  <TableCell align="center">Pool</TableCell>
+                </>
+              )}
               <TableCell align="center">Winners</TableCell>
               <TableCell align="center">Rewards</TableCell>
               <TableCell align="center">Payout</TableCell>
@@ -118,9 +130,11 @@ function CompletedMatches() {
               const match = new Match(m);
               return (
                 <TableRow key={match.id}>
-                  <TableCell component="th" scope="row">
-                    {parseInt(match.id)}
-                  </TableCell>
+                  {!isMobile && (
+                    <TableCell component="th" scope="row">
+                      {parseInt(match.id)}
+                    </TableCell>
+                  )}
                   <TableCell align="center">{`${
                     match?.matchDetails?.team1
                   } vs ${match?.matchDetails?.team2} ${
@@ -131,59 +145,29 @@ function CompletedMatches() {
                   <TableCell align="center">
                     {match.getWinningScoreRange() ?? "-"}
                   </TableCell>
-                  <TableCell align="center">
-                    {match.totalBets == 0 ? "-" : match.totalBets}
-                  </TableCell>
-                  <TableCell align="center">
-                    {match.totalAmount == 0 ? "-" : match.totalAmount}
-                  </TableCell>
+
+                  {!isMobile && (
+                    <>
+                      <TableCell align="center">
+                        {match.totalBets == 0 ? "-" : match.totalBets}
+                      </TableCell>
+                      <TableCell align="center">
+                        {match.totalAmount == 0 ? "-" : match.totalAmount}
+                      </TableCell>
+                    </>
+                  )}
                   <TableCell align="center">
                     {match.totalWinners == 0 ? "-" : match.totalWinners}
                   </TableCell>
                   <TableCell align="center">
                     {match.rewardAmount == 0 ? "-" : match.rewardAmount}
                   </TableCell>
-
                   <TableCell align="center">
                     {match.isCompleted()
                       ? `${match.getWinningPayout()} x`
                       : "-"}
                   </TableCell>
-                  <TableCell align="center">
-                    {match.isCompleted() ? (
-                      match.isBetPlaced() ? (
-                        match.isBetWon() ? (
-                          match.isClaimed() ? (
-                            <div className="action-button _claim _disable">
-                              <span>Claimed</span>
-                            </div>
-                          ) : (
-                            <ClaimRefundButton match={match} />
-                          )
-                        ) : (
-                          <div className="action-button _lost ">
-                            <span>Lost</span>
-                          </div>
-                        )
-                      ) : (
-                        <div className="action-button _completed ">
-                          <span>Completed</span>
-                        </div>
-                      )
-                    ) : match.isBetPlaced() ? (
-                      match.isRefunded() ? (
-                        <div className="action-button _refund _disable">
-                          <span>Refunded</span>
-                        </div>
-                      ) : (
-                        <ClaimRefundButton match={match} refund />
-                      )
-                    ) : (
-                      <div className="action-button _forfeited _disable">
-                        <span>Forfeited</span>
-                      </div>
-                    )}
-                  </TableCell>
+                  <Status match={match} />
                 </TableRow>
               );
             })}
@@ -212,13 +196,16 @@ function CompletedMatches() {
                 colSpan={9}
                 count={-1}
                 rowsPerPage={LIMIT}
-                page={parseInt(skip / LIMIT)}
-                onPageChange={(_, page) => setSkip(page * LIMIT)}
                 component={({ children }) => (
                   <TableCell colSpan={9}>{children}</TableCell>
                 )}
-                // onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
+                ActionsComponent={() => (
+                  <TablePaginationActions
+                    page={parseInt(skip / LIMIT)}
+                    onPageChange={(_, page) => setSkip(page * LIMIT)}
+                    matchCount={data?.matches?.length}
+                  />
+                )}
               />
             </TableRow>
           </TableFooter>
@@ -228,12 +215,49 @@ function CompletedMatches() {
   );
 }
 
+const Status = ({ match }) => (
+  <TableCell align="center">
+    {match.isCompleted() ? (
+      match.isBetPlaced() ? (
+        match.isBetWon() ? (
+          match.isClaimed() ? (
+            <div className="action-button _claim _disable">
+              <span>Claimed</span>
+            </div>
+          ) : (
+            <ClaimRefundButton match={match} />
+          )
+        ) : (
+          <div className="action-button _lost ">
+            <span>Lost</span>
+          </div>
+        )
+      ) : (
+        <div className="action-button _completed ">
+          <span>Completed</span>
+        </div>
+      )
+    ) : match.isBetPlaced() ? (
+      match.isRefunded() ? (
+        <div className="action-button _refund _disable">
+          <span>Refunded</span>
+        </div>
+      ) : (
+        <ClaimRefundButton match={match} refund />
+      )
+    ) : (
+      <div className="action-button _forfeited _disable">
+        <span>Forfeited</span>
+      </div>
+    )}
+  </TableCell>
+);
 const useFooterStyles = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
     marginLeft: theme.spacing(2.5),
-    fontSize: "3rem",
-    paddingRight: "1rem",
+    fontSize: "3em",
+    paddingRight: "1em",
   },
   icon: {
     cursor: "pointer",
@@ -246,7 +270,7 @@ const useFooterStyles = makeStyles((theme) => ({
 
 const TablePaginationActions = (props) => {
   const classes = useFooterStyles();
-  const { page, onPageChange } = props;
+  const { page, onPageChange, matchCount } = props;
 
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);
@@ -272,7 +296,7 @@ const TablePaginationActions = (props) => {
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
-        // disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+        disabled={matchCount % LIMIT !== 0}
         aria-label="next page"
         className={classes.icon}
       >

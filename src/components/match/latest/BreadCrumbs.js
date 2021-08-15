@@ -11,7 +11,16 @@ function BreadCrumbs({ id, uri, matchDetails }) {
           #{parseInt(id)}
         </span>
       </div>
-
+      {matchDetails.series && (
+        <div title={matchDetails.series}>
+          <span>{matchDetails.series}</span>
+        </div>
+      )}
+      {matchDetails.subtitle && (
+        <div title={matchDetails.subtitle}>
+          <span>{matchDetails.subtitle}</span>
+        </div>
+      )}
       <div>
         <span>{matchDetails.date ?? "-"}</span>
       </div>

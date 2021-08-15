@@ -48,7 +48,7 @@ function Banner() {
           </div>
         </div>
         <div class="crycto-new-user-section-image-container">
-          <Icon name="stars" className="crycto-new-user-section-stars" />
+          {/* <Icon name="stars" className="crycto-new-user-section-stars" /> */}
           <Icon name="trophy" className="crycto-new-user-section-image" />
         </div>
         <div class="crycto-new-user-section-content">

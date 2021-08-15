@@ -1,5 +1,5 @@
 import { gql, useApolloClient } from "@apollo/client";
-import { CircularProgress } from "@material-ui/core";
+import Spinner from "../../utils/Spinner";
 import React, { useCallback, useState } from "react";
 import { useOnChainContext } from "../../../providers/OnChainProvider";
 import {
@@ -51,7 +51,7 @@ function ClaimRefundButton({ match, refund }) {
         .send({ from: account });
       ethSend.on("transactionHash", (hash) =>
         notifyNewTransaction(
-          `Claim requested for Match #${parseInt(match.id)}`,
+          `Claim requested for Round #${parseInt(match.id)}`,
           hash
         )
       );
@@ -59,7 +59,7 @@ function ClaimRefundButton({ match, refund }) {
 
       updateOptimisticResponse(match, account, "claimed");
       notifyTransactionStatus(
-        `Claimed successfully for Match #${parseInt(match.id)}`,
+        `Claimed successfully for Round #${parseInt(match.id)}`,
         "success",
         tx.transactionHash
       );
@@ -67,7 +67,7 @@ function ClaimRefundButton({ match, refund }) {
       console.log(e);
       !isRejectedByUser(e) &&
         notify(
-          `Unable to claim rewards for Match #${parseInt(match.id)}`,
+          `Unable to claim rewards for Round #${parseInt(match.id)}`,
           "error"
         );
     }
@@ -93,7 +93,7 @@ function ClaimRefundButton({ match, refund }) {
         .send({ from: account });
       ethSend.on("transactionHash", (hash) =>
         notifyNewTransaction(
-          `Refund requested for Match #${parseInt(match.id)}`,
+          `Refund requested for Round #${parseInt(match.id)}`,
           hash
         )
       );
@@ -101,13 +101,14 @@ function ClaimRefundButton({ match, refund }) {
 
       updateOptimisticResponse(match, account, "refunded");
       notifyTransactionStatus(
-        `Refunded successfully for Match #${parseInt(match.id)}`,
+        `Refunded successfully for Round #${parseInt(match.id)}`,
         "success",
         tx.transactionHash
       );
     } catch (e) {
       console.log(e);
-      notify(`Unable to refund for Match #${parseInt(match.id)}`, "error");
+      !isRejectedByUser(e) &&
+        notify(`Unable to refund for Round #${parseInt(match.id)}`, "error");
     }
     setLoading(false);
   }, [
@@ -126,22 +127,11 @@ function ClaimRefundButton({ match, refund }) {
       className={`action-button ${refund ? "_refund" : "_claim"}`}
       onClick={refund ? handleRefund : handleClaim}
     >
-      <span>{loading ? <Spinner /> : refund ? "Refund " : "Claim"}</span>
+      <span className={`${loading && "active"}`}>
+        {loading ? <Spinner /> : refund ? "Refund " : "Claim"}
+      </span>
     </div>
   );
 }
-
-const Spinner = () => (
-  <div
-    style={{
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-      color: "white",
-    }}
-  >
-    <CircularProgress size="1.5rem" color="inherit" />
-  </div>
-);
 
 export default ClaimRefundButton;

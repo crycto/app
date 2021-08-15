@@ -43,7 +43,7 @@ function Card({ match }) {
   }, [match, setShowForm]);
   return (
     <div
-      className={`crycto-card--blk overflow-hide  ${cls(match)} ${
+      className={`crycto-card--blk overflow-hide ${cls(match)} ${
         showForm && "bet-form"
       }`}
     >

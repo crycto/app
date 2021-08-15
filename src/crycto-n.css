@@ -1,5 +1,5 @@
 :root {
-  --c-blue: hsl(210deg 86% 30%);
+  --c-blue: hsl(210deg 77% 41%);
   --c-blue-border: hsl(224, 57%, 58%);
   --c-purple: hsl(267deg 59% 34%);
   --c-gold: hsl(40deg 83% 40%);
@@ -9,12 +9,8 @@
 
   --card-bg-gradient-lightness: 10%;
 
-  --c-light-bg: linear-gradient(white, white, hsl(257deg 82% 59% / 12%) 100%);
-  --c-dark-bg: linear-gradient(
-    to top,
-    hsl(213deg 56% 10%),
-    hsl(213deg 56% 12%)
-  );
+  --c-light-bg: rgba(255, 255, 255, 0.74);
+  --c-dark-bg: #08213f;
   --c-secondary: #0a1421;
   --c-fallback-text-color: rgba(255, 255, 255, 0.8);
 
@@ -44,7 +40,7 @@
   background: var(--c-dark-bg);
 }
 .bgblue {
-  background: linear-gradient(45deg, #021646, #190e1b);
+  background: linear-gradient(45deg, #1a1d24, #1b1c20);
   min-height: 100vh !important;
   align-items: flex-start;
   /* box-shadow: inset 0px 0px 13px #0000008c; */
@@ -193,7 +189,7 @@
 }
 
 ._light .latest .crycto-card--blk {
-  border: 1px solid rgb(53 51 51 / 20%) !important;
+  border: 1px solid rgb(5 5 5 / 15%) !important;
 }
 
 ._dark .crycto-card--blk {
@@ -839,8 +835,9 @@
 }
 
 .crycto-new-user-section {
-  width: 85%;
-  background: linear-gradient(45deg, #521232, #4e2f94, #200869);
+  width: 75%;
+  /* background: linear-gradient(45deg, #521232, #4e2f94, #200869); */
+  background: linear-gradient(-45deg, #690823, #054e9a);
   height: 150px;
   display: flex;
   border-radius: 10px;
@@ -851,7 +848,7 @@
   font-family: "Righteous-Regular";
   padding: 0.2rem 3rem;
   margin-bottom: 2rem;
-
+  overflow: hidden;
   /* box-shadow: 0px 5px 7px 0px rgb(0 0 0 / 20%); */
   margin-top: 1%;
   position: relative;
@@ -867,13 +864,13 @@
   width: 40%;
   display: flex;
   justify-content: space-evenly;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
-  padding-right: 2rem;
+
   color: #ffc661;
 }
 .crycto-new-user-section-app span {
-  font-size: 2.2rem;
+  font-size: 2.6rem;
 }
 .crycto-new-user-section-app a {
   color: white !important;
@@ -909,13 +906,17 @@
   width: 100%;
 }
 
+.crycto-new-user-section-app .crycto-new-user-section-contetnt-bottom {
+  justify-content: center;
+}
+
 .crycto-new-user-section-contetnt-bottom a {
   font-size: 1.1rem;
   text-decoration: underline;
   margin-right: 1rem;
   font-family: var(--crycto-font-montserrat);
   cursor: pointer;
-  color: #37c6d6;
+  color: #7cdaff;
 }
 
 .crycto-new-user-section-button {
@@ -929,16 +930,12 @@
 
 .crycto-new-user-section-image-container {
   padding: 2rem;
-  transform: rotate(5deg);
+  /* transform: rotate(5deg); */
   right: -100px;
   top: -24px;
   z-index: 99;
-  background: white;
+  background: hsl(38deg 96% 58%);
   border-radius: 50%;
-}
-
-._dark .crycto-new-user-section-image-container {
-  background: #0f1520;
 }
 
 .crycto-new-user-section-stars {
@@ -948,23 +945,44 @@
   top: 50px;
 }
 .crycto-new-user-section-image {
-  width: 160px;
+  width: 150px;
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+  transform: rotate(1deg);
+  background: #ffc661;
+  border-radius: 50%;
+}
+
+@media (max-width: 1300px) {
+  .crycto-new-user-section-app label {
+    font-size: 1.2rem;
+  }
+  .crycto-new-user-section-app span {
+    font-size: 2.1rem;
+  }
+  .crycto-new-user-section-content label {
+    font-size: 0.9rem;
+  }
+  .crycto-new-user-section-content span {
+    font-size: 1.1rem;
+  }
+  .crycto-new-user-section-contetnt-bottom a {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 1150px) {
   .crycto-new-user-section {
-    width: 95%;
+    width: 80%;
   }
 
   .crycto-new-user-section-content label {
     font-size: 1rem;
   }
   .crycto-new-user-section-app span {
-    font-size: 2.1rem;
+    font-size: 1.9rem;
   }
   .crycto-new-user-section-app label {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   .crycto-new-user-section-content span {
@@ -982,67 +1000,69 @@
   .crycto-new-user-section-image-container {
     background: unset;
     padding: 2rem;
-    transform: rotate(-10deg);
+    /* transform: rotate(-10deg); */
   }
 
   ._dark .crycto-new-user-section-image-container {
-    background: unset;
+    /* background: unset; */
   }
 
   .crycto-new-user-section-image {
-    width: 110px !important;
+    width: 160px !important;
   }
   .crycto-new-user-section-stars {
-    width: 35px;
+    width: 50px;
     right: unset;
-    top: 30px;
+    top: 60px;
     left: -20px;
-    display: none;
   }
 }
 
 @media (max-width: 900px) {
-  .crycto-new-user-section-app span {
-    font-size: 1.8rem;
+  .crycto-new-user-section {
+    max-width: 90vw;
+    padding: 1rem 0.5rem;
+    height: unset;
+    padding: 0;
+    padding-right: 15px;
   }
-  .crycto-new-user-section-app label {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 750px) {
   .crycto-new-user-section-image {
-    width: 50px !important;
+    width: 80px !important;
+    filter: none;
+    border-radius: 0;
+    transform: none;
   }
   .crycto-new-user-section-stars {
     width: 35px;
     right: unset;
     top: -30px;
     left: 15px;
-    display: block;
+    display: none;
   }
   .crycto-new-user-section-image-container {
     background: unset;
     padding: 0.5rem;
+    background: #ffc661;
+    border-radius: 0;
+    transform: none;
   }
   .crycto-new-user-section-app {
     display: none;
   }
   .crycto-new-user-section-content {
     width: unset;
-    padding-left: 0;
     padding-right: 0.5rem;
   }
   .crycto-new-user-section-content label {
-    font-size: 1rem;
+    font-size: 0.6rem;
   }
 
   .crycto-new-user-section-content span {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
   }
 
   .crycto-new-user-section-contetnt-bottom a {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
   }
 
   .crycto-new-user-section-button {
@@ -1212,6 +1232,7 @@
   min-height: 65vh;
   padding: 1rem;
   font-family: "Montserrat-Regular";
+  width: 100%;
 }
 ._dark .crycto-early-section {
   background: linear-gradient(45deg, #a98507, #b3810f);
@@ -1255,16 +1276,15 @@
 .crycto-early-section-submit {
   padding: 15px 44px;
   font-size: 2rem;
-  background: white;
-  color: #f7f3dc;
+  color: white;
   border-radius: 50px;
-  background: #141026;
+  background: #1c1e2b;
   cursor: pointer;
   opacity: 1;
   transition: opacity 200ms ease;
 }
 .crycto-early-section-submit:hover {
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .crycto-transak-container {

@@ -21,9 +21,11 @@ export default class Match {
     this.deadline = match.deadline;
     this.winningScore = +match.winningScore;
     this.totalBets = match.totalBets;
+    this.rawTotalAmount = match.totalAmount;
     this.totalAmount =
       match.totalAmount && +parseFloat(match.totalAmount).toFixed(2);
     this.rewardRate = match.rewardRate;
+    this.rawRewardAmount = match.rewardAmount;
     this.rewardAmount =
       match.rewardAmount && +parseFloat(match.rewardAmount).toFixed(2);
 
@@ -92,8 +94,8 @@ export default class Match {
       ? parseFloat(
           1 +
             (this.isAtStage(COMPLETED)
-              ? this.rewardAmount
-              : this.totalAmount - position.amount) /
+              ? this.rawRewardAmount
+              : this.rawTotalAmount - position.amount) /
               position.amount
         ).toFixed(2)
       : 0;
@@ -140,7 +142,7 @@ const Period = {
 
 const getDesc = (period) =>
   period == 0
-    ? `Predict the number of runs that would be scored totally by both teams`
+    ? `Predict the number of runs that would be scored totally by both teams at the end of this match`
     : period >= 1 && period <= 5
     ? `Predict the number of runs that would be scored on Day ${period}`
     : `Predict the number of runs that would be scored totally by both teams in their powerplays`;
@@ -152,6 +154,8 @@ class MatchDetails {
     this.team2 = match["team2.symbol"];
     this.date = formatDate(new Date(match.date));
     this.venue = match.venue;
+    this.series = match.series;
+    this.subtitle = match.subtitle;
     this.entity = Entity[match.entity];
     this.period = match.period ?? 0;
     this.placeHolderScore = this.period == 6 ? 30 : 300;

@@ -4,7 +4,7 @@ import polygon from "../../assets/polygon.svg";
 import bat from "../../assets/bat.svg";
 import moneybag from "../../assets/moneybag.svg";
 import arrow from "../../assets/arrow3.svg";
-import trophy from "../../assets/trophy.svg";
+import trophy from "../../assets/trophy1.svg";
 import stars from "../../assets/stars.svg";
 import metamask from "../../assets/metamask.svg";
 

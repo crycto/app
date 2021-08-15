@@ -42,16 +42,16 @@ function LatestMatches() {
   return (
     <>
       <MonthNavigator value={month} setMonth={setMonth} />
-      {/* <div className="active-only-filter">
+      <div className="active-only-filter">
         <CheckBox
           checked={activeOnly}
           onChange={(e) => setActiveOnly(e.target.checked)}
           name="checkedG"
         />
         <span onClick={() => setActiveOnly((a) => !a)}>
-          Show active matches only
+          Show active rounds only
         </span>
-      </div> */}
+      </div>
       <div className="latest">
         {(!triedEager || loading) && (
           <>
@@ -61,9 +61,13 @@ function LatestMatches() {
             ))}
           </>
         )}
-        {data?.matches?.map((m) => (
-          <Card key={m.id} match={new Match(m)} />
-        ))}
+        {data?.matches?.map((m) => {
+          const match = new Match(m);
+          if (activeOnly && !match.isBetPlaced() && !match.isTakingBets()) {
+            return null;
+          }
+          return <Card key={m.id} match={match} />;
+        })}
         {!loading && data?.matches?.length == 0 && (
           <div className="placeholder-screen">
             {/* <Icon name="logo" /> */}
@@ -71,6 +75,19 @@ function LatestMatches() {
             <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
           </div>
         )}
+        {!loading &&
+          data?.matches?.length > 0 &&
+          activeOnly &&
+          data?.matches?.filter((m) => {
+            const match = new Match(m);
+            return !match.isBetPlaced() && !match.isTakingBets();
+          }).length == 0 && (
+            <div className="placeholder-screen">
+              {/* <Icon name="logo" /> */}
+              We do not have any active rounds for this month !
+              <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
+            </div>
+          )}
         {error && (
           <div className="placeholder-screen">
             We're having trouble loading rounds in {month.format("MMM")}. Take

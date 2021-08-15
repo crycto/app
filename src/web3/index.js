@@ -93,6 +93,17 @@ export const isRejectedByUser = (e) => {
   }
 };
 
-const MORALIS_SPEEDY_NODE = `https://speedy-nodes-nyc.moralis.io/f94984ef1a01656c04c3f764/polygon/mainnet`;
+const MORALIS_SPEEDY_NODE =
+  NETWORK === "MUMBAI"
+    ? `https://speedy-nodes-nyc.moralis.io/f94984ef1a01656c04c3f764/polygon/mumbai`
+    : `https://speedy-nodes-nyc.moralis.io/f94984ef1a01656c04c3f764/polygon/mainnet`;
 
 export const moralisWeb3 = new Web3(MORALIS_SPEEDY_NODE);
+
+export const getTotalRounds = async () => {
+  return new moralisWeb3.eth.Contract(
+    ...TournamentContract[chains[NETWORK].id]
+  ).methods
+    .getMatchCount()
+    .call();
+};

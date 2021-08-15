@@ -1,28 +1,46 @@
 :root {
+  --font-size: 10px;
   --color-chips: #262525d9 !important;
   --color-chips-bg: rgba(0, 0, 0, 0.5);
   --color-user-value: #5e676f;
   --color-bottom-divider: rgba(0, 0, 0, 0.1);
-  --color-locked-bg: #f4f4f4;
+  --color-bottom-container: #002748;
+  --color-locked-bg: linear-gradient(45deg, #d7d7d773, #eeeeee4a);
+  --color-chips-bg1: transparent;
+  --color-predict-btn: var(--c-blue);
+  --color-confirm-btn-bg: var(--c-gold);
+  --color-confirm-btn: white;
 }
 ._dark {
   --color-chips: rgba(255, 255, 255, 0.8) !important;
   --color-chips-bg: rgba(255, 255, 255, 0.2);
+  --color-chips-bg1: #0000001c;
   --color-user-value: rgba(255, 255, 255, 0.85);
-  --color-bottom-divider: rgba(255, 255, 255, 0.1);
+  --color-bottom-divider: transparent;
+  --color-bottom-container: #08264d;
   --color-locked-bg: rgba(255, 255, 255, 0.05);
+  --color-predict-btn: transaprent;
+  --color-confirm-btn-bg: transaprent;
+  --color-confirm-btn: var(--c-gold);
+  --box-shadow-button: 10px 10px 15px rgb(5 5 5 / 18%),
+    -7px -7px 15px rgb(57 85 119 / 12%);
+  --box-shadow-button-active: inset 10px 10px 15px rgb(5 5 5 / 18%),
+    inset -7px -7px 15px rgb(57 85 119 / 12%);
   .crycto-card--blk,
   .crycto-card--blk-back {
-    background: #0f305a !important;
+    background: #08213f !important;
+    box-shadow: 10px 10px 15px rgb(5 5 5 / 18%),
+      -5px -5px 10px hsl(213deg 37% 28% / 12%) !important;
   }
 }
+
 .active-only-filter {
   position: absolute;
-  top: 1.17rem;
+  top: 1.35rem;
   right: 5vh;
   color: var(--color-chips);
   font-family: "Montserrat-Regular";
-  font-size: 1.1rem;
+  font-size: 1.1em;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -34,7 +52,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 1rem 0 2rem;
+  padding: 1rem 0 1rem;
   font-size: 4.5rem;
   color: var(--c-gold);
   span {
@@ -58,18 +76,18 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    font-size: 3.5rem;
+    font-size: 3em;
     font-family: "Righteous-Regular";
     color: var(--c-gold);
     padding-bottom: 15vh;
     div {
-      margin-top: 2rem;
-      padding: 1.5rem;
+      margin-top: 2em;
+      padding: 1.5em;
       font-family: "Montserrat-Regular";
-      font-size: 1.25rem;
+      font-size: 0.35em;
       background: var(--c-gold);
       color: white;
-      border-radius: 10px;
+      border-radius: 5px;
       cursor: pointer;
       text-transform: uppercase;
       box-shadow: 0px 7px 13px -3px #0000001f;
@@ -80,7 +98,7 @@
     }
   }
   .f30 {
-    font-size: 3rem !important;
+    font-size: 3em !important;
   }
   .crycto-card--blk {
     flex-direction: column;
@@ -88,7 +106,7 @@
     // width: 48vw;
     min-width: 600px;
     min-height: unset;
-    margin: 1vw;
+    margin: 1.75rem 1vw;
     border-radius: 10px;
     flex-direction: row;
     box-shadow: 0 20px 17px -20px rgb(0 0 0 / 30%);
@@ -97,7 +115,7 @@
     .crycto-card--blk--visible {
       flex-direction: row;
       display: flex;
-      margin: 1.5rem auto 0;
+      margin: 1.5em auto 0;
       border-radius: 0;
     }
     .crycto-card-top-container {
@@ -112,14 +130,18 @@
       div {
         flex-shrink: 1;
         width: unset;
+        max-width: 20%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         padding: 2px 10px;
-        // background: var(--color-chips-bg);
         border-radius: 4px;
-        margin-right: 2rem;
+        margin-right: 2em;
         border: 1px solid var(--color-chips-bg);
+        background: var(--color-chips-bg1);
         span {
           font-family: "Montserrat-Regular";
-          font-size: 1rem;
+          font-size: 1em;
           color: var(--color-chips) !important;
         }
       }
@@ -133,14 +155,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 1rem 0;
+        padding: 1em 0;
         span {
-          font-size: 3rem;
+          font-size: 3em;
           color: var(--c-blue);
         }
         .subtitle {
           border-top: 1px solid currentColor;
-          border-radius: 2px;
+
           padding: 5px 15px;
           text-transform: uppercase;
           width: fit-content;
@@ -166,24 +188,24 @@
           justify-content: center;
           span {
             color: hsl(168deg 68% 34%);
-            font-size: 3.3rem;
+            font-size: 3em;
           }
         }
       }
       .subtitle {
         font-family: "Montserrat-Regular";
         font-weight: 900;
-        font-size: 1rem !important;
+        font-size: 1em !important;
         color: var(--color-chips) !important;
       }
     }
 
     .bottom-container {
       width: 100%;
-      padding: 1rem 1.5rem;
+      padding: 1em 1.5em;
       min-height: 61px;
       border-radius: 0;
-      margin: 1.5rem auto auto;
+      margin: 1.5em auto auto;
       background: transparent;
       border-top: 1px solid var(--color-bottom-divider);
       .bet-info {
@@ -192,7 +214,7 @@
         align-items: center;
         flex: 4;
         div {
-          margin: 0 0.5rem;
+          margin: 0 0.5em;
           display: flex;
           align-items: center;
         }
@@ -201,7 +223,7 @@
         margin: 8px;
         text-align: center;
         font-family: "Montserrat-Regular";
-        font-size: 1.2rem;
+        font-size: 1.2em;
         color: var(--c-gold) !important;
       }
       .action-button {
@@ -211,14 +233,15 @@
         flex: 1;
         span {
           border-radius: 4px;
-          padding: 1rem;
+          padding: 1em;
           color: var(--color-chips) !important;
           cursor: pointer;
           font-family: "Montserrat-Regular";
-          font-size: 1.1rem;
+          font-size: 1.1em;
           text-transform: uppercase;
           display: flex;
           align-items: center;
+          box-shadow: var(--box-shadow-button);
           svg {
             margin-right: 5px;
           }
@@ -230,23 +253,27 @@
       }
     }
     &._placed .bottom-container {
-      background: #08364d;
-      // border-top: none !important;
+      background: var(--color-bottom-container);
+
       .action-button span {
         color: var(--c-gold) !important;
         pointer-events: none;
+        box-shadow: none;
       }
     }
     &._closed .bottom-container {
-      background: var(--color-locked-bg);
+      // background: var(--color-locked-bg);
 
       pointer-events: none;
+      .action-button span {
+        box-shadow: none;
+      }
     }
     &._predict .action-button {
       span {
-        background: var(--c-blue);
+        background: var(--color-predict-btn);
         color: white !important;
-        padding: 1rem 4rem;
+        padding: 1em 4em;
         transition: opacity, transform 150ms ease;
         transform: scale(1);
         &:hover {
@@ -254,6 +281,7 @@
         }
         &:active {
           transform: scale(0.98);
+          box-shadow: var(--box-shadow-button-active);
         }
       }
     }
@@ -263,7 +291,7 @@
     &._claim .action-button span {
       background: var(--c-green);
       color: white !important;
-      padding: 1rem 4rem;
+      padding: 1em 4em;
     }
 
     .crycto-card--blk-back {
@@ -274,19 +302,19 @@
         position: absolute;
         top: 0%;
         left: 0%;
-        margin: 1.5rem;
+        margin: 1.5em;
         cursor: pointer;
-        font-size: 1.8rem;
+        font-size: 1.8em;
       }
       .crycto-card-top-container {
         margin-top: 0;
       }
+
       .action-button {
         flex: 1;
       }
       .crycto-score--value {
         font-size: 3rem;
-
         width: 30%;
       }
       .crypto-slider {
@@ -299,20 +327,35 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 2.8rem;
+        height: 2.8em;
       }
       .body-container {
-        margin: 1.5rem auto 0;
+        margin: 1.5em auto 0;
         .crycto-contest--text {
           margin: 0%;
           padding: 0;
+          font-size: 1.03em;
+        }
+        .crycto-card--text-rhs {
+          font-size: 2.4em;
         }
       }
       .bottom-container {
-        background: #08364d;
+        background: var(--color-bottom-container);
       }
       .action-button span {
-        background: var(--c-gold);
+        background: var(--color-confirm-btn-bg);
+        color: var(--color-confirm-btn) !important;
+        &:hover {
+          // border: 1px solid var(--c-gold);
+          opacity: 0.9;
+        }
+        &:active {
+          box-shadow: var(--box-shadow-button-active);
+        }
+        &.active {
+          box-shadow: var(--box-shadow-button-active);
+        }
       }
     }
   }
@@ -322,7 +365,7 @@
 }
 
 .completed {
-  padding-top: 3rem;
+  padding-top: 3em;
   padding-bottom: 10rem;
   min-height: 100vh !important;
   align-items: center;
@@ -331,64 +374,154 @@
 
     span {
       border-radius: 4px;
-      // padding: 1rem;
+      // padding: 1em;
       color: white;
       cursor: pointer;
       font-family: "Montserrat-Regular";
       font-size: 1.1rem;
       text-transform: uppercase;
       padding: 1.5rem 3rem;
-      min-width: 150px;
+      min-width: 130px;
+      box-shadow: 10px 10px 15px rgb(5 5 5 / 30%),
+        -5px -5px 12px rgb(162 160 160 / 5%);
     }
     &._claim span {
-      background: var(--c-green);
-      color: white !important;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 17px #19191963;
-      transition: opacity, transform 150ms ease;
+      color: var(--c-green) !important;
       transform: scale(1);
+      transition: all 150ms ease;
       &:hover {
         opacity: 0.9;
+        // border: 1px solid var(--c-green);
+        // background: var(--c-green);
+        // color: white !important;
       }
       &:active {
-        transform: scale(0.98);
+        box-shadow: inset 10px 10px 15px rgb(5 5 5 / 30%),
+          inset -5px -5px 12px rgb(162 160 160 / 5%);
+      }
+      &.active {
+        box-shadow: inset 10px 10px 15px rgb(5 5 5 / 30%),
+          inset -5px -5px 12px rgb(162 160 160 / 5%);
       }
     }
     &._refund span {
-      background: #084a71;
-      color: white !important;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 17px #19191963;
-      transition: opacity, transform 150ms ease;
+      color: #258fce !important;
+      transition: all 150ms ease;
       transform: scale(1);
       &:hover {
         opacity: 0.9;
+        // background: #2688c1;
+        // color: white !important;
       }
       &:active {
-        transform: scale(0.98);
+        box-shadow: inset 10px 10px 15px rgb(5 5 5 / 30%),
+          inset -5px -5px 12px rgb(162 160 160 / 5%);
+      }
+      &.active {
+        box-shadow: inset 10px 10px 15px rgb(5 5 5 / 30%),
+          inset -5px -5px 12px rgb(162 160 160 / 5%);
       }
     }
     &._lost span {
-      background: var(--c-red);
-      color: white !important;
+      color: var(--c-red) !important;
       pointer-events: none;
+      box-shadow: inset 10px 10px 15px rgb(5 5 5 / 30%),
+        inset -5px -5px 12px rgb(162 160 160 / 5%);
     }
     &._completed span {
-      background: var(--c-gold);
-      color: white !important;
+      // border: 1px solid var(--c-gold);
+      color: var(--c-gold) !important;
       pointer-events: none;
+      box-shadow: inset 10px 10px 15px rgb(5 5 5 / 30%),
+        inset -5px -5px 12px rgb(162 160 160 / 5%);
     }
     &._disable {
       opacity: 0.8;
       pointer-events: none;
       span {
-        border: none;
-        box-shadow: none;
+        // border: none;
+        box-shadow: inset 10px 10px 15px rgb(5 5 5 / 30%),
+          inset -5px -5px 12px rgb(162 160 160 / 5%);
       }
     }
     &._forfeited span {
-      background: #2d2d2d;
+      // background: #141212;
       color: white !important;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --font-size: 8px;
+  }
+  .completed {
+    padding-bottom: 12rem;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --font-size: 5px;
+  }
+  .month-navigator {
+    span {
+      font-size: 15px;
+    }
+  }
+  .active-only-filter {
+    display: flex;
+    top: 4.5rem;
+    right: unset;
+    width: 100%;
+    justify-content: center;
+  }
+  .latest {
+    font-size: 5px;
+    margin-top: 8rem;
+    .crycto-card--blk {
+      min-width: 90vw;
+      width: 90vw;
+      margin-top: 2em;
+      .body-container {
+        min-height: 50px;
+      }
+      .bottom-container {
+        min-height: 40px;
+      }
+      .bet-screen {
+        .crycto-score--value {
+          width: 50%;
+          font-size: 1.5em;
+        }
+        .arrow-left,
+        .arrow-right {
+          width: 20px;
+        }
+        .bottom-container {
+          font-size: 5px !important;
+          .range-value {
+            font-size: 15px;
+            width: 45px;
+            height: 20px;
+          }
+
+          .f20 {
+            font-size: 10px;
+          }
+        }
+        .mb20 {
+          margin-bottom: 10px !important;
+        }
+      }
+    }
+  }
+  .completed {
+    padding-bottom: 14rem;
+    .action-button span {
+      min-width: 50px;
+      font-size: 6px;
+      padding: 7px 8px;
     }
   }
 }

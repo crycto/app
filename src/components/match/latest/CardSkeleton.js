@@ -2,9 +2,12 @@ import React from "react";
 
 import Skeleton from "@material-ui/lab/Skeleton";
 import { useTheme } from "../../../providers/ThemeProvider";
+import isMobileBrowser from "../../../utils/isMobileBrowser";
 
+const isMobile = isMobileBrowser();
 const skeletonDark = "rgb(80 106 235 / 11%)";
 const skeletonLight = "rgb(80 106 235 / 11%)";
+
 function CardSkeleton() {
   const { isLightTheme } = useTheme();
   const backgroundColor = isLightTheme ? skeletonLight : skeletonDark;
@@ -21,7 +24,7 @@ function CardSkeleton() {
           <Skeleton
             animation="wave"
             width={"50%"}
-            height={21}
+            height={isMobile ? 12 : 21}
             style={{ backgroundColor, margin: "auto" }}
           />
         </div>
@@ -31,7 +34,7 @@ function CardSkeleton() {
             animation="wave"
             style={{
               width: "90%",
-              height: 91,
+              height: isMobile ? 40 : 91,
               borderRadius: 5,
               backgroundColor,
               margin: "auto",
@@ -44,7 +47,7 @@ function CardSkeleton() {
             animation="wave"
             style={{
               width: "80%",
-              height: 35,
+              height: isMobile ? 20 : 35,
               borderRadius: 5,
               backgroundColor,
               margin: "auto",
