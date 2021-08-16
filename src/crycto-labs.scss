@@ -2,14 +2,24 @@
   --font-size: 10px;
   --color-chips: #262525d9 !important;
   --color-chips-bg: rgba(0, 0, 0, 0.5);
-  --color-user-value: #5e676f;
-  --color-bottom-divider: rgba(0, 0, 0, 0.1);
-  --color-bottom-container: #002748;
-  --color-locked-bg: linear-gradient(45deg, #d7d7d773, #eeeeee4a);
+  --color-user-value: var(--c-gold);
+  --color-bottom-divider: #d7e8ff;
+  --color-bottom-color: var(--c-gold);
+  --color-bottom-bg: #e9f1ffc4;
+  --color-bet-bg: #e9f1ffc4;
+  --color-placed-bg: #e9f1ffc4; //#fffaee;
+  --color-locked-bg: #e9f1ffc4;
   --color-chips-bg1: transparent;
-  --color-predict-btn: var(--c-blue);
-  --color-confirm-btn-bg: var(--c-gold);
+  --color-predict-btn: black;
+  --color-predict-btn-bg: white;
+  --color-confirm-btn-bg: hsl(40deg 83% 43%);
   --color-confirm-btn: white;
+  --box-shadow-button: 0 0px 5px rgb(0 0 0 / 10%);
+  --box-shadow-button-active: 0 0px 5px rgb(0 0 0 / 10%);
+}
+.crycto-card--blk {
+  box-shadow: -1px 3px 9px 2px rgb(0 0 0 / 8%) !important;
+  border: 1px solid #d7e8ff !important;
 }
 ._dark {
   --color-chips: rgba(255, 255, 255, 0.8) !important;
@@ -17,20 +27,30 @@
   --color-chips-bg1: #0000001c;
   --color-user-value: rgba(255, 255, 255, 0.85);
   --color-bottom-divider: transparent;
-  --color-bottom-container: #08264d;
+  --color-bottom-color: var(--c-gold);
+  --color-bottom-bg: #0d2e56;
+  --color-bet-bg: #0d2e56;
+  --color-placed-bg: #0d2e56;
   --color-locked-bg: rgba(255, 255, 255, 0.05);
-  --color-predict-btn: transaprent;
-  --color-confirm-btn-bg: transaprent;
+  --color-predict-btn: white;
+  --color-predict-btn-bg: #08213f;
+  --color-confirm-btn-bg: #08213f;
+  --color-confirm-btn-border: 1px solid;
   --color-confirm-btn: var(--c-gold);
-  --box-shadow-button: 10px 10px 15px rgb(5 5 5 / 18%),
-    -7px -7px 15px rgb(57 85 119 / 12%);
+  // --box-shadow-button: 10px 10px 15px rgb(5 5 5 / 18%),
+  //   -7px -7px 15px rgb(57 85 119 / 12%);
   --box-shadow-button-active: inset 10px 10px 15px rgb(5 5 5 / 18%),
     inset -7px -7px 15px rgb(57 85 119 / 12%);
-  .crycto-card--blk,
-  .crycto-card--blk-back {
-    background: #08213f !important;
+  .crycto-card--blk {
     box-shadow: 10px 10px 15px rgb(5 5 5 / 18%),
       -5px -5px 10px hsl(213deg 37% 28% / 12%) !important;
+    background: #08213f !important;
+    .crycto-card--blk-back {
+      background: #08213f !important;
+    }
+  }
+  .completed {
+    background: transparent;
   }
 }
 
@@ -206,8 +226,9 @@
       min-height: 61px;
       border-radius: 0;
       margin: 1.5em auto auto;
-      background: transparent;
-      border-top: 1px solid var(--color-bottom-divider);
+      background: var(--color-bottom-bg);
+      // background: #1f5286;
+      border-top: 1px solid var(--color-bottom-divider) !important;
       .bet-info {
         display: flex;
         justify-content: flex-start;
@@ -223,8 +244,9 @@
         margin: 8px;
         text-align: center;
         font-family: "Montserrat-Regular";
+        font-weight: bolder;
         font-size: 1.2em;
-        color: var(--c-gold) !important;
+        color: var(--color-bottom-color) !important;
       }
       .action-button {
         display: inline-flex;
@@ -253,31 +275,33 @@
       }
     }
     &._placed .bottom-container {
-      background: var(--color-bottom-container);
-
+      background: var(--color-placed-bg);
+      // border-top: none !important;
       .action-button span {
-        color: var(--c-gold) !important;
+        color: var(--color-bottom-color) !important;
         pointer-events: none;
         box-shadow: none;
       }
     }
     &._closed .bottom-container {
-      // background: var(--color-locked-bg);
-
+      background: var(--color-locked-bg);
+      // border-top: none !important;
       pointer-events: none;
+
       .action-button span {
         box-shadow: none;
+        color: var(--color-chips) !important;
       }
     }
     &._predict .action-button {
       span {
-        background: var(--color-predict-btn);
-        color: white !important;
+        background: var(--color-predict-btn-bg);
+        color: var(--color-predict-btn) !important;
         padding: 1em 4em;
         transition: opacity, transform 150ms ease;
         transform: scale(1);
         &:hover {
-          opacity: 0.9;
+          // opacity: 0.9;
         }
         &:active {
           transform: scale(0.98);
@@ -341,11 +365,12 @@
         }
       }
       .bottom-container {
-        background: var(--color-bottom-container);
+        background: var(--color-bet-bg);
       }
       .action-button span {
         background: var(--color-confirm-btn-bg);
         color: var(--color-confirm-btn) !important;
+        border: var(--color-confirm-btn-border);
         &:hover {
           // border: 1px solid var(--c-gold);
           opacity: 0.9;
@@ -369,6 +394,7 @@
   padding-bottom: 10rem;
   min-height: 100vh !important;
   align-items: center;
+
   .action-button {
     display: inline-flex;
 

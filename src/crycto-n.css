@@ -97,12 +97,15 @@
 ._light .crycto-launch--cta {
   background: transparent;
 }
+._light .crycto-launch--cta:hover {
+  background: #eef5ff;
+}
 ._dark .crycto-launch--cta {
   background: transparent;
   color: hsl(222deg 98% 62%);
 }
 ._dark .crycto-launch--cta:hover {
-  background: hsl(224deg 69% 13%);
+  background: hsl(213deg 74% 19%);
 }
 .crycto-launch--cta.getmatic {
   color: var(--c-gold) !important;
@@ -188,9 +191,9 @@
   border: none !important;
 }
 
-._light .latest .crycto-card--blk {
+/* ._light .latest .crycto-card--blk {
   border: 1px solid rgb(5 5 5 / 15%) !important;
-}
+} */
 
 ._dark .crycto-card--blk {
   border: none !important;
@@ -548,8 +551,11 @@
   font-size: 2rem;
 }
 ._light .range-value {
-  background: #cd911724;
+  background: white;
   color: var(--c-gold);
+}
+._light .crycto-score--value {
+  background: #eef5ff;
 }
 .slider-container {
   width: 100%;
@@ -789,10 +795,10 @@
   border-bottom-right-radius: 0;
 }
 ._dark .crycto-account {
-  background: hsl(224deg 69% 13%);
+  background: hsl(213deg 74% 19%);
 }
 ._light .crycto-account {
-  background: #d8e4fd;
+  background: #eef5ff;
 }
 .crycto-disconnect {
   position: absolute;
@@ -821,13 +827,13 @@
 }
 
 ._dark .crycto-disconnect {
-  background-color: hsl(222deg 82% 31%);
-  color: rgb(223 169 86);
+  background-color: hsl(213deg 76% 26%);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 ._light .crycto-disconnect {
-  background-color: white;
-  color: #6b4b0f;
+  background-color: #4d80b3;
+  color: #eef5ff;
 }
 
 .crycto-disconnect:hover {
@@ -1075,14 +1081,19 @@
   min-height: 60vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(45deg, #131552, #311779);
-  color: rgba(255, 255, 255, 0.8);
+  background: linear-gradient(25deg, #1a1b33, #242a52);
+  color: var(--c-gold);
   width: 100%;
   overflow-x: scroll;
+  box-shadow: inset 0px 10px 15px rgb(5 5 5 / 18%),
+    inset 0 -7px 15px rgb(63 63 63 / 12%);
 }
 
 ._dark .crycto-stats-section {
-  background: linear-gradient(45deg, #131552, #311779);
+  background: linear-gradient(45deg, #1d273a, #171b25);
+  box-shadow: inset 0px 10px 15px rgb(5 5 5 / 18%),
+    inset 0px -7px 15px rgb(95 95 95 / 18%);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .crycto-stats-field {
@@ -1115,13 +1126,14 @@
   min-height: 60vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(45deg, #401352, #571b97);
+  background: linear-gradient(to bottom, #0d314f, #0e183d);
   color: rgba(255, 255, 255, 0.8);
   width: 100%;
+  margin-top: 5rem;
 }
 
 ._dark .crycto-how-section {
-  background: linear-gradient(45deg, #4d0847, #441e57);
+  background: linear-gradient(to bottom, #0d314f, #0e183d);
 }
 
 .crycto-how-section .c-metamask {
@@ -1225,25 +1237,28 @@
 }
 
 .crycto-early-section {
-  background: linear-gradient(45deg, #bd9815, #daab3e);
+  /* background: linear-gradient(45deg, #454141, #2d2a2a);
+  background: linear-gradient(45deg, #503b0c, #674a08); */
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  min-height: 65vh;
   padding: 1rem;
   font-family: "Montserrat-Regular";
   width: 100%;
+  padding: 0 20%;
+  margin-top: 10rem;
+  margin-bottom: 6rem;
 }
-._dark .crycto-early-section {
-  background: linear-gradient(45deg, #a98507, #b3810f);
-}
+
 .crycto-early-section-content {
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 0 5rem;
-  font-size: 3rem;
-  color: #392609e6;
+  font-size: 2.5rem;
+  color: #b87f12;
+  flex: 1.5;
+  font-family: "Righteous-Regular";
 }
 
 .crycto-early-section-content b {
@@ -1251,40 +1266,71 @@
 }
 
 .crycto-early-section-input {
-  padding: 16px;
-  width: 70vw;
+  padding: 22px;
+  width: 30vw;
   text-align: center;
-  border-radius: 13px;
-  font-size: 2.5rem;
+  border-radius: 10px;
+  font-size: 1.7rem;
   border: none;
-  background: #ffffff;
-  color: #926f16;
+  background: #0000002e;
+  color: white;
   font-family: "Montserrat-Regular";
   outline: none;
+  flex: 1;
+  margin: 5rem 0 3rem;
 }
+
+.crycto-early-section-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+
 @media (max-width: 1024px) {
+  .crycto-early-section {
+    padding: 0 5%;
+  }
   .crycto-early-section-content {
     font-size: 2rem;
   }
   .crycto-early-section-input {
     font-size: 1.5rem;
+    width: 80vw;
   }
 }
 .crycto-early-section-input::placeholder {
-  color: #926f16c0;
+  color: rgba(255, 255, 255, 0.3);
 }
+
 .crycto-early-section-submit {
-  padding: 15px 44px;
-  font-size: 2rem;
+  padding: 1.5rem 2.5rem;
+  font-size: 1.5rem;
   color: white;
-  border-radius: 50px;
-  background: #1c1e2b;
   cursor: pointer;
   opacity: 1;
   transition: opacity 200ms ease;
+  box-shadow: 10px 10px 15px rgb(5 5 5 / 18%),
+    -7px -7px 15px rgb(57 85 119 / 12%);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
 }
 .crycto-early-section-submit:hover {
-  opacity: 0.95;
+  opacity: 0.9;
+}
+
+.crycto-early-section-submit:active {
+  box-shadow: inset 10px 10px 15px rgb(5 5 5 / 18%),
+    inset -7px -7px 15px rgb(57 85 119 / 12%);
+}
+.crycto-early-section-submit.active {
+  box-shadow: inset 10px 10px 15px rgb(5 5 5 / 18%),
+    inset -7px -7px 15px rgb(57 85 119 / 12%);
 }
 
 .crycto-transak-container {

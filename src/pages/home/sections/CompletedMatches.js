@@ -34,6 +34,8 @@ const useStyles = makeStyles({
     background: "transparent",
     boxShadow:
       "10px 10px 15px rgb(5 5 5 / 30%), -5px -5px 10px rgb(92 91 91 / 5%)",
+    // boxShadow:
+    //   "10px 10px 15px rgb(5 5 5 / 18%),-7px -7px 15px rgb(57 85 119 / 12%)",
     fontSize: "var(--font-size)",
   },
   table: {

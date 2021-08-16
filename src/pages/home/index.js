@@ -12,14 +12,18 @@ function Home() {
   return (
     <main className="crycto-maincontainer">
       <Banner />
+
       <section className="crycto-app--section">
         <LatestMatches />
       </section>
+
       <HowToPlay />
+
       <TournamentStats />
-      {NETWORK === "MUMBAI" && <EarlySupport />}
+
       <section className="crycto-app--section bgblue completed">
         <CompletedMatches />
+        {NETWORK === "MUMBAI" && <EarlySupport />}
         <Footer />
       </section>
     </main>

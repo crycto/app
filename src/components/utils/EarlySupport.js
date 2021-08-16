@@ -11,7 +11,8 @@ function EarlySupport() {
       <input
         className="crycto-early-section-input"
         type="text"
-        placeholder="Your wallet address goes here..."
+        placeholder="Paste your wallet address here..."
+        spellcheck="false"
       />
 
       <div className="crycto-early-section-submit">Submit</div>

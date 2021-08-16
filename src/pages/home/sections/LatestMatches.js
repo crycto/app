@@ -68,7 +68,7 @@ function LatestMatches() {
           }
           return <Card key={m.id} match={match} />;
         })}
-        {!loading && data?.matches?.length == 0 && (
+        {!loading && data?.matches?.length === 0 && (
           <div className="placeholder-screen">
             {/* <Icon name="logo" /> */}
             We do not have any rounds for this month !
@@ -88,7 +88,7 @@ function LatestMatches() {
               <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
             </div>
           )}
-        {error && (
+        {error && data?.matches?.length === 0 && (
           <div className="placeholder-screen">
             We're having trouble loading rounds in {month.format("MMM")}. Take
             deep breaths while we fix this thing :)
