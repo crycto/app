@@ -48,7 +48,7 @@ const useStyles = makeStyles({
 
 const TableCell = withStyles((theme) => ({
   head: {
-    color: "#776363",
+    color: "#a9791a",
     fontSize: "1.3em",
     borderBottom: "1px solid rgb(249 249 249 / 6%)",
     fontFamily: "Righteous-Regular",

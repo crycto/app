@@ -5,21 +5,36 @@
   --color-user-value: var(--c-gold);
   --color-bottom-divider: #d7e8ff;
   --color-bottom-color: var(--c-gold);
-  --color-bottom-bg: #e9f1ffc4;
-  --color-bet-bg: #e9f1ffc4;
-  --color-placed-bg: #e9f1ffc4; //#fffaee;
-  --color-locked-bg: #e9f1ffc4;
+  --color-bottom-bg: transparent; //#e9f1ffc4;
+  --color-bet-bg: white; //#e9f1ffc4;
+  --color-placed-bg: white; //#fffaee;
+  --color-locked-bg: white;
   --color-chips-bg1: transparent;
-  --color-predict-btn: black;
-  --color-predict-btn-bg: white;
+  --color-predict-btn: #464747;
+  --color-predict-btn-bg: ##ffffff;
+  --color-predict-btn-border: 1px solid #bfbfbf;
   --color-confirm-btn-bg: hsl(40deg 83% 43%);
   --color-confirm-btn: white;
-  --box-shadow-button: 0 0px 5px rgb(0 0 0 / 10%);
-  --box-shadow-button-active: 0 0px 5px rgb(0 0 0 / 10%);
+  --color-noresults: #3f3f3f;
+  --box-shadow-button: 5px 5px 10px #7b7b7b17;
+  --box-shadow-button-active: 5px 5px 10px #7b7b7b17;
 }
-.crycto-card--blk {
-  box-shadow: -1px 3px 9px 2px rgb(0 0 0 / 8%) !important;
-  border: 1px solid #d7e8ff !important;
+._light .crycto-card--blk {
+  box-shadow: -18px -18px 30px #ffffff36, 18px 18px 30px #b8c4e085 !important;
+
+  background: hsl(0deg 0% 100% / 71%) !important;
+  &._placed {
+    background: rgb(255 244 204 / 61%) !important;
+  }
+  &._closed {
+    background: hsl(0deg 0% 100% / 61%) !important;
+  }
+  .crycto-card--blk-back {
+    background: #f7f8f9;
+  }
+}
+._light .crycto-card--blk-back {
+  background: white;
 }
 ._dark {
   --color-chips: rgba(255, 255, 255, 0.8) !important;
@@ -34,11 +49,14 @@
   --color-locked-bg: rgba(255, 255, 255, 0.05);
   --color-predict-btn: white;
   --color-predict-btn-bg: #08213f;
+  --color-predict-btn-border: none;
   --color-confirm-btn-bg: #08213f;
   --color-confirm-btn-border: 1px solid;
   --color-confirm-btn: var(--c-gold);
-  // --box-shadow-button: 10px 10px 15px rgb(5 5 5 / 18%),
-  //   -7px -7px 15px rgb(57 85 119 / 12%);
+  --color-noresults: rgba(255, 255, 255, 0.8);
+
+  --box-shadow-button: 8px 8px 15px rgb(5 5 5 / 12%),
+    -3px -3px 10px rgb(57 85 119 / 12%);
   --box-shadow-button-active: inset 10px 10px 15px rgb(5 5 5 / 18%),
     inset -7px -7px 15px rgb(57 85 119 / 12%);
   .crycto-card--blk {
@@ -96,25 +114,22 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    font-size: 3em;
+    font-size: 1.7em;
     font-family: "Righteous-Regular";
-    color: var(--c-gold);
-    padding-bottom: 15vh;
-    div {
-      margin-top: 2em;
-      padding: 1.5em;
+    color: var(--color-noresults);
+    text-align: center;
+    padding: 10%;
+
+    // text-transform: uppercase;
+    img {
+      margin-bottom: 2%;
+    }
+    span {
       font-family: "Montserrat-Regular";
-      font-size: 0.35em;
-      background: var(--c-gold);
-      color: white;
-      border-radius: 5px;
+      font-size: 0.8em;
+      text-decoration: underline;
+      margin-top: 1em;
       cursor: pointer;
-      text-transform: uppercase;
-      box-shadow: 0px 7px 13px -3px #0000001f;
-      transition: opacity 150ms ease;
-      &:hover {
-        opacity: 0.95;
-      }
     }
   }
   .f30 {
@@ -176,6 +191,23 @@
         justify-content: center;
         align-items: center;
         padding: 1em 0;
+        label {
+          width: 85%;
+          span {
+            width: 40%;
+            &:first-child {
+              text-align: right;
+            }
+            &:last-child {
+              text-align: left;
+            }
+          }
+
+          span.crycto-smallfont {
+            width: 20%;
+            padding: 0;
+          }
+        }
         span {
           font-size: 3em;
           color: var(--c-blue);
@@ -186,7 +218,7 @@
           padding: 5px 15px;
           text-transform: uppercase;
           width: fit-content;
-          margin-right: 10px;
+          // margin-right: 10px;
         }
       }
       .center {
@@ -223,12 +255,12 @@
     .bottom-container {
       width: 100%;
       padding: 1em 1.5em;
-      min-height: 61px;
+      min-height: 62px;
       border-radius: 0;
       margin: 1.5em auto auto;
       background: var(--color-bottom-bg);
       // background: #1f5286;
-      border-top: 1px solid var(--color-bottom-divider) !important;
+      // border-top: 1px solid var(--color-bottom-divider) !important;
       .bet-info {
         display: flex;
         justify-content: flex-start;
@@ -254,7 +286,7 @@
         align-items: center;
         flex: 1;
         span {
-          border-radius: 4px;
+          border-radius: 5px;
           padding: 1em;
           color: var(--color-chips) !important;
           cursor: pointer;
@@ -297,6 +329,7 @@
       span {
         background: var(--color-predict-btn-bg);
         color: var(--color-predict-btn) !important;
+        border: var(--color-predict-btn-border);
         padding: 1em 4em;
         transition: opacity, transform 150ms ease;
         transform: scale(1);
@@ -503,22 +536,44 @@
     justify-content: center;
   }
   .latest {
-    font-size: 5px;
+    font-size: 8px;
     margin-top: 8rem;
+    .f30 {
+      font-size: 17px !important;
+    }
+
     .crycto-card--blk {
       min-width: 90vw;
       width: 90vw;
       margin-top: 2em;
+
       .body-container {
-        min-height: 50px;
+        min-height: 65px;
+        .left {
+          span {
+            font-size: 16px;
+          }
+        }
+        .right {
+          span {
+            font-size: 16px !important;
+          }
+          .subtitle {
+            font-size: 0.9em !important;
+          }
+        }
+        .subtitle {
+          font-size: 0.9em !important;
+        }
       }
       .bottom-container {
-        min-height: 40px;
+        min-height: 51px;
+        margin: 0;
       }
       .bet-screen {
         .crycto-score--value {
-          width: 50%;
-          font-size: 1.5em;
+          width: 40%;
+          font-size: 1em;
         }
         .arrow-left,
         .arrow-right {
@@ -535,6 +590,12 @@
           .f20 {
             font-size: 10px;
           }
+          .action-button span {
+            border-radius: 4px;
+            min-height: 65%;
+            font-size: 1.6em;
+            padding: 1em 2.5em;
+          }
         }
         .mb20 {
           margin-bottom: 10px !important;
@@ -549,5 +610,82 @@
       font-size: 6px;
       padding: 7px 8px;
     }
+  }
+}
+
+//Success animation
+
+.checkmark-animation {
+  svg {
+    width: 30px;
+    display: block;
+    margin: 10px auto 10px;
+  }
+
+  .path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    &.circle {
+      -webkit-animation: dash 0.9s ease-in-out;
+      animation: dash 0.9s ease-in-out;
+    }
+    &.line {
+      stroke-dashoffset: 1000;
+      -webkit-animation: dash 0.9s 0.35s ease-in-out forwards;
+      animation: dash 0.9s 0.35s ease-in-out forwards;
+    }
+    &.check {
+      stroke-dashoffset: -100;
+      -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;
+      animation: dash-check 0.9s 0.35s ease-in-out forwards;
+    }
+  }
+
+  p {
+    text-align: center;
+    margin: 20px 0 60px;
+    font-size: 1.25em;
+    &.success {
+      color: teal;
+    }
+    &.error {
+      color: #d06079;
+    }
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
   }
 }

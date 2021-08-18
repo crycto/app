@@ -1,6 +1,7 @@
 import React from "react";
 import ClaimRefundButton from "../ClaimRefundButton";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+
 import LockIcon from "@material-ui/icons/Lock";
 
 function ActionButton({ match, onClickPredict }) {

@@ -1,4 +1,5 @@
 import { Slider, withStyles } from "@material-ui/core";
+import isMobileBrowser from "../../utils/isMobileBrowser";
 
 export default withStyles({
   root: {
@@ -7,11 +8,11 @@ export default withStyles({
     width: "75%",
   },
   thumb: {
-    height: 20,
-    width: 20,
+    height: isMobileBrowser() ? 15 : 20,
+    width: isMobileBrowser() ? 15 : 20,
     backgroundColor: "white",
     border: "4px solid var(--c-gold)",
-    marginTop: -9,
+    marginTop: -6,
     marginLeft: -12,
     "&:focus, &:hover, &$active": {
       boxShadow: "inherit",
@@ -33,7 +34,7 @@ export default withStyles({
     backgroundColor: "transparent",
   },
   mark: {
-    color: "transparent",
+    color: "var(--c-gold)",
     height: 3,
     width: 1,
   },

@@ -12,7 +12,7 @@ function HowToPlay() {
         <span>
           &nbsp;
           <Icon name="metamask" className="c-how-bullet" /> You'd need MetaMask
-          to be able to interact with the app
+          to be able to interact with the game
           <OpenInNewIcon
             onClick={() =>
               window.open(
@@ -54,7 +54,10 @@ function HowToPlay() {
           </a>
           &nbsp;
         </span>
-        <span>🏏&nbsp; Well, that's it. Happy cricketing ! </span>
+        <span>
+          🏏&nbsp; Well, that's it. Start making your score predictions with as
+          low as ₹ 1{" "}
+        </span>
       </div>
       <div class="crycto-how-right">
         {window.ethereum ? (

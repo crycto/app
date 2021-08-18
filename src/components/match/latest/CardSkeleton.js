@@ -20,7 +20,7 @@ function CardSkeleton() {
       }}
     >
       <div className="w100 front-screen">
-        <div class="crycto-card-top-container">
+        <div className="crycto-card-top-container">
           <Skeleton
             animation="wave"
             width={"50%"}
@@ -41,7 +41,7 @@ function CardSkeleton() {
             }}
           />
         </div>
-        <div class="crycto-card--maincontent bottom-container">
+        <div className="crycto-card--maincontent bottom-container">
           <Skeleton
             variant="rect"
             animation="wave"

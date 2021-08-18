@@ -18,69 +18,44 @@ function Banner() {
   return !showBanner ? null : (
     <Fade in={true} style={{ transitionDelay: "150ms" }}>
       <section className="crycto-new-user-section">
-        <div className="crycto-new-user-section-app">
-          <label>Global Fantasy Cricket On The Blockchain</label>
-          <span>Where Cricket meets Crypto</span>
-          <div class="crycto-new-user-section-contetnt-bottom">
-            <a
-              href="https://github.com/crycto/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open Source
-            </a>
-            <a
-              href={`https://polygonscan.com/address/${
-                TournamentContract[chains[NETWORK].id][1]
-              }`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Smart Contract
-            </a>
-            <a
-              href="https://polygon.technology/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Polygon Network
-            </a>
-          </div>
-        </div>
-        <div class="crycto-new-user-section-image-container">
-          {/* <Icon name="stars" className="crycto-new-user-section-stars" /> */}
-          <Icon name="trophy" className="crycto-new-user-section-image" />
-        </div>
-        <div class="crycto-new-user-section-content">
-          <label>Are you ready to take on the world ?</label>
+        <div className="crycto-new-user-section-left">
+          <label>Cricket meets Crypto. Play with as low as ₹1</label>
           <span>
-            Put your cricketing cap on and get the chance to win crazy rewards.
-            You can start with as low as ₹1
+            Put your cricketing cap on and use your skills to make your expert
+            score predictions and get back crazy rewards when you win. &nbsp;
           </span>
-          <div className="crycto-new-user-section-contetnt-bottom">
-            <div
-              className="crycto-new-user-section-button"
-              onClick={!active ? connect : () => document.body.scrollTo(0, 200)}
-            >
-              Play now
-            </div>
-            <a
-              href="https://metamask.io/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Install MetaMask
-            </a>
-            <a
-              href="https://global.transak.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Add funds to your wallet
-            </a>
+        </div>
+        <div className="crycto-new-user-section-right">
+          <div
+            className="play-now-btn"
+            onClick={!active ? connect : () => document.body.scrollTo(0, 250)}
+          >
+            Play now
           </div>
         </div>
-
+        <div className="crycto-new-user-section-links">
+          <a
+            href="https://metamask.io/download.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Install MetaMask
+          </a>
+          <a
+            href="https://docs.matic.network/docs/develop/metamask/config-polygon-on-metamask/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Configure Polygon
+          </a>
+          <a
+            href="https://global.transak.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Add funds to your wallet
+          </a>
+        </div>
         <CloseIcon
           className="crycto-new-user-section-close"
           onClick={handleClose}
@@ -89,5 +64,31 @@ function Banner() {
     </Fade>
   );
 }
+
+//  <div class="crycto-new-user-section-content">
+
+//           <div className="crycto-new-user-section-contetnt-bottom">
+//             <div
+//               className="crycto-new-user-section-button"
+//               onClick={!active ? connect : () => document.body.scrollTo(0, 200)}
+//             >
+//               Play now
+//             </div>
+//             <a
+//               href="https://metamask.io/index.html"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//             >
+//               Install MetaMask
+//             </a>
+//             <a
+//               href="https://global.transak.com/"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//             >
+//               Add funds to your wallet
+//             </a>
+//           </div>
+//         </div>
 
 export default Banner;

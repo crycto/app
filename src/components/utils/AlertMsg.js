@@ -48,7 +48,11 @@ export default function AlertMessage({
         {title}
 
         <br />
-        <Link href="#" onClick={() => window.open(link, "_blank", "noopener")}>
+        <Link
+          href="#"
+          onClick={() => window.open(link, "_blank", "noopener")}
+          style={{ color: "var(--c-blue)" }}
+        >
           {linkText}
         </Link>
       </Typography>

@@ -18,9 +18,9 @@ const useStyles = makeStyles({
     },
   },
   icon: {
-    borderRadius: 6,
-    width: 24,
-    height: 24,
+    borderRadius: 4,
+    width: 20,
+    height: 20,
     boxShadow:
       "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
     backgroundColor: "#edf1ff",
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     },
   },
   checkedIcon: {
-    borderRadius: 6,
+    borderRadius: 4,
     margin: 3,
     boxShadow:
       "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
@@ -49,13 +49,13 @@ const useStyles = makeStyles({
       boxShadow: "none",
       background: "rgba(206,217,224,.5)",
     },
-    backgroundColor: "var(--c-blue)",
+    backgroundColor: "var(--c-gold)",
     backgroundImage:
       "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
     "&:before": {
       display: "block",
-      width: 24,
-      height: 24,
+      width: 20,
+      height: 20,
       backgroundImage:
         "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
         " fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
@@ -69,10 +69,10 @@ const useStyles = makeStyles({
   button: {
     transition: "none",
     "&:hover": {
-      filter: "brightness(.95)",
+      background: "rgba(0,0,0,.05)",
     },
     "&:disabled": {
-      background: "lightgray!important",
+      opacity: 0.2,
       pointerEvents: "auto",
       cursor: "not-allowed",
     },
@@ -140,7 +140,7 @@ function Consent() {
             left: 0,
             right: 0,
             margin: "auto",
-            width: "25%",
+            width: "27%",
             minWidth: 300,
             height: "fit-content",
             outline: "none",
@@ -149,27 +149,20 @@ function Consent() {
             overflow: "hidden",
             borderRadius: 10,
             fontFamily: "Montserrat-Regular",
-            filter: "drop-shadow(2px 4px 20px rgba(0,0,0,0.3))",
+            boxShadow: "0 8px 32px 0 rgb(48 47 45 / 37%)",
+            backdropFilter: "blur( 40px )",
+            "-webkit-backdrop-filter": "blur( 4px )",
+
+            border: "1px solid rgba( 255, 255, 255, 0.18 )",
+            background: "rgba(255,255,255,0.25)",
           }}
         >
-          {/* <div
-          style={{
-            background: "var(--c-blue)",
-            width: "100%",
-            color: "white",
-            fontWeight: "bolder",
-            padding: "1rem 2rem",
-            fontSize: "2.5rem",
-          }}
-        >
-          Welcome 🏏
-        </div> */}
-          <div style={{ padding: "2.5rem 2rem", background: "white" }}>
+          <div style={{ padding: "2.5rem 2rem" }}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <Icon name="logo" className="w30" />
               <h1
                 style={{
-                  color: "black",
+                  color: "white",
                   fontWeight: "bolder",
                   fontSize: "2.5rem",
                   marginLeft: "1rem",
@@ -183,7 +176,7 @@ function Consent() {
                 marginTop: "5%",
                 fontSize: "1.5rem",
                 opacity: 0.7,
-                color: "hsl(0deg 0% 34%)",
+                color: "rgba(255, 255,255,0.7)",
                 fontWeight: "bold",
               }}
             >
@@ -205,7 +198,7 @@ function Consent() {
                   style={{
                     fontSize: "1.35rem",
                     fontFamily: "Montserrat-Regular",
-                    color: "black",
+                    color: "white",
                   }}
                 >
                   I understand that this game involves an element of financial
@@ -228,7 +221,7 @@ function Consent() {
                   style={{
                     fontSize: "1.35rem",
                     fontFamily: "Montserrat-Regular",
-                    color: "black",
+                    color: "white",
                   }}
                 >
                   I understand that I am using this website at my own risk. Any
@@ -251,7 +244,7 @@ function Consent() {
                   style={{
                     fontSize: "1.35rem",
                     fontFamily: "Montserrat-Regular",
-                    color: "black",
+                    color: "white",
                   }}
                 >
                   Using Smart Contracts, Tokens, and Crypto is always a risk. I
@@ -265,8 +258,8 @@ function Consent() {
               margin: "auto",
               width: "100%",
               padding: "1.5rem",
-              background: "var(--c-blue)",
-              color: "white",
+              background: "transaprent",
+              color: "var(--c-gold)",
               borderRadius: 0,
             }}
             onClick={onContinue}

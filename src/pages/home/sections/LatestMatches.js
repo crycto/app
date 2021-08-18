@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LATEST_MATCHES } from "../../../graphql/queries";
 import Match from "../../../models/Match";
 import Card from "../../../components/match/latest/Card";
@@ -12,7 +12,7 @@ import { useWallet } from "../../../providers/WalletProvider";
 import MonthNavigator from "../../../components/utils/MonthNavigator";
 import moment from "moment";
 import Icon from "../../../components/utils/Icon";
-import { Checkbox, FormControlLabel, withStyles } from "@material-ui/core";
+import { Checkbox, withStyles } from "@material-ui/core";
 
 const skelArr = Array(4).fill(0);
 
@@ -28,7 +28,7 @@ const scrollToCompletedRounds = () =>
 function LatestMatches() {
   const { triedEager, account = "" } = useWallet();
   const [month, setMonth] = useState(curMoment);
-  const [activeOnly, setActiveOnly] = useState(false);
+  const [activeOnly, setActiveOnly] = useState(true);
   const { data, loading, error } = useQuery(LATEST_MATCHES, {
     variables: {
       first: LIMIT,
@@ -70,9 +70,8 @@ function LatestMatches() {
         })}
         {!loading && data?.matches?.length === 0 && (
           <div className="placeholder-screen">
-            {/* <Icon name="logo" /> */}
-            We do not have any rounds for this month !
-            <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
+            <Icon name="noresults" />
+            We do not have any rounds for this month.
           </div>
         )}
         {!loading &&
@@ -81,18 +80,17 @@ function LatestMatches() {
           data?.matches?.filter((m) => {
             const match = new Match(m);
             return !match.isBetPlaced() && !match.isTakingBets();
-          }).length == 0 && (
+          }).length === 0 && (
             <div className="placeholder-screen">
-              {/* <Icon name="logo" /> */}
-              We do not have any active rounds for this month !
-              <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
+              <Icon name="noresults" />
+              We do not have any active rounds for this month.
             </div>
           )}
         {error && data?.matches?.length === 0 && (
           <div className="placeholder-screen">
             We're having trouble loading rounds in {month.format("MMM")}. Take
             deep breaths while we fix this thing :)
-            <div onClick={scrollToCompletedRounds}>Show Completed Rounds</div>
+            <span onClick={scrollToCompletedRounds}>Show completed rounds</span>
           </div>
         )}
       </div>
