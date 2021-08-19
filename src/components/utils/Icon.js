@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../assets/logo.png";
 import polygon from "../../assets/polygon.svg";
+import bannerPlayer from "../../assets/banner-player.svg";
 import bat from "../../assets/bat.svg";
 import moneybag from "../../assets/moneybag.svg";
 import arrow from "../../assets/arrow3.svg";
@@ -42,6 +43,15 @@ function Icon({ name, className, onClick }) {
           src={trophy}
           className={className}
           alt="trophy"
+          onClick={onClick}
+        />
+      );
+    case "bannerPlayer":
+      return (
+        <img
+          src={bannerPlayer}
+          className={className}
+          alt=""
           onClick={onClick}
         />
       );

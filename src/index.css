@@ -15,3 +15,9 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+
+@media (max-width: 900px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

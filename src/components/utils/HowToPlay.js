@@ -2,6 +2,7 @@ import React from "react";
 import { useWallet } from "../../providers/WalletProvider";
 import Icon from "./Icon";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 function HowToPlay() {
   const { active, connect } = useWallet();
@@ -10,9 +11,9 @@ function HowToPlay() {
       <div class="crycto-how-left">
         <label>HOW DO I PLAY ? </label>
         <span>
-          &nbsp;
-          <Icon name="metamask" className="c-how-bullet" /> You'd need MetaMask
-          to be able to interact with the game
+          {/* <Icon name="metamask" className="c-how-bullet" />  */}
+          <FiberManualRecordIcon className="c-how-bullet" />
+          You'd need MetaMask to be able to interact with the game
           <OpenInNewIcon
             onClick={() =>
               window.open(
@@ -25,9 +26,9 @@ function HowToPlay() {
           />
         </span>
         <span>
-          &nbsp;
-          <Icon name="polygon" className="c-how-bullet" /> Once you've got that,
-          connect your wallet to Polygon Network{" "}
+          {/* <Icon name="polygon" className="c-how-bullet" />  */}
+          <FiberManualRecordIcon className="c-how-bullet" />
+          Once you've got that, connect your wallet to Polygon Network{" "}
           <OpenInNewIcon
             onClick={() =>
               window.open(
@@ -40,7 +41,8 @@ function HowToPlay() {
           />
         </span>
         <span>
-          💰 &nbsp;Add funds to your wallet using &nbsp;
+          <FiberManualRecordIcon className="c-how-bullet" />
+          Add funds to your wallet using &nbsp;
           <a
             href="https://global.transak.com/"
             target="_blank"
@@ -55,8 +57,9 @@ function HowToPlay() {
           &nbsp;
         </span>
         <span>
-          🏏&nbsp; Well, that's it. Start making your score predictions with as
-          low as ₹ 1{" "}
+          <FiberManualRecordIcon className="c-how-bullet" />
+          Well, that's it. Choose a round & predict the right score range and
+          multiply your holdings
         </span>
       </div>
       <div class="crycto-how-right">

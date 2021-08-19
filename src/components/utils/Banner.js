@@ -8,7 +8,7 @@ import { chains, NETWORK, TournamentContract } from "../../web3";
 
 function Banner() {
   const [showBanner, setShowBanner] = useState(
-    localStorage.get("crycto-hide-new-user-banner") != "true"
+    localStorage.get("crycto-hide-new-user-banner") !== "true"
   );
   const { active, connect } = useWallet();
   const handleClose = () => {
@@ -16,52 +16,53 @@ function Banner() {
     localStorage.set("crycto-hide-new-user-banner", true);
   };
   return !showBanner ? null : (
-    <Fade in={true} style={{ transitionDelay: "150ms" }}>
-      <section className="crycto-new-user-section">
-        <div className="crycto-new-user-section-left">
-          <label>Cricket meets Crypto. Play with as low as ₹1</label>
-          <span>
-            Put your cricketing cap on and use your skills to make your expert
-            score predictions and get back crazy rewards when you win. &nbsp;
-          </span>
+    <section className="crycto-new-user-section">
+      <div className="crycto-new-user-section-left">
+        <label>Cricket meets Crypto. Play with as low as ₹1</label>
+        <span>
+          Put your cricketing cap on and use your skills to make your expert
+          score predictions and get back crazy rewards when you win. &nbsp;
+        </span>
+      </div>
+      <div className="crycto-new-user-section-right">
+        <div className="crycto-new-user-bg-player">
+          <Icon name="bannerPlayer" alt="" />
         </div>
-        <div className="crycto-new-user-section-right">
-          <div
-            className="play-now-btn"
-            onClick={!active ? connect : () => document.body.scrollTo(0, 250)}
-          >
-            Play now
-          </div>
+      </div>
+      <div className="crycto-new-user-section-links">
+        <div
+          className="play-now-btn"
+          onClick={!active ? connect : () => document.body.scrollTo(0, 250)}
+        >
+          Play now
         </div>
-        <div className="crycto-new-user-section-links">
-          <a
-            href="https://metamask.io/download.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Install MetaMask
-          </a>
-          <a
-            href="https://docs.matic.network/docs/develop/metamask/config-polygon-on-metamask/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Configure Polygon
-          </a>
-          <a
-            href="https://global.transak.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Add funds to your wallet
-          </a>
-        </div>
-        <CloseIcon
-          className="crycto-new-user-section-close"
-          onClick={handleClose}
-        />
-      </section>
-    </Fade>
+        <a
+          href="https://metamask.io/download.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Install MetaMask
+        </a>
+        <a
+          href="https://docs.matic.network/docs/develop/metamask/config-polygon-on-metamask/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Configure Polygon
+        </a>
+        <a
+          href="https://global.transak.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Add funds to your wallet
+        </a>
+      </div>
+      <CloseIcon
+        className="crycto-new-user-section-close"
+        onClick={handleClose}
+      />
+    </section>
   );
 }
 
