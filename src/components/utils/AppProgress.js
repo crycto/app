@@ -12,6 +12,6 @@ export default withStyles((theme) => ({
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: "hsl(224, 57%, 48%, 1)",
+    backgroundColor: "var(--c-gold)",
   },
 }))(LinearProgress);

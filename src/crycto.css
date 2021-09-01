@@ -243,11 +243,12 @@ a {
 }
 .crycto-logo--img {
   width: 30px;
+  display: none;
 }
 .crycto-logo--text {
   font-family: var(--crycto-font-righteous);
   font-size: 3rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   padding-left: 1rem;
   color: #767de8;
 }
@@ -717,12 +718,16 @@ a {
   background: #323756;
   border-radius: 0.5rem;
 }
+._dark .crycto-score--value {
+  background: #131313;
+}
 .crycto-card--text-rhs .arrow-left,
 .crycto-card--text-rhs .arrow-right {
   width: 4rem;
 
   transform: rotate(90deg);
 }
+
 .crycto-card--text-rhs .arrow-right {
   transform: rotate(-90deg);
 }
@@ -887,6 +892,9 @@ a {
 /* light theme */
 /* media css starts here */
 @media (max-width: 1200px) {
+  .crycto-logo--img {
+    display: block;
+  }
   .crycto-logo--text {
     display: none;
   }
@@ -914,19 +922,25 @@ a {
   .crycto-instruction.latest .crycto-card--blk {
     scroll-snap-align: ;
   } */
-  .crypto-footer {
+  .crycto-footer-row1 {
     flex-direction: column-reverse !important;
     flex-wrap: wrap;
     justify-content: center !important;
   }
-  .crypto-footer div {
+  .crycto-footer-row2 {
+    align-items: center;
+    text-align: center !important;
+    display: flex;
+    font-size: 8px !important;
+  }
+  .crycto-footer div {
     margin: 1rem 0;
   }
   .crycto-footer-right {
     flex-direction: row;
     font-size: 0.9rem;
   }
-  .crypto-footer .footer-polygon-img {
+  .crycto-footer .footer-polygon-img {
     width: 8px !important;
     height: 8px !important;
   }
@@ -934,7 +948,7 @@ a {
     margin-bottom: 12rem !important;
   }
 }
-@media (max-width: 736px) {
+@media (max-width: 991px) {
   .crycto-topbar {
     padding: 2rem;
   }
@@ -947,14 +961,18 @@ a {
   .crycto-instruction.latest .crycto-card--blk {
     scroll-snap-align: center;
   }
-  .crypto-footer {
+  .crycto-footer-row1 {
     flex-direction: column-reverse !important;
     flex-wrap: wrap;
-
     justify-content: center !important;
   }
-  .crypto-footer div {
-    margin: 1rem 0;
+
+  .crycto-footer div {
+    margin: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 11px;
+    padding: 3px 0.5rem;
   }
   .crycto-footer-right {
     flex-direction: row;

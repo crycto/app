@@ -17,7 +17,7 @@ function SubmitButton({
       className={`action-button ${!valid && "_disabled"}`}
       onClick={onSubmit}
     >
-      <span>{insufficientBalance ? "Insufficient Balance" : "Confirm"}</span>
+      <span>{insufficientBalance ? "Insufficient Funds" : "Confirm"}</span>
     </div>
   );
 }

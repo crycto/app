@@ -30,39 +30,46 @@ const useStyles = makeStyles({
     margin: "3rem auto",
     display: "flex",
     width: "95%",
-    borderRadius: 15,
+    borderRadius: 10,
     background: "transparent",
     boxShadow:
       "10px 10px 15px rgb(5 5 5 / 30%), -5px -5px 10px rgb(92 91 91 / 5%)",
-    // boxShadow:
-    //   "10px 10px 15px rgb(5 5 5 / 18%),-7px -7px 15px rgb(57 85 119 / 12%)",
     fontSize: "var(--font-size)",
+    border: "1px solid #b87f11",
   },
   table: {
-    minWidth: isMobile ? 300 : 650,
-    // background: "linear-gradient(45deg, #2d158c, #865f0a)",
-    minHeight: 600,
-    overflow: "scroll",
+    minWidth: isMobile ? "auto" : 650,
+    minHeight: isMobile ? "auto" : 600,
+    overflow: isMobile ? "auto" : "scroll",
+  },
+  tableHead: {
+    background: "#a9791a",
   },
 });
 
 const TableCell = withStyles((theme) => ({
   head: {
-    color: "#a9791a",
-    fontSize: "1.3em",
+    // color: "#a9791a",
+    fontSize: isMobile ? "1rem" : "1.3em",
+    border: "none",
     borderBottom: "1px solid rgb(249 249 249 / 6%)",
     fontFamily: "Righteous-Regular",
-    padding: "2em 2em",
+    padding: "2em .5em",
     textTransform: "uppercase",
+    background: "#a9791a",
+    color: "white",
+    textAlign: "center",
+
     // background: "rgba(255,255,255,0.1)",
   },
   body: {
-    fontSize: "1.35em",
+    fontSize: isMobile ? "1.8em" : "1.35em",
     fontFamily: "var(--crycto-font-montserrat)",
     padding: isMobile ? 0 : "1.5em 2em",
-    borderBottom: "1px solid rgba(255,255,255,0.1)",
+    borderBottom: "1px solid #a9791a80",
     color: "white",
     height: "7em",
+    textAlign: "center",
   },
   footer: {
     color: "white",
@@ -107,8 +114,8 @@ function CompletedMatches() {
 
       <TableContainer component={Paper} className={classes.tableContainer}>
         <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
+          <TableHead className={classes.tableHead}>
+            <TableRow className={classes.tableHead}>
               {!isMobile && (
                 <TableCell className={classes.tableHeader}>ID</TableCell>
               )}
@@ -122,7 +129,7 @@ function CompletedMatches() {
                 </>
               )}
               <TableCell align="center">Winners</TableCell>
-              <TableCell align="center">Rewards</TableCell>
+              {!isMobile && <TableCell align="center">Rewards</TableCell>}
               <TableCell align="center">Payout</TableCell>
               <TableCell align="center">Status</TableCell>
             </TableRow>
@@ -161,9 +168,11 @@ function CompletedMatches() {
                   <TableCell align="center">
                     {match.totalWinners == 0 ? "-" : match.totalWinners}
                   </TableCell>
-                  <TableCell align="center">
-                    {match.rewardAmount == 0 ? "-" : match.rewardAmount}
-                  </TableCell>
+                  {!isMobile && (
+                    <TableCell align="center">
+                      {match.rewardAmount == 0 ? "-" : match.rewardAmount}
+                    </TableCell>
+                  )}
                   <TableCell align="center">
                     {match.isCompleted()
                       ? `${match.getWinningPayout()} x`

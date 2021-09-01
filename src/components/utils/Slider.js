@@ -1,6 +1,7 @@
 import { Slider, withStyles } from "@material-ui/core";
 import isMobileBrowser from "../../utils/isMobileBrowser";
 
+const isMobile = isMobileBrowser();
 export default withStyles({
   root: {
     color: "var(--c-gold)",
@@ -12,7 +13,7 @@ export default withStyles({
     width: isMobileBrowser() ? 15 : 20,
     backgroundColor: "white",
     border: "4px solid var(--c-gold)",
-    marginTop: -6,
+    marginTop: isMobile ? -6 : -8.75,
     marginLeft: -12,
     "&:focus, &:hover, &$active": {
       boxShadow: "inherit",

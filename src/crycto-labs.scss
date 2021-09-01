@@ -44,13 +44,15 @@
   --color-bottom-divider: transparent;
   --color-bottom-color: var(--c-gold);
   --color-bottom-bg: #0d2e56;
-  --color-bet-bg: #0d2e56;
-  --color-placed-bg: #0d2e56;
-  --color-locked-bg: rgba(255, 255, 255, 0.05);
-  --color-predict-btn: white;
-  --color-predict-btn-bg: #08213f;
-  --color-predict-btn-border: none;
-  --color-confirm-btn-bg: #08213f;
+  --color-bottom-bg: rgba(255, 255, 255, 0.02);
+  --color-bet-bg: rgba(255, 255, 255, 0.02);
+  --color-placed-bg: rgba(255, 255, 255, 0.02);
+  --color-locked-bg: rgba(255, 255, 255, 0.01);
+  --color-predict-btn: var(--c-gold);
+  // --color-predict-btn-bg: #08213f;
+  --color-predict-btn-bg: transparent;
+  --color-predict-btn-border: 1px solid var(--c-gold);
+  --color-confirm-btn-bg: #131313;
   --color-confirm-btn-border: 1px solid;
   --color-confirm-btn: var(--c-gold);
   --color-noresults: rgba(255, 255, 255, 0.8);
@@ -61,10 +63,13 @@
     inset -7px -7px 15px rgb(57 85 119 / 12%);
   .crycto-card--blk {
     box-shadow: 10px 10px 15px rgb(5 5 5 / 18%),
-      -5px -5px 10px hsl(213deg 37% 28% / 12%) !important;
+      -5px -5px 10px rgb(56 56 56 / 18%) !important;
     background: #08213f !important;
+    background: transparent !important;
+    border: 1px solid #292a2b !important;
     .crycto-card--blk-back {
       background: #08213f !important;
+      background: transparent !important;
     }
   }
   .completed {
@@ -228,6 +233,9 @@
         justify-content: center;
         span {
           color: var(--c-gold);
+          &:nth-child(1) {
+            color: var(--c-gold) !important;
+          }
         }
       }
       .right {
@@ -427,7 +435,7 @@
   padding-bottom: 10rem;
   min-height: 100vh !important;
   align-items: center;
-
+  padding-bottom: 0 !important;
   .action-button {
     display: inline-flex;
 

@@ -3,6 +3,7 @@
   --c-blue-border: hsl(224, 57%, 58%);
   --c-purple: hsl(267deg 59% 34%);
   --c-gold: hsl(40deg 83% 40%);
+  --c-gold: hsl(40deg 80% 45%);
   --c-green: #158867;
   --c-red: hsl(0deg 57% 38%);
   --c-cancelled: #5d5d5d;
@@ -10,7 +11,8 @@
   --card-bg-gradient-lightness: 10%;
 
   --c-light-bg: #eceef6;
-  --c-dark-bg: #08213f;
+  /* --c-dark-bg: #08213f; Sep 1 */
+  --c-dark-bg: hsl(210deg 3% 12%);
   --c-secondary: #0a1421;
   --c-fallback-text-color: rgba(255, 255, 255, 0.8);
 
@@ -105,7 +107,7 @@
   color: hsl(222deg 98% 62%);
 }
 ._dark .crycto-launch--cta:hover {
-  background: hsl(213deg 74% 19%);
+  background: rgba(255, 255, 255, 0.02);
 }
 .crycto-launch--cta.getmatic {
   color: var(--c-gold) !important;
@@ -151,20 +153,22 @@
 }
 
 .crycto-logo--text {
-  color: var(--c-blue) !important;
+  color: var(--c-gold) !important;
   font-size: 3.5rem;
 }
 
 .crycto-logo label {
   /* padding: 0.5rem 1rem; */
   /* border: 1px solid var(--c-blue); */
-  color: var(--c-blue);
+
+  color: var(--c-gold);
   text-transform: uppercase;
   border-radius: 2px;
   margin-left: 1rem;
   font-family: "Montserrat-Regular";
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: bolder;
+  margin-top: 0.75rem;
 }
 
 ._dark .crycto-logo label {
@@ -534,7 +538,7 @@
 }
 .range-value {
   padding: 0.5rem 1rem;
-  background: #323756;
+  background: #131313;
   border-radius: 0.5rem;
   outline: 0;
   border: none;
@@ -696,28 +700,34 @@
 
 /* Footer */
 
-.crypto-footer {
-  position: absolute;
+.crycto-footer {
+  /* position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   color: rgba(255, 255, 255, 0.8);
   padding: 2rem 2.5rem 2rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   margin: auto;
-  /* background: black; */
 }
 
-.crypto-footer-row1 {
+.crycto-footer-row1 {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
   align-items: center;
 
   /* height: 8rem; */
+}
+.crycto-footer-row2 {
+  font-size: 0.75rem;
+  text-align: left;
+  width: 100%;
+  margin-top: 15px;
 }
 .crycto-footer-copyright {
   flex: 1;
@@ -725,17 +735,17 @@
 .crycto-copyright img {
   margin-bottom: 1rem;
 }
-.crypto-footer span {
+.crycto-footer span {
   cursor: pointer;
 }
 .crycto-footer--logo {
   width: 4rem;
 }
-.crypto-footer-follow {
+.crycto-footer-follow {
   font-size: 2rem;
   font-family: "Righteous-Regular";
 }
-.crypto-footer-social-container {
+.crycto-footer-social-container {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
@@ -752,33 +762,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 2rem;
+  margin: 1rem;
 }
 
-.crypto-footer-social-container label {
+.crycto-footer-social-container label {
   font-size: 1rem;
   font-family: "Montserrat-Regular";
 }
-.crypto-footer-social {
+.crycto-footer-social {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
 }
-.crypto-footer-social span {
+.crycto-footer-social span {
   display: flex;
   align-items: center;
   cursor: pointer;
   margin: 0 1rem;
   font-size: 1.6rem;
 }
-.crypto-footer .footer-polygon-img {
+.crycto-footer .footer-polygon-img {
   width: 10px;
   height: 10px;
   margin: 0 2px 0 5px;
 }
 
-.crypto-footer .footer-purple {
+.crycto-footer .footer-purple {
   align-items: center;
   display: flex;
   color: hsl(262deg 64% 55%);
@@ -790,7 +800,7 @@
   border-bottom-right-radius: 0;
 }
 ._dark .crycto-account {
-  background: hsl(213deg 74% 19%);
+  background: rgba(255, 255, 255, 0.02);
 }
 ._light .crycto-account {
   background: #eef5ff;
@@ -822,7 +832,7 @@
 }
 
 ._dark .crycto-disconnect {
-  background-color: hsl(213deg 76% 26%);
+  background-color: rgba(0, 0, 0, 0.5);
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -840,27 +850,32 @@
   width: 80%;
   height: 190px;
   /* background: linear-gradient(45deg, rgb(22 69 115), #1e4063); */
-  background: transparent;
+  /* background: transparent; */
+
   box-shadow: -6px -6px 30px #ffffff36, 18px 18px 30px #b8c4e085;
   border-radius: 5px;
   color: white;
   font-size: 1rem;
   font-family: "Righteous-Regular";
   padding: 0 3rem;
-  margin: 2rem 0;
+  margin: 2rem 0 3rem;
   position: relative;
   border: 1px solid white;
-  --color-slogan: #3a3939;
-  --color-desc: #c4640c;
-  --color-links: black;
-  --color-play-btn: rgba(0, 0, 0, 0.07);
+  --color-slogan: white;
+  --color-desc: hsl(40deg 80% 45%);
+  --color-links: white;
+  --color-play-btn: rgba(255, 255, 255, 0.2);
+}
+._light .crycto-new-user-section {
+  background: #0e2738d1;
 }
 ._dark .crycto-new-user-section {
   box-shadow: 10px 10px 15px rgb(5 5 5 / 18%),
-    -7px -7px 10px rgb(45 69 98 / 12%) !important;
+    -7px -7px 10px rgb(26 26 26 / 18%) !important;
   border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.05);
   --color-slogan: #e3e3e3;
-  --color-desc: #c4640c;
+  --color-desc: hsl(40deg 80% 45%);
   --color-links: white;
   --color-play-btn: rgba(255, 255, 255, 0.1);
   /* #eba911; */
@@ -898,7 +913,7 @@
 .crycto-new-user-bg-player {
   position: absolute;
   right: -10%;
-  z-index: 1;
+  z-index: 0;
 }
 .crycto-new-user-bg-player img {
   width: 36.2rem;
@@ -925,7 +940,7 @@
   flex-shrink: 1;
   cursor: pointer;
   font-size: 0.8em;
-  transition: all 200ms ease;
+  transition: all 100ms ease;
   margin-right: 1em;
   display: flex;
   justify-content: center;
@@ -934,8 +949,8 @@
 .play-now-btn:hover {
   opacity: 0.9;
 }
-._light .play-now-btn:hover {
-  background: white;
+.play-now-btn:hover {
+  background: black;
 }
 ._light .play-now-btn:active {
   transform: scale(0.98);
@@ -989,7 +1004,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 991px) {
   .crycto-new-user-section {
     font-size: 6.5px;
     width: 95%;
@@ -1005,7 +1020,7 @@
   }
 }
 
-@media (max-width: 740px) {
+@media (max-width: 736px) {
   .crycto-new-user-section {
     font-size: 6.8px;
     flex-direction: column;
@@ -1050,7 +1065,7 @@
   background: linear-gradient(25deg, #4d4949, #454343);
   color: var(--c-gold);
   width: 100%;
-  overflow-x: scroll;
+
   box-shadow: inset 0 10px 15px rgb(5 5 5 / 18%),
     inset 0 -7px 15px rgb(88 88 88 / 19%);
   cursor: default;
@@ -1094,13 +1109,14 @@
   display: flex;
   align-items: center;
   background: linear-gradient(to left, #193c75, #152c58);
+
   color: rgba(255, 255, 255, 0.8);
   width: 100%;
   margin-top: 5rem;
 }
 
 ._dark .crycto-how-section {
-  background: linear-gradient(to bottom, #0d314f, #0e183d);
+  background: linear-gradient(45deg, #4e3a0d, #543f15);
 }
 
 .crycto-how-section .c-metamask {
@@ -1144,6 +1160,11 @@
   color: var(--c-gold);
 }
 
+._dark .crycto-how-left span a {
+  cursor: pointer;
+  color: white;
+}
+
 /* .crycto-how-left span:hover {
   transform: scale(1.03);
 } */
@@ -1181,20 +1202,24 @@
     min-height: 70vh;
     flex-direction: column;
     justify-content: center;
-    padding: 0 2rem;
+    padding: 5rem 2.5rem;
   }
   .crycto-how-left {
     align-items: center;
     padding-left: 0;
   }
   .crycto-how-left span {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     text-align: center;
     display: unset;
   }
   .crycto-how-right {
     display: flex;
     font-size: 2rem;
+    margin-top: 3rem;
+  }
+  .crycto-how-right span {
+    padding: 2rem 5rem;
   }
   .crycto-how-section .c-metamask {
     width: 30px;
@@ -1203,6 +1228,7 @@
     flex-direction: column;
     min-height: 70vh;
     padding-bottom: 10px;
+    padding: 5rem 0;
   }
 }
 
@@ -1219,6 +1245,7 @@
   margin-top: 10rem;
   margin-bottom: 6rem;
   position: relative;
+  /* background: #1c1e2b; */
 }
 
 .crycto-early-section-content {
@@ -1277,6 +1304,7 @@
 @media (max-width: 1024px) {
   .crycto-early-section {
     padding: 0 5%;
+    margin-top: 5rem;
   }
   .crycto-early-section-content {
     font-size: 2rem;
@@ -1291,15 +1319,16 @@
 }
 
 .crycto-early-section-submit {
-  padding: 1.5rem 2.5rem;
+  padding: 1.5rem 3.5rem;
   font-size: 1.5rem;
   color: white;
+  border: 1px solid #b87f11;
   cursor: pointer;
   opacity: 1;
   transition: opacity 200ms ease;
   box-shadow: 10px 10px 15px rgb(5 5 5 / 18%),
     -7px -7px 15px rgb(57 85 119 / 12%);
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1328,6 +1357,7 @@
   font-size: 1.5rem;
   text-transform: none;
   flex-direction: column;
+  border: none !important;
 }
 
 .crycto-early-section-submit-error {

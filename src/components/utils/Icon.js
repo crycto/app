@@ -5,12 +5,15 @@ import bannerPlayer from "../../assets/banner-player.svg";
 import bat from "../../assets/bat.svg";
 import moneybag from "../../assets/moneybag.svg";
 import arrow from "../../assets/arrow3.svg";
+import arrowDark from "../../assets/arrow-dark.svg";
 import trophy from "../../assets/trophy1.svg";
 import stars from "../../assets/stars.svg";
 import metamask from "../../assets/metamask.svg";
 import noresults from "../../assets/noresults.png";
+import { useTheme } from "../../providers/ThemeProvider";
 
 function Icon({ name, className, onClick }) {
+  const { isLightTheme } = useTheme();
   switch (name) {
     case "logo":
       return (
@@ -35,7 +38,12 @@ function Icon({ name, className, onClick }) {
       );
     case "arrow":
       return (
-        <img src={arrow} className={className} alt="arrow" onClick={onClick} />
+        <img
+          src={isLightTheme ? arrow : arrowDark}
+          className={className}
+          alt="arrow"
+          onClick={onClick}
+        />
       );
     case "trophy":
       return (

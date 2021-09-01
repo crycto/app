@@ -15,7 +15,7 @@ const DARK = "dark";
 
 function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(
-    localStorage.has(THEME) ? localStorage.get(THEME) : LIGHT
+    localStorage.has(THEME) ? localStorage.get(THEME) : DARK
   );
   const switchTheme = useCallback(() => {
     setTheme((theme) => (theme === LIGHT ? DARK : LIGHT));
@@ -23,15 +23,13 @@ function ThemeProvider({ children }) {
 
   useEffect(() => {
     localStorage.set(THEME, theme);
-    navigator.serviceWorker &&
-      navigator.serviceWorker.controller?.postMessage({ theme });
     document.querySelector("body").classList =
       theme === LIGHT ? ["_light"] : ["_dark"];
   }, [theme]);
 
   return (
     <ThemeContext.Provider
-      value={{ isLightTheme: theme === LIGHT, switchTheme }}
+      value={{ theme, isLightTheme: theme === LIGHT, switchTheme }}
     >
       {children}
     </ThemeContext.Provider>

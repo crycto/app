@@ -5,6 +5,12 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import reportWebVitals from "./reportWebVitals";
 
+if (window.localStorage.getItem("app-theme") === "light") {
+  document.querySelector("body").classList = "_light";
+} else {
+  document.querySelector("body").classList = "_dark";
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

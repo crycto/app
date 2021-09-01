@@ -16,7 +16,7 @@ function Header() {
       <div className="crycto-logo">
         <a href="/">
           <img src={logo} className="crycto-logo--img" alt="logo" />
-          <span className="crycto-logo--text">Crycto</span>
+          <span className="crycto-logo--text">crycto</span>
           <label>{NETWORK === "MUMBAI" ? "Testnet" : "Beta"}</label>
         </a>
       </div>

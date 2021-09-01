@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useTheme } from "../../../../providers/ThemeProvider";
 import Icon from "../../../utils/Icon";
 
 function ScoreInput({

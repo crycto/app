@@ -41,8 +41,7 @@ function App() {
               {NETWORK === "MUMBAI" && <TopBanner />}
               <Header />
               <Home />
-              <Consent />
-              {/* <Footer /> */}
+              {/* <Consent /> */}
             </TournamentProvider>
           </ApolloProvider>
         </WalletProvider>

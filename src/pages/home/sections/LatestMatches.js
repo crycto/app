@@ -79,7 +79,7 @@ function LatestMatches() {
           activeOnly &&
           data?.matches?.filter((m) => {
             const match = new Match(m);
-            return !match.isBetPlaced() && !match.isTakingBets();
+            return match.isBetPlaced() || match.isTakingBets();
           }).length === 0 && (
             <div className="placeholder-screen">
               <Icon name="noresults" />

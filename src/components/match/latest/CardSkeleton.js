@@ -5,7 +5,7 @@ import { useTheme } from "../../../providers/ThemeProvider";
 import isMobileBrowser from "../../../utils/isMobileBrowser";
 
 const isMobile = isMobileBrowser();
-const skeletonDark = "rgb(80 106 235 / 11%)";
+const skeletonDark = "rgb(255 255 255 / 5%)";
 const skeletonLight = "rgb(80 106 235 / 11%)";
 
 function CardSkeleton() {

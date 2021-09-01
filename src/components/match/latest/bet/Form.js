@@ -40,6 +40,7 @@ function Form({ match, onClose }) {
   const {
     connect,
     account,
+    balance,
     weiBalance = new moralisWeb3.utils.BN("0"),
   } = useWallet();
   const { notifyNewTransaction, notifyTransactionStatus } = useOnChainContext();
@@ -255,9 +256,10 @@ function Form({ match, onClose }) {
           account={account}
           connect={connect}
           valid={validBet}
-          insufficientBalance={moralisWeb3.utils
-            .toBN(bet.rawAmount ?? "0")
-            .gt(weiBalance)}
+          insufficientBalance={
+            balance == 0 ||
+            moralisWeb3.utils.toBN(bet.rawAmount ?? "0").gt(weiBalance)
+          }
           onSubmit={placeBet}
         />
       </div>
