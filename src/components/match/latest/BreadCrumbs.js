@@ -21,10 +21,10 @@ function BreadCrumbs({ id, uri, matchDetails }) {
           <span>{matchDetails.subtitle}</span>
         </div>
       )}
-      <div>
+      <div title={matchDetails.date}>
         <span>{matchDetails.date ?? "-"}</span>
       </div>
-      <div>
+      <div title={matchDetails.venue}>
         <span>{matchDetails.venue ?? "-"}</span>
       </div>
     </div>

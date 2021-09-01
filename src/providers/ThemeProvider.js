@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { analytics } from "../firebase";
 import localStorage from "../localstorage";
 
 const ThemeContext = createContext({});
@@ -25,6 +26,7 @@ function ThemeProvider({ children }) {
     localStorage.set(THEME, theme);
     document.querySelector("body").classList =
       theme === LIGHT ? ["_light"] : ["_dark"];
+    analytics.logEvent("theme", { theme });
   }, [theme]);
 
   return (

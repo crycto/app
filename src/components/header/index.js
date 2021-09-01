@@ -38,9 +38,13 @@ function Header() {
         ) : (
           <label
             className="crycto-launch--cta getmatic mr15"
-            onClick={() => setShowTransak(true)}
+            onClick={() =>
+              document
+                .querySelector("#completedRounds")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
-            Add MATIC to your wallet
+            Completed Rounds
           </label>
         )}
         {active ? (

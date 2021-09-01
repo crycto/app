@@ -1,4 +1,5 @@
 import firebase from "firebase";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDHjvulkMqgqkAfbbLIqrdZf0MtuTWk6TM",
   authDomain: "crycto-v1-beta.firebaseapp.com",
@@ -10,5 +11,7 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+export const analytics = firebase.analytics();
 
 export const firestore = firebaseApp.firestore();

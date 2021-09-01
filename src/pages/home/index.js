@@ -24,7 +24,10 @@ function Home() {
 
       <TournamentStats />
 
-      <section className="crycto-app--section bgblue completed">
+      <section
+        id="completedRounds"
+        className="crycto-app--section bgblue completed"
+      >
         <CompletedMatches />
         {NETWORK === "MUMBAI" && <EarlySupport />}
         <Footer />

@@ -12,6 +12,7 @@ export const chains = {
         decimals: 18,
       },
       rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+      explorer: "https://mumbai.polygonscan.com/",
     },
   },
   MATIC: {
@@ -25,22 +26,25 @@ export const chains = {
         decimals: 18,
       },
       rpcUrls: ["https://rpc-mainnet.maticvigil.com/"],
+      explorer: "https://polygonscan.com/",
     },
   },
 };
 
 // export const NETWORK =
-//   window.location.host?.indexOf("localhost") !== -1 ? "MUMBAI" : "MATIC";
+//   window.location.host?.indexOf("mumbai") !== -1 ? "MUMBAI" : "MATIC";
 
-export const NETWORK = "MUMBAI";
-console.log(NETWORK);
+export const NETWORK = "MATIC";
 
 export const TournamentContract = {
   [chains.MUMBAI.id]: [
     TournamentV1.abi,
     "0x3A897FAdA04EB55C6F78635f6e3086aA7192025b",
   ],
-  [chains.MATIC.id]: [TournamentV1.abi, ""],
+  [chains.MATIC.id]: [
+    TournamentV1.abi,
+    "0x3A897FAdA04EB55C6F78635f6e3086aA7192025b",
+  ],
 };
 
 export const switchNetwork = async () => {

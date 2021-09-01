@@ -17,6 +17,7 @@ import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import useMaticPrice from "../hooks/useMaticPrice";
 import { Alert } from "@material-ui/lab";
 import { useTheme } from "./ThemeProvider";
+import { chains, NETWORK } from "../web3";
 
 const OnChainContext = createContext({});
 
@@ -152,7 +153,7 @@ const TransactionSnackBar = ({ snack, open, onClose }) => {
               href="#"
               onClick={() =>
                 window.open(
-                  `https://polygonscan.com/tx/${snack?.hash}`,
+                  `${chains[NETWORK].networkObject.explorer}tx/${snack?.hash}`,
                   "_blank",
                   "noopener"
                 )
