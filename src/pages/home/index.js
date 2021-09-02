@@ -28,6 +28,7 @@ function Home() {
         id="completedRounds"
         className="crycto-app--section bgblue completed"
       >
+        {/* <div className="shape" /> */}
         <CompletedMatches />
         {NETWORK === "MUMBAI" && <EarlySupport />}
         <Footer />

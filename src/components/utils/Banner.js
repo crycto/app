@@ -51,7 +51,7 @@ function Banner() {
           Configure Polygon
         </a>
         <a
-          href="https://global.transak.com/"
+          href="https://wazirx.com/exchange/MATIC-INR"
           target="_blank"
           rel="noopener noreferrer"
         >

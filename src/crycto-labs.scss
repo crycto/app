@@ -73,7 +73,7 @@
     }
   }
   .completed {
-    background: transparent;
+    background: var(--c-dark-bg);
   }
 }
 
@@ -431,6 +431,7 @@
 }
 
 .completed {
+  position: relative;
   padding-top: 3em;
   padding-bottom: 10rem;
   min-height: 100vh !important;
@@ -619,6 +620,19 @@
       padding: 7px 8px;
     }
   }
+}
+
+.shape {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: -65vh;
+  width: 100vh;
+  background: #cd910d;
+  height: 100vh;
+  box-shadow: 0 0 50px 4px #ffb100;
+  transform: rotate(45deg);
+  margin: auto;
 }
 
 //Success animation

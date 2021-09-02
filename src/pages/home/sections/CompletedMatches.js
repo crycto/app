@@ -31,11 +31,12 @@ const useStyles = makeStyles({
     display: "flex",
     width: "95%",
     borderRadius: 10,
-    background: "transparent",
+    background: "inherit",
     boxShadow:
-      "10px 10px 15px rgb(5 5 5 / 30%), -5px -5px 10px rgb(92 91 91 / 5%)",
+      "inset 10px 10px 15px rgb(5 5 5 / 40%), inset -5px -5px 10px rgb(92 91 91 / 10%)",
     fontSize: "var(--font-size)",
-    border: "1px solid #b87f11",
+    border: "1px solid #a9791a",
+    zIndex: 2,
   },
   table: {
     minWidth: isMobile ? "auto" : 650,
@@ -43,7 +44,7 @@ const useStyles = makeStyles({
     overflow: isMobile ? "auto" : "scroll",
   },
   tableHead: {
-    background: "#a9791a",
+    // background: "linear-gradient(296deg, #403113,#48340a, #46330e)",
   },
 });
 
@@ -52,12 +53,12 @@ const TableCell = withStyles((theme) => ({
     // color: "#a9791a",
     fontSize: isMobile ? "1rem" : "1.3em",
     border: "none",
-    borderBottom: "1px solid rgb(249 249 249 / 6%)",
+    borderBottom: "1px solid #3a393880",
     fontFamily: "Righteous-Regular",
-    padding: "2em .5em",
+    padding: "2.5em .5em 2em",
     textTransform: "uppercase",
-    background: "#a9791a",
-    color: "white",
+    color: "#a9791a",
+    // color: "white",
     textAlign: "center",
 
     // background: "rgba(255,255,255,0.1)",
@@ -66,7 +67,7 @@ const TableCell = withStyles((theme) => ({
     fontSize: isMobile ? "1.8em" : "1.35em",
     fontFamily: "var(--crycto-font-montserrat)",
     padding: isMobile ? 0 : "1.5em 2em",
-    borderBottom: "1px solid #a9791a80",
+    borderBottom: "1px solid #3a393880",
     color: "white",
     height: "7em",
     textAlign: "center",
