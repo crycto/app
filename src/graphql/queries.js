@@ -41,6 +41,7 @@ export const LATEST_MATCHES = gql`
       scoreMultiple
       deadline
       winningScore
+      rewardRate
       totalBets
       totalAmount
       rewardAmount
@@ -113,6 +114,7 @@ export const MATCH = gql`
       scoreMultiple
       deadline
       winningScore
+      rewardRate
       totalBets
       totalAmount
       rewardAmount

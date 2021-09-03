@@ -8,7 +8,7 @@ export const chains = {
       chainName: "Mumbai Testnet",
       nativeCurrency: {
         name: "Matic",
-        symbol: "MATIC", // 2-6 characters long
+        symbol: "MATIC", 
         decimals: 18,
       },
       rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
@@ -22,7 +22,7 @@ export const chains = {
       chainName: "Matic Mainnet",
       nativeCurrency: {
         name: "Matic",
-        symbol: "MATIC", // 2-6 characters long
+        symbol: "MATIC", 
         decimals: 18,
       },
       rpcUrls: ["https://rpc-mainnet.maticvigil.com/"],
@@ -34,16 +34,16 @@ export const chains = {
 // export const NETWORK =
 //   window.location.host?.indexOf("mumbai") !== -1 ? "MUMBAI" : "MATIC";
 
-export const NETWORK = "MATIC";
+export const NETWORK = "MUMBAI";
 
 export const TournamentContract = {
   [chains.MUMBAI.id]: [
     TournamentV1.abi,
-    "0x3A897FAdA04EB55C6F78635f6e3086aA7192025b",
+    "0xADA6Fc084d4b1Fd4a15e4A040FD1d8E303EE3Da4",
   ],
   [chains.MATIC.id]: [
     TournamentV1.abi,
-    "0x3A897FAdA04EB55C6F78635f6e3086aA7192025b",
+    "0xADA6Fc084d4b1Fd4a15e4A040FD1d8E303EE3Da4",
   ],
 };
 

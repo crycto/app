@@ -1,5 +1,6 @@
 import React from "react";
 import Spinner from "../../../utils/Spinner";
+import { CircularProgress } from "@material-ui/core";
 
 function SubmitButton({
   account,
@@ -7,6 +8,7 @@ function SubmitButton({
   valid,
   insufficientBalance,
   onSubmit,
+  submitting,
 }) {
   return !account ? (
     <div className="action-button" onClick={connect}>
@@ -17,7 +19,11 @@ function SubmitButton({
       className={`action-button ${!valid && "_disabled"}`}
       onClick={onSubmit}
     >
-      <span>{insufficientBalance ? "Insufficient Funds" : "Confirm"}</span>
+      {submitting ? (
+        <CircularProgress size={"1.5rem"} color="inherit" />
+      ) : (
+        <span>{insufficientBalance ? "Insufficient Funds" : "Confirm"}</span>
+      )}
     </div>
   );
 }

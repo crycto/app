@@ -8,14 +8,14 @@ import { chains, NETWORK, TournamentContract } from "../../web3";
 import Icon from "../utils/Icon";
 
 const URLS = {
-  twitter: "https://www.twitter.com/",
-  instagram: "https://www.instagram.com/",
-  linkedin: "https://www.linkedin.com/",
-  github: "https://github.com/crycto/",
+  twitter: "https://twitter.com/crycto_io",
+  instagram: "https://www.instagram.com/crycto.io",
+  linkedin: "https://www.linkedin.com/company/crycto",
+  github: "https://github.com/crycto/smart-contracts",
   polygon: "https://polygon.technology/",
-  contract: `https://polygonscan.com/address/${
+  contract: `${chains[NETWORK].networkObject.explorer}address/${
     TournamentContract[chains[NETWORK].id][1]
-  }`,
+  }#code`,
   terms: "https://crycto.io/terms",
 };
 function Footer() {

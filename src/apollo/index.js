@@ -1,27 +1,28 @@
 import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
+import { NETWORK } from "../web3";
 import localStorage from "../localstorage";
 
-const pagination = (keyArgs) => ({
-  keyArgs,
-  merge(existing, incoming, { args }) {
-    const merged = existing ? existing.slice(0) : [];
-    if (args) {
-      const { queryId, skip = 0 } = args;
-      for (let i = 0; i < incoming.length; ++i) {
-        merged[skip + i] = incoming[i];
-      }
-    } else {
-      throw new Error("Missing args");
-    }
-    return merged;
-  },
-  read(existing, { args: { queryId, skip, first } }) {
-    if (queryId == 1) {
-      return existing && existing.slice(skip, skip + first);
-    }
-    return existing;
-  },
-});
+// const pagination = (keyArgs) => ({
+//   keyArgs,
+//   merge(existing, incoming, { args }) {
+//     const merged = existing ? existing.slice(0) : [];
+//     if (args) {
+//       const { queryId, skip = 0 } = args;
+//       for (let i = 0; i < incoming.length; ++i) {
+//         merged[skip + i] = incoming[i];
+//       }
+//     } else {
+//       throw new Error("Missing args");
+//     }
+//     return merged;
+//   },
+//   read(existing, { args: { queryId, skip, first } }) {
+//     if (queryId == 1) {
+//       return existing && existing.slice(skip, skip + first);
+//     }
+//     return existing;
+//   },
+// });
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -41,12 +42,14 @@ const cache = new InMemoryCache({
               if (localStorage.has(ipfsHash)) {
                 storage[ipfsHash](localStorage.getJSON(ipfsHash));
               } else {
-                fetch(`https://ipfs.infura.io/ipfs/${ipfsHash}`)
-                  .then((res) => res.json())
-                  .then((m) => {
-                    storage[ipfsHash](m);
-                    localStorage.setJSON(ipfsHash, m);
-                  });
+                fetchFromIpfs(
+                  `https://ipfs.infura.io/ipfs`,
+                  ipfsHash,
+                  storage
+                ).catch((e) => {
+                  console.log(e);
+                  fetchFromIpfs(`https://ipfs.io/ipfs`, ipfsHash, storage);
+                });
               }
             }
             return storage[ipfsHash]();
@@ -57,15 +60,26 @@ const cache = new InMemoryCache({
   },
 });
 
-export default async function initializeClient() {
-  //TODO: Need to evaluate need
-  // await persistCache({
-  //   cache,
-  //   storage: new LocalStorageWrapper(window.localStorage),
-  // });
+const fetchFromIpfs = (url, ipfsHash, storage) =>
+  fetch(`${url}/${ipfsHash}`)
+    .then((res) => res.json())
+    .then((m) => {
+      storage[ipfsHash](m);
+      localStorage.setJSON(ipfsHash, m);
+    });
 
+// const theGraphUrl =
+//   "https://api.thegraph.com/subgraphs/name/shrinivas-s/cryctov1";
+
+const testnetSubGraph =
+  "https://api.thegraph.com/subgraphs/name/crycto/crycto-mumbai";
+const mainnetSubGraph = "https://api.thegraph.com/subgraphs/name/crycto/crycto";
+
+const uri = NETWORK === "MUMBAI" ? testnetSubGraph : mainnetSubGraph;
+
+export default async function initializeClient() {
   return new ApolloClient({
-    uri: "https://api.thegraph.com/subgraphs/name/shrinivas-s/cryctov1",
+    uri,
     cache,
   });
 }

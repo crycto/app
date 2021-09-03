@@ -33,6 +33,12 @@ const fragment = gql`
       claimed
       refunded
     }
+    positions {
+      id
+      score
+      bets
+      amount
+    }
   }
 `;
 
@@ -122,9 +128,11 @@ function Form({ match, onClose }) {
     [setBet, weiBalance]
   );
   useEffect(() => {
+    console.log(minBetAmount);
     setValidBet(
       bet.score >= match.minScore &&
         bet.score % match.scoreMultiple === 0 &&
+        bet.amount > 0 &&
         bet.amount >= minBetAmount &&
         moralisWeb3.utils.toBN(bet.rawAmount ?? "0").lte(weiBalance)
     );
@@ -145,12 +153,41 @@ function Form({ match, onClose }) {
         fragment,
         variables: { connectedUser: account },
       });
+      const cachedPositions = cachedMatch.positions ?? [];
+      const curPositionIndex = cachedPositions.findIndex(
+        (p) => p.score == bet.score
+      );
+      let updatedPositions;
+
+      if (curPositionIndex === -1) {
+        const newPosition = {
+          id: `${match.id}-${moralisWeb3.utils.numberToHex(bet.score)}`,
+          bets: 1,
+          score: bet.score,
+          amount: bet.rawInput,
+          __typename: "Position",
+        };
+        updatedPositions = [...cachedPositions, newPosition];
+      } else {
+        const curPosition = cachedPositions[curPositionIndex];
+        const updatedPosition = {
+          id: curPosition.id,
+          bets: +curPosition.bets + 1,
+          score: curPosition.score,
+          amount: parseFloat(curPosition.amount) + parseFloat(bet.rawInput),
+          __typename: "Position",
+        };
+        updatedPositions = cachedPositions.splice(curPositionIndex, 1);
+        updatedPositions = [...cachedPositions, updatedPosition];
+      }
+
       apolloClient.writeFragment({
         id: `Match:${match.id}`,
         fragment,
         variables: { connectedUser: account },
         data: {
           bets: [newBetObject],
+          positions: updatedPositions,
           totalBets: +cachedMatch.totalBets + 1,
           totalAmount:
             parseFloat(cachedMatch.totalAmount) + parseFloat(bet.rawInput),
@@ -162,6 +199,9 @@ function Form({ match, onClose }) {
 
   const placeBet = useCallback(async () => {
     try {
+      if (submitting) {
+        return;
+      }
       setSubmitting(true);
       await web3Tournament.methods
         .betScore(match.id, bet.score)
@@ -261,21 +301,9 @@ function Form({ match, onClose }) {
             moralisWeb3.utils.toBN(bet.rawAmount ?? "0").gt(weiBalance)
           }
           onSubmit={placeBet}
+          submitting={submitting}
         />
       </div>
-      {submitting && (
-        <Backdrop
-          open
-          appear
-          style={{
-            zIndex: 9999999,
-            color: "var(--c-gold)",
-            background: "rgba(255,255,255,0.3)",
-          }}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
     </div>
   );
 }

@@ -7,8 +7,8 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 function HowToPlay() {
   const { active, connect } = useWallet();
   return active ? null : (
-    <section class="crycto-how-section">
-      <div class="crycto-how-left">
+    <section className="crycto-how-section">
+      <div className="crycto-how-left">
         <label>HOW DO I PLAY ? </label>
         <span>
           {/* <Icon name="metamask" className="c-how-bullet" />  */}
@@ -62,7 +62,7 @@ function HowToPlay() {
           multiply your holdings
         </span>
       </div>
-      <div class="crycto-how-right">
+      <div className="crycto-how-right">
         {window.ethereum ? (
           <span onClick={connect}>
             Connect <Icon name="metamask" className="c-metamask" />

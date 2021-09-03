@@ -95,7 +95,8 @@ export default class Match {
           1 +
             (this.isAtStage(COMPLETED)
               ? this.rawRewardAmount
-              : this.rawTotalAmount - position.amount) /
+              : ((this.rawTotalAmount - position.amount) * this.rewardRate) /
+                100) /
               position.amount
         ).toFixed(2)
       : 0;
@@ -152,7 +153,7 @@ class MatchDetails {
   constructor(match) {
     this.team1 = match["team1.symbol"];
     this.team2 = match["team2.symbol"];
-    this.date = formatDate(new Date(match.date));
+    this.date = match.date ? formatDate(new Date(match.date)) : "-";
     this.venue = match.venue;
     this.series = match.series;
     this.subtitle = match.subtitle;

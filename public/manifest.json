@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "player.png", //"logo192.png" TODO: Need to create for 192x192
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "player.png", //"logo512.png" TODO: Need to create for 512x512
+      "src": "logo-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

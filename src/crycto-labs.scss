@@ -408,6 +408,9 @@
       .bottom-container {
         background: var(--color-bet-bg);
       }
+      .action-button {
+        color: var(--c-gold);
+      }
       .action-button span {
         background: var(--color-confirm-btn-bg);
         color: var(--color-confirm-btn) !important;
@@ -604,6 +607,9 @@
             min-height: 65%;
             font-size: 1.6em;
             padding: 1em 2.5em;
+          }
+          .action-button-inner {
+            color: white;
           }
         }
         .mb20 {
