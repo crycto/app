@@ -2,4 +2,4 @@
 
 Fantasy Cricket on the blockchain
 
-[Launch Dapp](http://app.crycto.io)
+[Launch Testnet App](https://mumbai.crycto.io)
